@@ -3,30 +3,36 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
-    const [nav, setNav] = useState(false);
-
+  const [nav, setNav] = useState(false);
+  const pathname = usePathname();
   const links = [
     {
       id: 1,
-      link: "Inicio",
+      href: "/inicio",
+      linkName: "Inicio"
     },
     {
       id: 2,
-      link: "Planetas",
+      href: "/planetas",
+      linkName: "Planetas"
     },
     {
       id: 3,
-      link: "Foto del día",
+      href: "/fotodeldia",
+      linkName: "Foto del día"
     },
     {
       id: 4,
-      link: "Fotos de Marte",
+      href: "/fotosdeMarte",
+      linkName: "Fotos de Marte"
     },
     {
       id: 5,
-      link: "Otros",
+      href: "/otros",
+      linkName: "Otros"
     },
   ];
 
@@ -35,31 +41,37 @@ const Navbar = () => {
       <div>
         {/* <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">Logo</a></h1> */}
         <h1 className="text-xl font-signature ml-2">
-        <a
-        className="link-underline link-underline-black flex items-center"
-        href=""
-        target="_blank"
-        rel="noreferrer"
+        <Link
+          className="link-underline link-underline-black flex items-center"
+          href="/"
+          rel="noreferrer"
         >
-        <Image
-          src="/logo-pocket-solar-system.jpg" 
-          alt="Logo of the application" 
-          width={70}
-          height={70}
-          className='hidden md:block mr-2 rounded-full'
-        />
-        <span>Pocket Solar System</span>
-          </a>
+          <Image
+            src="/logo-pocket-solar-system.jpg" 
+            alt="Logo of the application" 
+            width={70}
+            height={70}
+            className='hidden md:block mr-2 rounded-full'
+          />
+          <span>Pocket Solar System</span>
+        </Link>
         </h1>
       </div>
 
       <ul className="hidden md:flex">
-        {links.map(({ id, link }) => (
+        {links.map((link) => (
           <li
-            key={id}
-            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline"
+            key={link.id}
+            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 
+            hover:scale-105 hover:text-white duration-200 link-underline"
           >
-            <Link href={link}>{link}</Link>
+            <Link 
+              key={link.id}
+              href={link.href}
+              className={`${pathname ===  link.href ? 'scale-105 text-white' : ''}`}
+            >
+              {link.linkName}
+            </Link>
           </li>
         ))}
       </ul>
@@ -73,13 +85,18 @@ const Navbar = () => {
 
       {nav && (
         <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">
-          {links.map(({ id, link }) => (
+          {links.map((link) => (
             <li
-              key={id}
+              key={link.id}
               className="px-4 cursor-pointer capitalize py-6 text-4xl"
             >
-              <Link onClick={() => setNav(!nav)} href={link}>
-                {link}
+              <Link 
+                onClick={() => setNav(!nav)} 
+                key={link.id}
+                href={link.href}
+                className={`${pathname ===  link.href ? 'scale-105 text-white' : ''}`}
+              >
+                {link.linkName} 
               </Link>
             </li>
           ))}
