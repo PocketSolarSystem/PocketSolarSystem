@@ -1,10 +1,24 @@
+'use client'
 import Image from "next/image";
-import styles from './ui/inicio.module.css'
+import Typewriter from 'typewriter-effect';
+
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
-        <h1 className={`text-4xl mt-7 ${styles.typingAnimation}`}>Bienvenidos a Pocket Solar System</h1>
+      
+        <h1 className="text-4xl mt-7">
+          <Typewriter
+            onInit={typewriter => {
+              typewriter
+                .typeString('Welcome to Pocket Solar System')
+                .pauseFor(4000)
+                .deleteAll()
+                .typeString('Bienvenidos a Pocket Solar System')
+                .start();
+            }}
+          />
+        </h1>
         <div>
           <Image
             src="/saturno-inicio.jpg"
