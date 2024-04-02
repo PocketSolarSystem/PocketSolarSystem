@@ -6,7 +6,6 @@ import Typewriter from 'typewriter-effect';
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
-      <div className="sm:min-h-32 sm:block">
         <h1 className="text-4xl mt-7">
             <Typewriter
               onInit={typewriter => {
@@ -18,9 +17,7 @@ export default function Home() {
                   .start();
               }}
             />
-        </h1>
-      </div>
-        
+        </h1>        
         <div>
           <Image
             src="/saturno-inicio.jpg"
