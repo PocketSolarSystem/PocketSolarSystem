@@ -6,19 +6,21 @@ import Typewriter from 'typewriter-effect';
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
-      
+      <div className="sm:w-64 sm:h-32 box-shadow-none">
         <h1 className="text-4xl mt-7">
-          <Typewriter
-            onInit={typewriter => {
-              typewriter
-                .typeString('Welcome to Pocket Solar System')
-                .pauseFor(4000)
-                .deleteAll()
-                .typeString('Bienvenidos a Pocket Solar System')
-                .start();
-            }}
-          />
+            <Typewriter
+              onInit={typewriter => {
+                typewriter
+                  .typeString('Welcome to Pocket Solar System')
+                  .pauseFor(4000)
+                  .deleteAll()
+                  .typeString('Bienvenidos a Pocket Solar System')
+                  .start();
+              }}
+            />
         </h1>
+      </div>
+        
         <div>
           <Image
             src="/saturno-inicio.jpg"
