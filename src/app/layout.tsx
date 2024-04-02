@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./ui/navbar";
+import Footer from "./ui/footer";
 import { chakra, inter } from "./ui/fonts";
 
 
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body className={`${chakra.className} antialiased`}>
         <Navbar />
           {children}
+        <Footer />
       </body>
     </html>
   );
