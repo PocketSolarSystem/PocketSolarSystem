@@ -4,7 +4,11 @@ export async function fetchFotoDelDia() {
 
   try {
 
-    const data = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`);
+    const data = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`, {
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }});
     const dataJSON = data.json();
     return dataJSON;
   } catch (error) {

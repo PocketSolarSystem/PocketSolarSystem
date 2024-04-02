@@ -16,11 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${chakra.className} antialiased`}>
         <Navbar />
-        <div className={`${chakra.className} antialiased`}>
           {children}
-        </div>
       </body>
     </html>
   );
