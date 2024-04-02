@@ -6,8 +6,8 @@ import Typewriter from 'typewriter-effect';
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
-      <div className="">
-        <h1 className="text-4xl mt-7 sm:w-64 sm:h-32 border">
+      <div className="sm:min-h-32 sm:block">
+        <h1 className="text-4xl mt-7">
             <Typewriter
               onInit={typewriter => {
                 typewriter
