@@ -14,14 +14,13 @@ export default async function FotoDelDia(){
                 className='md:block mr-2'
             />
             <div className="items-start">
-                <p className="m-7">
+                <p className="mt-7">
                     <strong>¿Qué es la foto del día?</strong> La foto del día es una imagen de nuestro universo que proporciona la NASA diariamente, gracias a su API pública podemos acceder a ella y visualizarla en nuestra aplicación web.
                 </p>
-                <p className="m-7"><strong>Título de la foto:</strong> {fotodeldia.title}. </p>
-                <p className="m-7"><strong>Descripción de la foto:</strong> {fotodeldia.explanation}. </p>
-                <a className="m-7" href={fotodeldia.hdurl} target="_blank" rel="noopener noreferrer">Pulsa aquí para ver la imagen en máxima calidad.</a>
+                <p className="mt-7"><strong>Título de la foto:</strong> {fotodeldia.title}. </p>
+                <p className="mt-7"><strong>Descripción de la foto:</strong> {fotodeldia.explanation}. </p>
+                <a className="mt-7" href={fotodeldia.hdurl} target="_blank" rel="noopener noreferrer">Pulsa aquí para ver la imagen en máxima calidad.</a>
             </div>
         </main>
-        
     )
 }
