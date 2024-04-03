@@ -24,7 +24,7 @@ export default function Home() {
             width={1200}
             height={672}
             alt="Landing page Saturn image"
-            className="mt-20 skew-y-2 z-0"
+            className="mt-16 skew-y-2 z-0"
           />
         </div>
         <h2 className="text-xl mt-20"><strong>¿Qué es Pocket Solar System?</strong></h2>
