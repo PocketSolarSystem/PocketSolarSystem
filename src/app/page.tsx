@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import Typewriter from 'typewriter-effect';
+import Link from "next/link";
 
 
 export default function Home() {
@@ -26,9 +27,14 @@ export default function Home() {
             alt="Landing page Saturn image"
             className="mt-16 skew-y-2 z-0"
           />
-          {/* <Link>
-            Descubre la foto del día
-          </Link> */}
+          <Link
+            href={"fotodeldia"} 
+            className="hidden md:block bg-white mt-7 p-4 text-center text-xl skew-y-2 hover:bg-gray-200 border border-black"
+          >
+            Descubre la foto diaria de la NASA
+          </Link>
+
+          
         </div>
         <h2 className="text-xl mt-20"><strong>¿Qué es Pocket Solar System?</strong></h2>
         <p className="items-start mt-4">
