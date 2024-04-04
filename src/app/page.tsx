@@ -25,18 +25,18 @@ export default function Home() {
             width={1200}
             height={672}
             alt="Landing page Saturn image"
-            className="mt-16 skew-y-2 z-0"
+            className="mt-12 skew-y-2 z-0"
           />
           <Link
             href={"fotodeldia"} 
-            className="hidden md:block bg-white mt-7 p-4 text-center text-xl skew-y-2 hover:bg-gray-200 border border-black"
+            className="block md:hidden bg-white mt-7 p text-center skew-y-2 hover:bg-gray-200 border border-black"
           >
             Descubre la foto diaria de la NASA
           </Link>
 
           
         </div>
-        <h2 className="text-xl mt-20"><strong>¿Qué es Pocket Solar System?</strong></h2>
+        <h2 className="text-xl mt-8"><strong>¿Qué es Pocket Solar System?</strong></h2>
         <p className="items-start mt-4">
           Pocket Solar System es una aplicación web que tiene como propósito satisfacer la curiosidad humana acerca del universo desde la comodidad de nuestro navegador web favorito. La aplicación se alimenta de la API pública de la NASA para ofrecernos información que implementamos con múltiples funcionalidades que descubrirás explorando el sitio web. 
         </p>
