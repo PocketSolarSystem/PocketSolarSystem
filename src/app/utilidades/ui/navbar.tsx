@@ -32,7 +32,7 @@ const Navbar = () => {
     {
       id: 5,
       href: "/buscadorNasa",
-      linkName: "Buscador de archivos de la NASA"
+      linkName: "Buscador archivos NASA"
     },
   ];
 
