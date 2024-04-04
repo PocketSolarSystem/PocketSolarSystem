@@ -6,7 +6,7 @@ export async function fetchFotoDelDia() {
 
     const data = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`, {
       next: {
-      revalidate: 86400,
+        revalidate: 3600,
       },
     });
     const dataJSON = data.json();
