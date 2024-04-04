@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./ui/navbar";
-import Footer from "./ui/footer";
-import { chakra, inter } from "./ui/fonts";
+import Navbar from "./utilidades/ui/navbar";
+import Footer from "./utilidades/ui/footer";
+import { chakra, inter } from "./utilidades/ui/fonts";
 
 
 export const metadata: Metadata = {

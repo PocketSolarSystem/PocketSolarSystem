@@ -1,4 +1,4 @@
-import { fetchFotoDelDia } from "../lib/apidata"
+import { fetchFotoDelDia } from "../utilidades/lib/apidata"
 import Image from "next/image";
 
 export default async function FotoDelDia(){

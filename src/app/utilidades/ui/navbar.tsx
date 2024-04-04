@@ -11,7 +11,7 @@ const Navbar = () => {
   const links = [
     {
       id: 1,
-      href: "/inicio",
+      href: "/",
       linkName: "Inicio"
     },
     {
@@ -26,13 +26,13 @@ const Navbar = () => {
     },
     {
       id: 4,
-      href: "/fotosdeMarte",
+      href: "/fotosMarte",
       linkName: "Fotos de Marte"
     },
     {
       id: 5,
-      href: "/otros",
-      linkName: "Otros"
+      href: "/buscadorNasa",
+      linkName: "Buscador de archivos de la NASA"
     },
   ];
 
