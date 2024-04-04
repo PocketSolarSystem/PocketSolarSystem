@@ -18,7 +18,7 @@ export default function Home() {
               }}
             />
         </h1>        
-        <div>
+        <div className="relative">
           <Image
             src="/saturno-inicio.jpg"
             width={1200}
@@ -26,6 +26,9 @@ export default function Home() {
             alt="Landing page Saturn image"
             className="mt-16 skew-y-2 z-0"
           />
+          <Link>
+            Descubre la foto del día
+          </Link>
         </div>
         <h2 className="text-xl mt-20"><strong>¿Qué es Pocket Solar System?</strong></h2>
         <p className="items-start mt-4">
