@@ -96,7 +96,9 @@ const Navbar = () => {
                 href={link.href}
                 className={`${pathname ===  link.href ? 'scale-105 text-white' : ''}`}
               >
-                {link.linkName} 
+                <span className="text-center">
+                  {link.linkName}
+                </span>
               </Link>
             </li>
           ))}
