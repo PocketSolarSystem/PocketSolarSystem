@@ -6,7 +6,7 @@ import {InicioEnlace} from "./utilidades/ui/inicio-enlace";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
-        <h1 className="text-4xl mt-7 basis-40 md:basis-0 lg:basis-0">
+        <h1 className="text-4xl mt-7 md:mb-5 basis-40 md:basis-0 lg:basis-0">
             <Typewriter
               onInit={typewriter => {
                 typewriter
@@ -21,10 +21,10 @@ export default function Home() {
 
         <InicioEnlace />
 
-        <h2 className="text-xl mt-8">
+        <h2 className="text-2xl mt-8 md:mt-12">
           <strong>¿Qué es Pocket Solar System?</strong>
         </h2>
-        <p className="items-start mt-4">
+        <p className="items-start text-xl mt-4">
           Pocket Solar System es una aplicación web que tiene como propósito satisfacer la curiosidad humana acerca del universo desde la comodidad de nuestro navegador web favorito. La aplicación se alimenta de la API pública de la NASA para ofrecernos información que implementamos con múltiples funcionalidades que descubrirás explorando el sitio web. 
         </p>
         
