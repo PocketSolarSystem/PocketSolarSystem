@@ -100,7 +100,11 @@ const Footer = () => {
           <h4 className="text-lg font-semibold mb-4">Mapa del sitio</h4>
           <ul>
             {linksMapa.map((link) => (
-              <li key={link.id}>
+              <li
+                key={link.id}
+                className="cursor-pointer capitalize font-medium text-gray-500 
+              hover:scale-105 hover:text-white duration-200 link-underline"
+              >
                 <Link
                   onClick={() => setNav(!nav)}
                   href={link.href}
@@ -116,20 +120,33 @@ const Footer = () => {
           <h4 className="text-lg font-semibold mb-4">Redes Sociales</h4>
           <div className="flex space-x-4">
             {linksRedes.map((link) => (
-              <div key={link.id}>
+              <div
+                key={link.id}
+                className="cursor-pointer capitalize font-medium text-gray-500 
+              hover:scale-105 hover:text-white duration-200 link-underline"
+              >
                 <Link
                   onClick={() => setNav(!nav)}
                   href={link.href}
                   className={`cursor-pointer ${pathname === link.href ? "scale-105 text-white" : ""}`}
                 >
                   {link.linkName === "Facebook" && (
-                    <FontAwesomeIcon icon={faFacebook} />
+                    <FontAwesomeIcon
+                      icon={faFacebook}
+                      style={{ fontSize: "1.8rem" }}
+                    />
                   )}
                   {link.linkName === "Twitter" && (
-                    <FontAwesomeIcon icon={faTwitter} />
+                    <FontAwesomeIcon
+                      icon={faTwitter}
+                      style={{ fontSize: "1.8rem" }}
+                    />
                   )}
                   {link.linkName === "Instagram" && (
-                    <FontAwesomeIcon icon={faInstagram} />
+                    <FontAwesomeIcon
+                      icon={faInstagram}
+                      style={{ fontSize: "1.8rem" }}
+                    />
                   )}
                 </Link>
               </div>
