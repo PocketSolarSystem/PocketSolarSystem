@@ -4,7 +4,7 @@ import Image from "next/image";
 export default async function FotoDelDia(){
     const fotodeldia = await fetchFotoDelDia();
     return(
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <main className="flex min-h-screen flex-col items-center p-12 pt-24 md:p-24">
             <h1 className="text-2xl font-signature ml-2 m-7 mt-4">Foto del día proporcionada por la NASA</h1>
             <Image
                 src = {fotodeldia.url} 

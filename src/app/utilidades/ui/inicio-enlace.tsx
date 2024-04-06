@@ -21,7 +21,7 @@ export function InicioEnlace(){
 
           <Link
             href={"fotodeldia"} 
-            className="block md:hidden bg-white mt-7 p text-center skew-y-2 hover:bg-gray-200 border border-black"
+            className="block md:hidden bg-white mt-7 p-2 text-center skew-y-2 hover:bg-gray-200 border border-black"
           >
             Descubre la foto diaria de la NASA
           </Link>
