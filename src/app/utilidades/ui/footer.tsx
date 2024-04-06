@@ -69,7 +69,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-800 text-white py-12">
+    <footer className="bg-black text-white py-12">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="p-4">
           <div className="flex flex-col items-center justify-center md:justify-start">
@@ -87,7 +87,7 @@ const Footer = () => {
               />
             </Link>
           </div>
-          <h1 className="text-xl font-semibold mb-4">
+          <h1 className="text-xl mb-4">
             <span>Pocket Solar System</span>
           </h1>
           <p>
@@ -97,7 +97,7 @@ const Footer = () => {
           </p>
         </div>
         <div className="p-4">
-          <h4 className="text-lg font-semibold mb-4">Mapa del sitio</h4>
+          <h4 className="text-lg mb-4">Mapa del sitio</h4>
           <ul>
             {linksMapa.map((link) => (
               <li
@@ -117,7 +117,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="p-4">
-          <h4 className="text-lg font-semibold mb-4">Redes Sociales</h4>
+          <h4 className="text-lg mb-4">Redes Sociales</h4>
           <div className="flex space-x-4">
             {linksRedes.map((link) => (
               <div
@@ -154,7 +154,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="p-4">
-          <h4 className="text-lg font-semibold mb-4">Contacto</h4>
+          <h4 className="text-lg mb-4">Contacto</h4>
           <ul>
             <li>
               <FontAwesomeIcon icon={faMapMarkerAlt} /> Dirección: Av. de la
@@ -191,7 +191,7 @@ const Footer = () => {
             </button>
           </form>
         </div>
-        <div className="flex justify-center items-center mt-4">
+        {/* <div className="flex justify-center items-center mt-4">
           <div className="flex flex-col items-center mr-4">
             <FontAwesomeIcon
               icon={faLock}
@@ -236,7 +236,7 @@ const Footer = () => {
               Norton Secured
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
