@@ -40,7 +40,7 @@ export default function Home() {
         <InicioTexto 
           titulo='Explora los planetas del sistema solar en tres dimensiones'
           texto='Los planetas de Pocket Solar System están desarrollados enteramente con JavaScript. 
-          Gracias a la librería ThreeJS hemos podido crear todos los planetas de nuestro sistema en 3D.'
+          Gracias a la librería ThreeJS hemos podido representar todos los planetas de nuestro sistema en 3D.'
         />
 
         <InicioEnlace
@@ -54,6 +54,16 @@ export default function Home() {
           texto='La aplicación web se alimenta de la API pública de la NASA para ofrecernos información que implementamos con múltiples funcionalidades que descubrirás explorando el sitio web.'
         />
         
+        <InicioEnlace
+          srcImagen='/curiosity-marte-inicio.jpg'
+          textoEnlace='Visualiza imágenes mandadas desde Marte'
+          hrefEnlace='fotosMarte'
+        />
+
+        <InicioTexto 
+          titulo='Pocket Solar System utiliza inteligencia artificial'
+          texto='El sitio web usa inteligencia artificial para traducir los textos en inglés recibidos desde la API de la NASA. Utilizar IA para traducir textos es una forma fácil y segura de obtener una traducción fiel a los textos recibidos.'
+        />
     </main>
   );
 }
