@@ -5,13 +5,13 @@ export default async function FotoDelDia(){
     const fotodeldia = await fetchFotoDelDia();
     return(
         <main className="flex min-h-screen flex-col items-center p-12 pt-24 md:p-24">
-            <h1 className="text-2xl font-signature ml-2 m-7 mt-4">Foto del día proporcionada por la NASA</h1>
+            <h1 className="text-3xl ml-2 m-7 mt-4">Foto del día proporcionada por la NASA</h1>
             <Image
                 src = {fotodeldia.url} 
                 alt="Daily NASA Photo" 
                 width={500}
                 height={500}
-                className='md:block mr-2'
+                className='md:block mr-2 border-solid border-black border-2'
             />
             <div className="items-start">
                 <p className="mt-7">
