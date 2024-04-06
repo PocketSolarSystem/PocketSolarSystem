@@ -56,7 +56,7 @@ export default function Home() {
         
         <InicioEnlace
           srcImagen='/curiosity-marte-inicio.jpg'
-          textoEnlace='Visualiza imágenes mandadas desde Marte'
+          textoEnlace='Visualiza imágenes enviadas desde Marte'
           hrefEnlace='fotosMarte'
         />
 
