@@ -14,7 +14,6 @@
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@headlessui/react": "^1.7.18",
     "deepl-node": "^1.12.0",
     "next": "^14.1.4",
     "react": "^18",

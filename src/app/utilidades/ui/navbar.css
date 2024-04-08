@@ -1,0 +1,7 @@
+body.nav-open {
+  overflow: hidden;
+}
+
+.menu {
+  overflow-y: auto;
+}
