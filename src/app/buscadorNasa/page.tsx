@@ -1,5 +1,4 @@
 'use client'
-import Image from "next/image";
 import { useState, useEffect } from "react"
 import { ImagenPreview } from "../utilidades/ui/buscadorNasa/ImagenPreview";
 import { fetchBuscadorNasa } from "../utilidades/lib/apidata";
