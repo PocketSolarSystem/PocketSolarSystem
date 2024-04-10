@@ -6,9 +6,21 @@ import { fetchBuscadorNasaPorPalabra } from "../utilidades/lib/apidata";
 
 export default function Buscador() {
     const [buscar, setBuscar] = useState("");
-    const [buscando, setBuscando] = useState(false);
+    const [textoBuscado, setTextoBuscado] = useState("");
     const [fotos, setFotos] = useState([]);
     const [cargando, setCargando] = useState(false);
+
+    const condicionalComponente = () =>{
+        if(textoBuscado && fotos.length>0){
+            return (`Mostrando ${fotos.length} resultados encontrados para "${textoBuscado}"`)
+        }else if(!textoBuscado && fotos.length>0){
+            return ("Mostrando los 20 primeros resultados por defecto");
+        }else if(!textoBuscado && fotos.length==0){
+            return ("Algo ha fallado en el servidor.");
+        }else{
+            return (`No se han encontrado resultados para "${textoBuscado}".`)
+        }
+    }
 
     useEffect( () => {
         const getItems = async()=>{
@@ -23,13 +35,12 @@ export default function Buscador() {
 
     async function realizarBusqueda(evento:any){
         evento.preventDefault();
-        setBuscando(true);
         setCargando(true);
+        setTextoBuscado(buscar);
         const objetoJSON = await fetchBuscadorNasaPorPalabra(buscar);
         const items = objetoJSON.collection.items;
         setFotos(items);
         setCargando(false);
-        setBuscando(false);
     }
 
     if(cargando){ 
@@ -42,14 +53,14 @@ export default function Buscador() {
         return (
             <main className="flex min-h-screen flex-col items-center p-12 pt-24 md:p-24">
                 <h1 className="text-4xl mt-4 md:mb-5 basis-40 md:basis-0 lg:basis-0">
-                    Bienvenidos al buscador de archivos de la NASA
+                    Buscador de archivos de la NASA
                 </h1>
                 <form className="m-9 text-xl" onSubmit={(evento)=>{realizarBusqueda(evento)}}>
                     <span className="mr-3">Buscador: </span>
                     <div className=" inline-block border-2 border-black border-solid">
                         <input type="text" id="inputBuscador" placeholder="ej: Moon" 
                         onChange={(evento)=>{setBuscar(evento.target.value)}}
-                        className=" p-1 focus:outline-none"/>
+                        className=" p-1 focus:outline-none" value={buscar}/>
                         <div className="hidden md:inline-block bg-black">
                             <button type="submit"
                             className="text-white p-1 hover:bg-zinc-900">
@@ -62,7 +73,10 @@ export default function Buscador() {
                             Buscar
                     </button>
                 </form>
-
+                <div className="text-center">
+                    {condicionalComponente()}
+                </div>
+               
                 <div className="md:grid md:grid-cols-4 items-start mt-6">
                     
                     {fotos && fotos.map((preview:any)=>
