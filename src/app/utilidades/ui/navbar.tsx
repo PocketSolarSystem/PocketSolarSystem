@@ -5,11 +5,36 @@ import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import "./navbar.css";
+import axios from "axios";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
+  type PlanetName = string;
+  const [planetNames, setPlanetNames] = useState<PlanetName[]>([]);
+
+  useEffect(() => {
+    // Función para obtener los nombres de los planetas desde la API
+    const fetchPlanetNames = async () => {
+      try {
+        /* const response = await axios.get(
+          `${process.env.REACT_APP_MONGODB_URI}/planets/names`
+        ); */
+        const response = await axios.get(
+          `http://localhost:9000/api/planets/names`
+        );
+        setPlanetNames(response.data);
+      } catch (error) {
+        console.error("Error al obtener los nombres de los planetas:", error);
+      }
+    };
+
+    // Llamar a la función para obtener los nombres de los planetas al cargar el componente
+    fetchPlanetNames();
+  }, []);
+
   const links = [
     {
       id: 1,
@@ -26,14 +51,11 @@ const Navbar = () => {
           href: "/planetas/acerca-de-los-planetas",
           linkName: "Acerca de los Planetas",
         },
-        { id: 7, href: "/planetas/mercurio", linkName: "Mercurio" },
-        { id: 8, href: "/planetas/venus", linkName: "Venus" },
-        { id: 9, href: "/planetas/tierra", linkName: "Tierra" },
-        { id: 10, href: "/planetas/marte", linkName: "Marte" },
-        { id: 11, href: "/planetas/jupiter", linkName: "Júpiter" },
-        { id: 12, href: "/planetas/saturno", linkName: "Saturno" },
-        { id: 13, href: "/planetas/urano", linkName: "Urano" },
-        { id: 14, href: "/planetas/neptuno", linkName: "Neptuno" },
+        ...planetNames.map((planetName, index) => ({
+          id: index + 7,
+          href: `/planetas/${planetName}`,
+          linkName: planetName,
+        })),
         {
           id: 15,
           href: "/planetas/pluton-y-planetas-enanos",
