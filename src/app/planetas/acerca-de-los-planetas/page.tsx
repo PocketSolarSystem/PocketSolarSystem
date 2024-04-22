@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./page.css";
@@ -11,52 +10,52 @@ export default function AcercaDeLosPlanetas() {
     {
       nombre: "Mercurio",
       descripcion: "El planeta más veloz.",
-      imagen: "https://via.placeholder.com/150",
+      imagen: "/mercurio-planeta.jpg",
     },
     {
       nombre: "Venus",
       descripcion: "La hermana gemela sobrecalentada de la Tierra.",
-      imagen: "https://via.placeholder.com/150",
+      imagen: "/venus-planeta.jpg",
     },
     {
       nombre: "Tierra",
       descripcion: "Nuestro hogar.",
-      imagen: "https://via.placeholder.com/150",
+      imagen: "/tierra-planeta.jpg",
     },
     {
       nombre: "Marte",
       descripcion: "El Planeta Rojo.",
-      imagen: "https://via.placeholder.com/150",
+      imagen: "/marte-planeta.jpg",
     },
     {
       nombre: "Júpiter",
       descripcion: "Rey de los planetas.",
-      imagen: "https://via.placeholder.com/150",
+      imagen: "/jupiter-planeta.jpg",
     },
     {
       nombre: "Saturno",
       descripcion: "La joya del sistema solar.",
-      imagen: "https://via.placeholder.com/150",
+      imagen: "/saturno-inicio.jpg",
     },
     {
       nombre: "Urano",
       descripcion: "El gigante de hielo original.",
-      imagen: "https://via.placeholder.com/150",
+      imagen: "/urano-planeta.jpg",
     },
     {
       nombre: "Neptuno",
       descripcion: "El planeta más lejano en nuestro sistema solar.",
-      imagen: "https://via.placeholder.com/150",
+      imagen: "/neptuno-planeta.jpg",
     },
     {
       nombre: "Plutón",
       descripcion: "Un pequeño mundo con un gran corazón.",
-      imagen: "https://via.placeholder.com/150",
+      imagen: "/pluton-planeta.jpg",
     },
     {
       nombre: "Exoplanetas",
       descripcion: "Planetas más allá del sistema solar.",
-      imagen: "https://via.placeholder.com/150",
+      imagen: "/pluton-planeta.jpg",
     },
   ];
 
@@ -76,9 +75,12 @@ export default function AcercaDeLosPlanetas() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 pt-24 md:p-24">
-      <div className="container mx-auto pt-8 pb-8">
-        <div className="mb-8 relative">
+    <main className="flex min-h-screen flex-col items-center p-12 pt-24 md:p-24">
+            <h1 className="text-4xl mt-4 md:mb-5 basis-40 md:basis-0 lg:basis-0">
+              Los planetas
+            </h1>
+      
+        <div className="mb-8 mt-4 relative">
           <Image
             src={"/our-solar-system.jpg"}
             width={1200}
@@ -87,46 +89,54 @@ export default function AcercaDeLosPlanetas() {
             className="border-2 border-solid border-black skew-y-1 z-0"
           />
 
-          <p className="absolute hidden md:block text-4xl bg-white mt-7 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black right-6 bottom-6">
+          {/* <span className="absolute hidden md:block text-2xl bg-white mt-7 p-2 text-center skew-y-1 border-2 border-black right-6 bottom-6">
             Los Planetas
-          </p>
+          </span>
 
-          <p className="block text-lg font-bold text-4xl md:hidden bg-white mt-3 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black">
+          <span className="block text-lg text-4xl md:hidden bg-white mt-3 p-2 text-center skew-y-1 border-2 border-black">
             Los Planetas
-          </p>
+          </span> */}
+
         </div>
-        <p className="mb-8 mt-8">
-          Nuestro sistema solar tiene ocho planetas y cinco planetas enanos,
-          todos ubicados en un brazo espiral exterior de la Vía Láctea llamado
-          el Brazo de Orión.
-        </p>
 
-        <h2 className="text-2xl font-bold mt-8 mb-4">DATOS DE LOS PLANETAS</h2>
+          <p className="mb-8 mt-8">
+            El Sistema Solar está compuesto por ocho planetas y cinco planetas enanos,
+            todos ubicados en un brazo espiral exterior de la Vía Láctea llamado
+            el Brazo de Orión.
+          </p>
 
-        <Carousel
-          responsive={responsive}
-          infinite={true}
-          autoPlay={true}
-          autoPlaySpeed={5000}
-          keyBoardControl={true}
-          customTransition="transform 1000ms ease-in-out"
-          transitionDuration={1000}
-          containerClass="carousel-container"
-          itemClass="carousel-item-padding-40-px"
-        >
-          {planetas.map((planeta, índice) => (
-            <div key={índice} className="bg-gray-100 p-8 rounded-lg shadow-lg">
-              <img
-                src={planeta.imagen}
-                alt={planeta.nombre}
-                className="mx-auto"
-              />
-              <h2 className="text-xl font-semibold mt-4">{planeta.nombre}</h2>
-              <p className="text-gray-700 text-sm">{planeta.descripcion}</p>
-            </div>
-          ))}
-        </Carousel>
+        
+        <div className="container mx-auto pt-8 pb-8">
+          <h2 className="text-2xl mt-8 mb-4 text-center">
+            <strong>DATOS DE LOS PLANETAS</strong>
+          </h2>
 
+          <Carousel
+            responsive={responsive}
+            infinite={true}
+            autoPlay={true}
+            autoPlaySpeed={5000}
+            keyBoardControl={true}
+            customTransition="transform 1000ms ease-in-out"
+            transitionDuration={1000}
+            containerClass="carousel-container"
+            itemClass="carousel-item-padding-40-px"
+          >
+            {planetas.map((planeta, índice) => (
+              <div key={índice} className="bg-gray-100 p-8 rounded-lg shadow-lg text-center m-2">
+                <Image
+                  src={planeta.imagen}
+                  alt={planeta.nombre}
+                  width={300}
+                  height={300}
+                  className="mx-auto rounded-full"
+                />
+                <h2 className="text-xl mt-4">{planeta.nombre}</h2>
+                <p className="text-gray-700 text-sm">{planeta.descripcion}</p>
+              </div>
+            ))}
+          </Carousel>
+        </div>
         <div className="m-8">
           <p>
             El sistema solar tiene ocho planetas. Moviendo hacia afuera desde el
@@ -179,7 +189,6 @@ export default function AcercaDeLosPlanetas() {
             afuera").
           </p>
         </div>
-      </div>
     </main>
   );
 }
