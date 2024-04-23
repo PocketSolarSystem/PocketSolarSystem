@@ -89,8 +89,8 @@ export default function AcercaDeLosPlanetas() {
           <br />
           <p>
             Se han descubierto miles de planetas más allá de nuestro sistema
-            solar. Los científicos los llaman exoplanetas (exo significa "desde
-            afuera").
+            solar. Los científicos los llaman exoplanetas (exo significa desde
+            afuera).
           </p>
         </div>
     </main>
