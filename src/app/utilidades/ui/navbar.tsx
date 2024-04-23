@@ -80,26 +80,26 @@ const Navbar = () => {
     },
   ];
 
-  useEffect(() => {
-    const manejarClickBody = (event: MouseEvent) => {
-      const cambiarDropdown = document.getElementById("planetaCambiarDropdown");
-      if (
-        !(event.target instanceof HTMLElement) ||
-        (cambiarDropdown &&
-          (event.target === cambiarDropdown ||
-            event.target.closest("#planetaCambiarDropdown")))
-      ) {
-        return;
-      }
-      setIsOpen(false);
-    };
+  // useEffect(() => {
+  //   const manejarClickBody = (event: MouseEvent) => {
+  //     const cambiarDropdown = document.getElementById("planetaCambiarDropdown");
+  //     if (
+  //       !(event.target instanceof HTMLElement) ||
+  //       (cambiarDropdown &&
+  //         (event.target === cambiarDropdown ||
+  //           event.target.closest("#planetaCambiarDropdown")))
+  //     ) {
+  //       return;
+  //     }
+  //     setIsOpen(false);
+  //   };
 
-    document.body.addEventListener("click", manejarClickBody);
+  //   document.body.addEventListener("click", manejarClickBody);
 
-    return () => {
-      document.body.removeEventListener("click", manejarClickBody);
-    };
-  }, [isOpen == true, nav == false]);
+  //   return () => {
+  //     document.body.removeEventListener("click", manejarClickBody);
+  //   };
+  // }, [isOpen == true, nav == false]);
 
   return (
     <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav z-40 ">
@@ -186,7 +186,7 @@ const Navbar = () => {
       <div
         onClick={() => {
           setNav(!nav);
-          document.body.classList.toggle("nav-open");
+          nav ? document.body.classList.toggle("nav-open") : document.body.classList.remove("nav-open");
         }}
         className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
       >
