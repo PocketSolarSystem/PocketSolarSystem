@@ -10,7 +10,7 @@ export default function AcercaDeLosPlanetas() {
     <main className="flex min-h-screen flex-col items-center p-12 pt-24 md:p-24">
           
         <h1 className="text-4xl mt-4 md:mb-5 basis-40 md:basis-0 lg:basis-0">
-          Los planetas
+          Planetas
         </h1>
       
         <div className="mb-8 mt-4 relative">
@@ -89,8 +89,8 @@ export default function AcercaDeLosPlanetas() {
           <br />
           <p>
             Se han descubierto miles de planetas más allá de nuestro sistema
-            solar. Los científicos los llaman exoplanetas (exo significa desde
-            afuera).
+            solar. Los científicos los llaman exoplanetas (exo significa &quot;desde
+            afuera&quot;).
           </p>
         </div>
     </main>

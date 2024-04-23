@@ -108,7 +108,6 @@ const Navbar = () => {
   return (
     <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav z-40 ">
       <div>
-        {/* <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">Logo</a></h1> */}
         <h1 className="text-xl ml-2">
           <Link
             className="link-underline link-underline-black flex items-center"
@@ -131,12 +130,12 @@ const Navbar = () => {
         {links.map((link) => (
           <li
             key={link.id}
-            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 
-          hover:scale-105 hover:text-white duration-200 link-underline relative"
+            className={`nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 
+            hover:text-white duration-200 link-underline relative ${link.linkName != "Planetas" ? "hover:scale-105" : ""}`}
           >
             {link.sublinks ? (
               <div>
-                <div id="planetaCambiarDropdown" onClick={alternarDropdown}>
+                <div id="planetaCambiarDropdown" onClick={alternarDropdown} className={`hover:scale-105 ${pathname.split("/")[1] === link.href.split("/")[1] ? "scale-105 text-white" : ""}`}>
                   {link.linkName}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -163,14 +162,14 @@ const Navbar = () => {
                       aria-labelledby="options-menu"
                     >
                       {link.sublinks.map((sublink) => (
-                        <a
+                        <Link
                           key={sublink.id}
                           href={sublink.href}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                           role="menuitem"
                         >
                           {sublink.linkName}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -179,7 +178,7 @@ const Navbar = () => {
             ) : (
               <Link
                 href={link.href}
-                className={`${pathname === link.href ? "scale-105 text-white" : ""}`}
+                className={`${pathname === link.href || pathname.split("/")[1] === link.href ? "scale-105 text-white" : ""}`}
               >
                 {link.linkName}
               </Link>
