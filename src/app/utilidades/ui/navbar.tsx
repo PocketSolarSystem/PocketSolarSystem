@@ -12,28 +12,28 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  type PlanetName = string;
-  const [planetNames, setPlanetNames] = useState<PlanetName[]>([]);
+  // type PlanetName = string;
+  // const [planetNames, setPlanetNames] = useState<PlanetName[]>([]);
 
-  useEffect(() => {
-    // Función para obtener los nombres de los planetas desde la API
-    const fetchPlanetNames = async () => {
-      try {
-        /* const response = await axios.get(
-          `${process.env.REACT_APP_MONGODB_URI}/planets/names`
-        ); */
-        const response = await axios.get(
-          `http://localhost:9000/api/planets/names`
-        );
-        setPlanetNames(response.data);
-      } catch (error) {
-        console.error("Error al obtener los nombres de los planetas:", error);
-      }
-    };
+  // useEffect(() => {
+  //   // Función para obtener los nombres de los planetas desde la API
+  //   const fetchPlanetNames = async () => {
+  //     try {
+  //       /* const response = await axios.get(
+  //         `${process.env.REACT_APP_MONGODB_URI}/planets/names`
+  //       ); */
+  //       const response = await axios.get(
+  //         `http://localhost:9000/api/planets/names`
+  //       );
+  //       setPlanetNames(response.data);
+  //     } catch (error) {
+  //       console.error("Error al obtener los nombres de los planetas:", error);
+  //     }
+  //   };
 
-    // Llamar a la función para obtener los nombres de los planetas al cargar el componente
-    fetchPlanetNames();
-  }, []);
+  //   // Llamar a la función para obtener los nombres de los planetas al cargar el componente
+  //   fetchPlanetNames();
+  // }, []);
 
   const links = [
     {
@@ -51,11 +51,11 @@ const Navbar = () => {
           href: "/planetas/acerca-de-los-planetas",
           linkName: "Acerca de los Planetas",
         },
-        ...planetNames.map((planetName, index) => ({
-          id: index + 7,
-          href: `/planetas/${planetName}`,
-          linkName: planetName,
-        })),
+        // ...planetNames.map((planetName, index) => ({
+        //   id: index + 7,
+        //   href: `/planetas/${planetName}`,
+        //   linkName: planetName,
+        // })),
         {
           id: 15,
           href: "/planetas/pluton-y-planetas-enanos",
@@ -79,31 +79,6 @@ const Navbar = () => {
       linkName: "Buscador archivos NASA",
     },
   ];
-
-  useEffect(() => {
-    const manejarClicBody = (event: MouseEvent) => {
-      const cambiarDropdown = document.getElementById("planetaCambiarDropdown");
-      if (
-        !(event.target instanceof HTMLElement) ||
-        (cambiarDropdown &&
-          (event.target === cambiarDropdown ||
-            event.target.closest("#planetaCambiarDropdown")))
-      ) {
-        return;
-      }
-      setIsOpen(false);
-    };
-
-    document.body.addEventListener("click", manejarClicBody);
-
-    return () => {
-      document.body.removeEventListener("click", manejarClicBody);
-    };
-  }, [isOpen]);
-
-  const alternarDropdown = () => {
-    setIsOpen((prevState) => !prevState);
-  };
 
   return (
     <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav z-40 ">
@@ -135,7 +110,7 @@ const Navbar = () => {
           >
             {link.sublinks ? (
               <div>
-                <div id="planetaCambiarDropdown" onClick={alternarDropdown} className={`hover:scale-105 ${pathname.split("/")[1] === link.href.split("/")[1] ? "scale-105 text-white" : ""}`}>
+                <div id="planetaCambiarDropdown" onClick={()=>{setIsOpen((prevState) => !prevState)}} className={`hover:scale-105 ${pathname.split("/")[1] === link.href.split("/")[1] ? "scale-105 text-white" : ""}`}>
                   {link.linkName}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -207,8 +182,8 @@ const Navbar = () => {
               {link.linkName === "Planetas" ? (
                 <>
                   <div
-                    onClick={alternarDropdown}
-                    className="flex items-center justify-center"
+                    onClick={()=>{setIsOpen((prevState) => !prevState)}}
+                    className={`flex items-center justify-center ${isOpen ? "text-white" : ""}`}
                   >
                     <span className="text-center">{link.linkName}</span>
                     <svg
@@ -232,8 +207,9 @@ const Navbar = () => {
                       {link.sublinks.map((sublink) => (
                         <li key={sublink.id}>
                           <Link
+                            onClick={() => setNav(!nav)}
                             href={sublink.href}
-                            className={`${pathname === sublink.href ? "scale-105 text-white" : ""}`}
+                            className={`hover:text-white ${pathname === sublink.href ? "scale-105 text-white" : ""}`}
                           >
                             <span className="text-center block">
                               {sublink.linkName}
