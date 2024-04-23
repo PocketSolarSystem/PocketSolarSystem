@@ -246,6 +246,8 @@ const Navbar = () => {
                 </>
               ) : (
                 <Link
+                  onClick={() => setNav(!nav)}
+                  key={link.id}
                   href={link.href}
                   className={`${pathname === link.href ? "scale-105 text-white" : ""}`}
                 >
