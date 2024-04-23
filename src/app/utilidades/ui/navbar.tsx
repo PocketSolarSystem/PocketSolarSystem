@@ -81,7 +81,7 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    const manejarClicBody = (event: MouseEvent) => {
+    const manejarClickBody = (event: MouseEvent) => {
       const cambiarDropdown = document.getElementById("planetaCambiarDropdown");
       if (
         !(event.target instanceof HTMLElement) ||
@@ -94,12 +94,12 @@ const Navbar = () => {
       setIsOpen(false);
     };
 
-    document.body.addEventListener("click", manejarClicBody);
+    document.body.addEventListener("click", manejarClickBody);
 
     return () => {
-      document.body.removeEventListener("click", manejarClicBody);
+      document.body.removeEventListener("click", manejarClickBody);
     };
-  }, [isOpen == true]);
+  }, [isOpen == true, nav == false]);
 
   return (
     <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav z-40 ">
