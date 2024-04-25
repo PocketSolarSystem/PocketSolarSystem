@@ -21,15 +21,6 @@ export default function AcercaDeLosPlanetas() {
             alt="Landing page Saturn image"
             className="border-2 border-solid border-black skew-y-1 z-0"
           />
-
-          {/* <span className="absolute hidden md:block text-2xl bg-white mt-7 p-2 text-center skew-y-1 border-2 border-black right-6 bottom-6">
-            Los Planetas
-          </span>
-
-          <span className="block text-lg text-4xl md:hidden bg-white mt-3 p-2 text-center skew-y-1 border-2 border-black">
-            Los Planetas
-          </span> */}
-
         </div>
           
         <InicioTexto

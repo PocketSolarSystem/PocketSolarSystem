@@ -1,5 +1,6 @@
 import Carousel from "react-multi-carousel";
 import Image from "next/image";
+import Link from "next/link";
 import "./CarouselPlanetas.css"
 
 export function CarouselPlanetas(){
@@ -73,10 +74,10 @@ export function CarouselPlanetas(){
     };
 
     return (
-        <div className="container mx-auto pt-8 pb-8">
+        <div className="container mx-auto pt-8">
 
           <h2 className="text-2xl mt-8 mb-4 text-center">
-            <strong>DATOS DE LOS PLANETAS</strong>
+            <strong>NUESTROS PLANETAS</strong>
           </h2>
 
           <Carousel
@@ -87,20 +88,24 @@ export function CarouselPlanetas(){
             keyBoardControl={true}
             customTransition="transform 1000ms ease-in-out"
             transitionDuration={1000}
-            containerClass="carousel-container"
             itemClass=""
           >
               {planetas.map((planeta, índice) => (
-                <div key={índice} className="bg-gray-100 p-8 rounded-lg shadow-lg text-center m-2">
-                  <Image
-                    src={planeta.imagen}
-                    alt={planeta.nombre}
-                    width={300}
-                    height={300}
-                    className="mx-auto rounded-full"
-                  />
-                  <h2 className="text-xl mt-4">{planeta.nombre}</h2>
-                  <p className="text-gray-700 text-sm">{planeta.descripcion}</p>
+                <div key={índice} className="h-full bg-gray-100 p-8 rounded-lg shadow-lg text-center m-2">
+                    <Image
+                        src={planeta.imagen}
+                        alt={planeta.nombre}
+                        width={300}
+                        height={300}
+                        className="mx-auto rounded-full"
+                    />
+                    <h2 className="text-xl mt-4">{planeta.nombre}</h2>
+                    <p className="text-gray-700 text-sm">{planeta.descripcion}</p>
+                    <Link 
+                    href=""
+                    className="bg-black text-white p-1 mt-8 hover:bg-slate-800">
+                        Visualiza {planeta.nombre} en 3D
+                    </Link>
                 </div>
               ))}
           </Carousel>
