@@ -1,6 +1,8 @@
 "use client";
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -37,43 +39,103 @@ const Planeta = () => {
     );
   } else if (planetaData != null) {
     return (
-      <main className="flex flex-col items-center min-h-screen p-12 pt-24 md:p-24">
-        <h1 className="text-3xl md:text-4xl mb-8">{planeta}</h1>
-        {planetaData && (
-          <div className="bg-gray-100 p-6 rounded-lg shadow-md w-full max-w-3xl">
-            <p className="mb-4">
-              <strong className="font-semibold">Nombre:</strong>{" "}
-              {planetaData.nombre}
+      <main className="flex min-h-screen flex-col items-center p-8 pt-24 md:px-24">
+        <div className="container mx-auto pt-2 md:pt-8">
+          <div className="mb-8 relative">
+            <p className="block font-bold text-3xl md:hidden bg-white mb-3 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black">
+              {decodeURIComponent(planeta)}
             </p>
-            <p className="mb-4">
-              <strong className="font-semibold">Descripción:</strong>{" "}
-              {planetaData.descripcion}
+
+            <Image
+              src={
+                planetaData.imagenes.length > 0 ? planetaData.imagenes[0] : ""
+              }
+              width={1200}
+              height={200}
+              alt="Landing page Saturn image"
+              className="border-2 border-solid border-black skew-y-1 z-0"
+            />
+
+            <p className="absolute hidden md:block text-4xl bg-white mt-7 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black right-6 bottom-6">
+              {decodeURIComponent(planeta)}
             </p>
-            <p className="mb-4">
-              <strong className="font-semibold">Visión general:</strong>{" "}
-              {planetaData.overview}
-            </p>
-            <p className="mb-4">
-              <strong className="font-semibold">Cultura pop:</strong>{" "}
-              {planetaData.cultura_pop}
-            </p>
-            <h2 className="text-xl font-semibold mb-2">Historias:</h2>
-            <ul className="list-disc pl-6 mb-6">
-              {planetaData.historias.map((historia: string, index: number) => (
-                <li key={index}>{historia}</li>
-              ))}
-            </ul>
-            <h2 className="text-xl font-semibold mb-2">Hechos:</h2>
-            <ul className="list-disc pl-6">
-              {Object.entries(planetaData.facts).map(([key, value], index) => (
-                <li key={index} className="mb-2">
-                  <strong className="font-semibold">{key}:</strong>{" "}
-                  {String(value)}
-                </li>
-              ))}
-            </ul>
           </div>
-        )}
+          <p className="my-8">{planetaData.descripcion}</p>
+          {planetaData && (
+            <div className="my-8">
+              <p className="mb-4">
+                <h1 className="font-semibold text-xl text-4x1 mb-4 text-center md:text-left md:ml-8">
+                  Visión General Planeta {decodeURIComponent(planeta)}
+                </h1>
+                <p>{planetaData.overview}</p>
+              </p>
+
+              <div className="bg-white h-screen h-full py-4 pb-10">
+                <div className="mx-auto max-w-screen-2xl">
+                  <div className="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-8">
+                    <div className="items-center gap-12">
+                      <h1 className="font-semibold text-xl text-4x1 mb-4 text-center md:text-left md:ml-8">
+                        {decodeURIComponent(planeta)}
+                      </h1>
+                      <div className="flex items-center gap-4">
+                        <Image
+                          src={
+                            planetaData.imagenes.length - 1 > 0
+                              ? "/imagen-32.png"
+                              : ""
+                          }
+                          width={16}
+                          height={16}
+                          alt="Landing page Saturn image"
+                        />
+                        <p>
+                          {planetaData.imagenes.length > 0
+                            ? planetaData.imagenes.length - 1 + " IMAGENES"
+                            : ""}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
+                    {planetaData.imagenes.map(
+                      (imagen: string, index: number, array: string[]) => {
+                        if (index === 0 /* || index === array.length - 1 */) {
+                          return null;
+                        }
+
+                        return (
+                          <a
+                            key={index}
+                            href="#"
+                            className={`group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg ${
+                              index != 2 ? "" : "md:col-span-2"
+                            } md:h-80`}
+                          >
+                            <img
+                              src={imagen}
+                              loading="lazy"
+                              alt={`Photo ${index + 1}`}
+                              className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                            />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
+                          </a>
+                        );
+                      }
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <p className="mb-4">
+                <h1 className="font-semibold text-xl text-4x1 mb-4 text-center md:text-left md:ml-8">
+                  Cultura Pop
+                </h1>
+                <p>{planetaData.cultura_pop}</p>
+              </p>
+            </div>
+          )}
+        </div>
       </main>
     );
   }

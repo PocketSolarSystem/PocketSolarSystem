@@ -76,7 +76,7 @@ export default function AcercaDeLosPlanetas() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 pt-24 md:p-24">
+    <main className="flex min-h-screen flex-col items-center p-8 pt-24 md:px-24">
       <div className="container mx-auto pt-8 pb-8">
         <div className="mb-8 relative">
           <Image
@@ -115,38 +115,48 @@ export default function AcercaDeLosPlanetas() {
           itemClass="carousel-item-padding-40-px"
         >
           {planetas.map((planeta, índice) => (
-            <div key={índice} className="bg-gray-100 p-8 rounded-lg shadow-lg">
-              <img
-                src={planeta.imagen}
-                alt={planeta.nombre}
-                className="mx-auto"
-              />
-              <h2 className="text-xl font-semibold mt-4">{planeta.nombre}</h2>
-              <p className="text-gray-700 text-sm">{planeta.descripcion}</p>
-            </div>
+            <Link
+              href={"/planetas/" + decodeURIComponent(planeta.nombre)}
+              rel="noreferrer"
+            >
+              <div
+                key={índice}
+                className="bg-gray-100 p-8 rounded-lg shadow-lg"
+              >
+                <img
+                  src={planeta.imagen}
+                  alt={decodeURIComponent(planeta.nombre)}
+                  className="mx-auto"
+                />
+                <h2 className="text-xl font-semibold mt-4">
+                  {decodeURIComponent(planeta.nombre)}
+                </h2>
+                <p className="text-gray-700 text-sm">{planeta.descripcion}</p>
+              </div>
+            </Link>
           ))}
         </Carousel>
 
         <div className="m-8">
-          <p>
+          <p className="mb-4">
             El sistema solar tiene ocho planetas. Moviendo hacia afuera desde el
             Sol, los planetas son: Mercurio, Venus, Tierra, Marte, Júpiter,
             Saturno, Urano y Neptuno.
           </p>
-          <br />
-          <p>
+
+          <p className="mb-4">
             Hay cinco planetas enanos oficialmente reconocidos en nuestro
             sistema solar. En orden de distancia desde el Sol son: Ceres,
             Plutón, Haumea, Makemake y Eris.
           </p>
-          <br />
-          <p>
+
+          <p className="mb-4">
             El sistema solar puede dividirse en tres regiones: el sistema solar
             interno, el sistema solar externo, el Cinturón de Kuiper y la Nube
             de Oort.
           </p>
-          <br />
-          <p>
+
+          <p className="mb-4">
             Los planetas internos y rocosos son Mercurio, Venus, Tierra y Marte.
             Estos mundos también son conocidos como planetas terrestres porque
             tienen superficies sólidas. Mercurio, Tierra y Marte están siendo
@@ -155,16 +165,16 @@ export default function AcercaDeLosPlanetas() {
             Marte el 18 de febrero de 2021. Tres misiones están en desarrollo
             para regresar a Venus.
           </p>
-          <br />
-          <p>
+
+          <p className="mb-4">
             Los planetas exteriores son los gigantes gaseosos Júpiter y Saturno,
             y los gigantes de hielo Urano y Neptuno. La nave espacial Juno de la
             NASA está en una misión extendida en Júpiter, y la misión JUICE de
             la ESA está en camino. La NASA también está construyendo Europa
             Clipper y Dragonfly para explorar lunas de Júpiter y Saturno.
           </p>
-          <br />
-          <p>
+
+          <p className="mb-4">
             Más allá de Neptuno, una nueva clase de mundos más pequeños llamados
             planetas enanos dominan, incluyendo el favorito de toda la vida,
             Plutón. La nave espacial New Horizons de la NASA visitó Plutón en
@@ -172,7 +182,7 @@ export default function AcercaDeLosPlanetas() {
             de Plutón. Los otros planetas enanos son Ceres, Makemake, Haumea y
             Eris.
           </p>
-          <br />
+
           <p>
             Se han descubierto miles de planetas más allá de nuestro sistema
             solar. Los científicos los llaman exoplanetas (exo significa "desde
