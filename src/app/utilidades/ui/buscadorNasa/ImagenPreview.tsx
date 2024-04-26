@@ -6,7 +6,7 @@ export function ImagenPreview(
     {imagenUrl:string, nasaId:any}
 ){
     return(
-        <div>
+        <div className="relative hover:scale-110 hover:shadow-slate-600 hover:shadow-lg">
             <Link
                 href={`/buscadorNasa/${nasaId}`}
             >
@@ -17,7 +17,6 @@ export function ImagenPreview(
                     alt="search photo"
                     className="border-solid border-black border-2"
                 />
-                {/* <div>Nasa ID: {nasaId}</div> */}
             </Link>
         </div>
     )

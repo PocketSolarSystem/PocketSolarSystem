@@ -9,8 +9,8 @@ export default async function FotoDelDia(){
             <Image
                 src = {fotodeldia.url} 
                 alt="Daily NASA Photo" 
-                width={500}
-                height={500}
+                width={400}
+                height={400}
                 className='md:block mr-2 border-solid border-black border-2'
             />
             <div className="items-start">

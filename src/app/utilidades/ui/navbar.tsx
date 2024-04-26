@@ -12,28 +12,28 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  type PlanetName = string;
-  const [planetNames, setPlanetNames] = useState<PlanetName[]>([]);
+  // type PlanetName = string;
+  // const [planetNames, setPlanetNames] = useState<PlanetName[]>([]);
 
-  useEffect(() => {
-    // Función para obtener los nombres de los planetas desde la API
-    const fetchPlanetNames = async () => {
-      try {
-        /* const response = await axios.get(
-          `${process.env.REACT_APP_MONGODB_URI}/planets/names`
-        ); */
-        const response = await axios.get(
-          `http://localhost:9000/api/planets/names`
-        );
-        setPlanetNames(response.data);
-      } catch (error) {
-        console.error("Error al obtener los nombres de los planetas:", error);
-      }
-    };
+  // useEffect(() => {
+  //   // Función para obtener los nombres de los planetas desde la API
+  //   const fetchPlanetNames = async () => {
+  //     try {
+  //       /* const response = await axios.get(
+  //         `${process.env.REACT_APP_MONGODB_URI}/planets/names`
+  //       ); */
+  //       const response = await axios.get(
+  //         `http://localhost:9000/api/planets/names`
+  //       );
+  //       setPlanetNames(response.data);
+  //     } catch (error) {
+  //       console.error("Error al obtener los nombres de los planetas:", error);
+  //     }
+  //   };
 
-    // Llamar a la función para obtener los nombres de los planetas al cargar el componente
-    fetchPlanetNames();
-  }, []);
+  //   // Llamar a la función para obtener los nombres de los planetas al cargar el componente
+  //   fetchPlanetNames();
+  // }, []);
 
   const links = [
     {
@@ -51,11 +51,11 @@ const Navbar = () => {
           href: "/planetas/acerca-de-los-planetas",
           linkName: "Acerca de los Planetas",
         },
-        ...planetNames.map((planetName, index) => ({
-          id: index + 7,
-          href: `/planetas/${planetName}`,
-          linkName: planetName,
-        })),
+        // ...planetNames.map((planetName, index) => ({
+        //   id: index + 7,
+        //   href: `/planetas/${planetName}`,
+        //   linkName: planetName,
+        // })),
         {
           id: 15,
           href: "/planetas/pluton-y-planetas-enanos",
@@ -81,7 +81,7 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    const manejarClicBody = (event: MouseEvent) => {
+    const manejarClickBody = (event: MouseEvent) => {
       const cambiarDropdown = document.getElementById("planetaCambiarDropdown");
       if (
         !(event.target instanceof HTMLElement) ||
@@ -94,21 +94,16 @@ const Navbar = () => {
       setIsOpen(false);
     };
 
-    document.body.addEventListener("click", manejarClicBody);
+    document.body.addEventListener("click", manejarClickBody);
 
     return () => {
-      document.body.removeEventListener("click", manejarClicBody);
+      document.body.removeEventListener("click", manejarClickBody);
     };
-  }, [isOpen]);
-
-  const alternarDropdown = () => {
-    setIsOpen((prevState) => !prevState);
-  };
+  }, [isOpen == true, nav == false]);
 
   return (
     <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav z-40 ">
       <div>
-        {/* <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">Logo</a></h1> */}
         <h1 className="text-xl ml-2">
           <Link
             className="link-underline link-underline-black flex items-center"
@@ -131,12 +126,12 @@ const Navbar = () => {
         {links.map((link) => (
           <li
             key={link.id}
-            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 
-          hover:scale-105 hover:text-white duration-200 link-underline relative"
+            className={`nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 
+            hover:text-white duration-200 link-underline relative ${link.linkName != "Planetas" ? "hover:scale-105" : ""}`}
           >
             {link.sublinks ? (
               <div>
-                <div id="planetaCambiarDropdown" onClick={alternarDropdown}>
+                <div id="planetaCambiarDropdown" onClick={()=>{setIsOpen((prevState) => !prevState)}} className={`hover:scale-105 ${pathname.split("/")[1] === link.href.split("/")[1] ? "scale-105 text-white" : ""}`}>
                   {link.linkName}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -163,14 +158,14 @@ const Navbar = () => {
                       aria-labelledby="options-menu"
                     >
                       {link.sublinks.map((sublink) => (
-                        <a
+                        <Link
                           key={sublink.id}
                           href={sublink.href}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                           role="menuitem"
                         >
                           {sublink.linkName}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -179,7 +174,7 @@ const Navbar = () => {
             ) : (
               <Link
                 href={link.href}
-                className={`${pathname === link.href ? "scale-105 text-white" : ""}`}
+                className={`${pathname === link.href || pathname.split("/")[1] === link.href ? "scale-105 text-white" : ""}`}
               >
                 {link.linkName}
               </Link>
@@ -191,7 +186,7 @@ const Navbar = () => {
       <div
         onClick={() => {
           setNav(!nav);
-          document.body.classList.toggle("nav-open");
+          nav ? document.body.classList.toggle("nav-open") : document.body.classList.remove("nav-open");
         }}
         className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
       >
@@ -208,8 +203,8 @@ const Navbar = () => {
               {link.linkName === "Planetas" ? (
                 <>
                   <div
-                    onClick={alternarDropdown}
-                    className="flex items-center justify-center"
+                    onClick={()=>{setIsOpen((prevState) => !prevState)}}
+                    className={`flex items-center justify-center ${isOpen ? "text-white" : ""}`}
                   >
                     <span className="text-center">{link.linkName}</span>
                     <svg
@@ -233,8 +228,9 @@ const Navbar = () => {
                       {link.sublinks.map((sublink) => (
                         <li key={sublink.id}>
                           <Link
+                            onClick={() => setNav(!nav)}
                             href={sublink.href}
-                            className={`${pathname === sublink.href ? "scale-105 text-white" : ""}`}
+                            className={`hover:text-white ${pathname === sublink.href ? "scale-105 text-white" : ""}`}
                           >
                             <span className="text-center block">
                               {sublink.linkName}
@@ -247,6 +243,8 @@ const Navbar = () => {
                 </>
               ) : (
                 <Link
+                  onClick={() => setNav(!nav)}
+                  key={link.id}
                   href={link.href}
                   className={`${pathname === link.href ? "scale-105 text-white" : ""}`}
                 >
@@ -262,3 +260,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+  
+ 
