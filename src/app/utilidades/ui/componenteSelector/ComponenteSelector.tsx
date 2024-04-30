@@ -2,7 +2,7 @@ import { ColumnaSelector } from "./columnaSelector/ColumnaSelector"
 
 export function ComponenteSelector({listaCortada1, listaCortada2}:{listaCortada1:Array<any>, listaCortada2:Array<any>}){
     return (
-        <div className="mt-8 mb-8 p-2">
+        <div className="hidden md:block mt-8 mb-8 p-2">
             <h2 className="text-2xl mt-8 mb-4 text-center">
                 <strong>SELECCIONA UN PLANETA</strong>
             </h2>
