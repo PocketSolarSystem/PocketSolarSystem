@@ -77,10 +77,10 @@ export default function Buscador() {
                     {condicionalComponente()}
                 </div>
                
-                <div className="md:grid md:grid-cols-4 items-start mt-6">
+                <div className="md:grid md:grid-cols-4 md:gap-4 items-center mt-6">
                     
                     {fotos && fotos.map((preview:any)=>
-                        <div key={preview.data[0].nasa_id} className="p-4 text-center">
+                        <div key={preview.data[0].nasa_id} className="p-4">
                             <ImagenPreview 
                                 nasaId={preview.data[0].nasa_id}
                                 imagenUrl={preview.links[0].href}

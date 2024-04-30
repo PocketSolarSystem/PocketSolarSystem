@@ -2,6 +2,7 @@ import Carousel from "react-multi-carousel";
 import Image from "next/image";
 import Link from "next/link";
 import "./CarouselPlanetas.css"
+import { ComponenteSelector } from "../componenteSelector/ComponenteSelector";
 
 export function CarouselPlanetas(){
 
@@ -57,7 +58,10 @@ export function CarouselPlanetas(){
             imagen: "/pluton-planeta.jpg",
         },
     ];
-    
+
+    const listaPlanetasCortada = planetas.slice(0, (planetas.length/2));
+    const listaPlanetasCortada2 = planetas.slice((planetas.length/2), planetas.length);
+
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -74,42 +78,46 @@ export function CarouselPlanetas(){
     };
 
     return (
-        <div className="container mx-auto pt-8">
+        <main>
 
-          <h2 className="text-2xl mt-8 mb-4 text-center">
-            <strong>NUESTROS PLANETAS</strong>
-          </h2>
+            <ComponenteSelector listaCortada1={listaPlanetasCortada} listaCortada2={listaPlanetasCortada2}/>
+            
+            <div className="sm:hidden container mx-auto pt-8">
+                <h2 className="text-2xl mt-8 mb-4 text-center">
+                    <strong>NUESTROS PLANETAS</strong>
+                </h2>
 
-          <Carousel
-            responsive={responsive}
-            infinite={true}
-            autoPlay={true}
-            autoPlaySpeed={5000}
-            keyBoardControl={true}
-            customTransition="transform 1000ms ease-in-out"
-            transitionDuration={1000}
-            itemClass=""
-          >
-              {planetas.map((planeta, índice) => (
-                <div key={índice} className="h-full bg-gray-100 p-8 rounded-lg shadow-lg text-center m-2">
-                    <Image
-                        src={planeta.imagen}
-                        alt={planeta.nombre}
-                        width={300}
-                        height={300}
-                        className="mx-auto rounded-full"
-                    />
-                    <h2 className="text-xl mt-4">{planeta.nombre}</h2>
-                    <p className="text-gray-700 text-sm">{planeta.descripcion}</p>
-                    <Link 
-                    href=""
-                    className="bg-black text-white p-1 mt-8 hover:bg-slate-800">
-                        Visualiza {planeta.nombre} en 3D
-                    </Link>
-                </div>
-              ))}
-          </Carousel>
-          
-        </div>
+                <Carousel
+                    responsive={responsive}
+                    infinite={true}
+                    autoPlay={true}
+                    autoPlaySpeed={5000}
+                    keyBoardControl={true}
+                    customTransition="transform 1000ms ease-in-out"
+                    transitionDuration={1000}
+                    itemClass=""
+                >
+                    {planetas.map((planeta, índice) => (
+                        <div key={índice} className="bg-gray-100 p-8 rounded-lg shadow-lg text-center m-2">
+                            <Image
+                                src={planeta.imagen}
+                                alt={planeta.nombre}
+                                width={300}
+                                height={300}
+                                className="mx-auto rounded-full"
+                            />
+                            <h2 className="text-xl mt-4">{planeta.nombre}</h2>
+                            <p className="text-gray-700 text-sm">{planeta.descripcion}</p>
+                            <Link 
+                            href=""
+                            className="bg-black text-white p-1 mt-8 hover:bg-slate-800">
+                                Visualiza {planeta.nombre} en 3D
+                            </Link>
+                        </div>
+                    ))}
+                </Carousel>
+            </div>
+        </main>
+        
     )
 }

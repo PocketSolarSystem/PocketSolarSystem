@@ -28,9 +28,11 @@ export default function AcercaDeLosPlanetas() {
           el Brazo de Orión. Gracias a Pocket Solar System puedes navegar a través de los distintos planetas del sistema solar en tres dimensiones."
       />
 
+      
+
       <CarouselPlanetas />
 
-      <div className="m-8">
+      {/* <div className="m-8">
         <p className="mb-4">
           El sistema solar tiene ocho planetas. Moviendo hacia afuera desde el
           Sol, los planetas son: Mercurio, Venus, Tierra, Marte, Júpiter,
@@ -80,7 +82,7 @@ export default function AcercaDeLosPlanetas() {
           solar. Los científicos los llaman exoplanetas (exo significa
           &quot;desde afuera&quot;).
         </p>
-      </div>
+      </div> */}
     </main>
   );
 }
