@@ -80,7 +80,7 @@ export function CarouselPlanetas(){
     return (
         <main>
 
-            <ComponenteSelector listaCortada1={listaPlanetasCortada} listaCortada2={listaPlanetasCortada2}/>
+            <ComponenteSelector listaOriginal={planetas} listaCortada1={listaPlanetasCortada} listaCortada2={listaPlanetasCortada2}/>
             
             <div className="sm:hidden container mx-auto pt-8">
                 <h2 className="text-2xl mt-8 mb-4 text-center">

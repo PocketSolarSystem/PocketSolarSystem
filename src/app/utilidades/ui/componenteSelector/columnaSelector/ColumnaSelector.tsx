@@ -1,8 +1,7 @@
 import Image from "next/image"
 
 
-export function ColumnaSelector({listaPlanetas, segundaLista}:{listaPlanetas:Array<any>, segundaLista:boolean}){
-
+export function ColumnaSelector({recogerPlaneta, listaPlanetas, segundaLista}:{recogerPlaneta:Function,listaPlanetas:Array<any>, segundaLista:boolean}){
     const condicionalClase = (indice:any) => {
         let clase = "text-center m-2 relative hover:cursor-pointer hover:scale-110"
         clase += listaPlanetas.length-1 == indice && segundaLista ? " col-start-2" : "";
@@ -12,7 +11,7 @@ export function ColumnaSelector({listaPlanetas, segundaLista}:{listaPlanetas:Arr
     return (
     <div className="grid grid-cols-2 gap-4 mt-8">
         {listaPlanetas.map((planeta, indice) => (
-            <div key={indice} className={condicionalClase(indice)}>
+            <div key={indice} className={condicionalClase(indice)} onClick={() => {recogerPlaneta(planeta.nombre)}}>
                 <Image
                     src={planeta.imagen}
                     alt={planeta.nombre}
