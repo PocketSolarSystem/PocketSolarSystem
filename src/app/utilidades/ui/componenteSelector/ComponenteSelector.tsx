@@ -16,7 +16,7 @@ export function ComponenteSelector({listaOriginal, listaCortada1, listaCortada2}
                 <strong>SELECCIONA UN PLANETA</strong>
             </h2>
             <div className="grid grid-cols-3 gap-4 mt-8">
-                <ColumnaSelector recogerPlaneta={recogerPlaneta} listaPlanetas={listaCortada1} segundaLista={false}/>
+                <ColumnaSelector planetaSeleccionadoNombre={Object.values(planetaSeleccionado)[0]} recogerPlaneta={recogerPlaneta} listaPlanetas={listaCortada1} segundaLista={false}/>
                 <div className="text-center border-solid border-2 border-black">
                     {planetaSeleccionado.length != 0 && (
                         <div className="flex flex-col items-center">
@@ -33,7 +33,7 @@ export function ComponenteSelector({listaOriginal, listaCortada1, listaCortada2}
                             
                     )}
                 </div>
-                <ColumnaSelector recogerPlaneta={recogerPlaneta} listaPlanetas={listaCortada2} segundaLista={true}/>
+                <ColumnaSelector planetaSeleccionadoNombre={Object.values(planetaSeleccionado)[0]} recogerPlaneta={recogerPlaneta} listaPlanetas={listaCortada2} segundaLista={true}/>
             </div>
         </div>
     )
