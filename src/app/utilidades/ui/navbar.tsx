@@ -12,28 +12,28 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  // type PlanetName = string;
-  // const [planetNames, setPlanetNames] = useState<PlanetName[]>([]);
+  type PlanetName = string;
+  const [planetNames, setPlanetNames] = useState<PlanetName[]>([]);
 
-  // useEffect(() => {
-  //   // Función para obtener los nombres de los planetas desde la API
-  //   const fetchPlanetNames = async () => {
-  //     try {
-  //       /* const response = await axios.get(
-  //         `${process.env.REACT_APP_MONGODB_URI}/planets/names`
-  //       ); */
-  //       const response = await axios.get(
-  //         `http://localhost:9000/api/planets/names`
-  //       );
-  //       setPlanetNames(response.data);
-  //     } catch (error) {
-  //       console.error("Error al obtener los nombres de los planetas:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    // Función para obtener los nombres de los planetas desde la API
+    const fetchPlanetNames = async () => {
+      try {
+        /* const response = await axios.get(
+           `${process.env.REACT_APP_MONGODB_URI}/planets/names`
+         ); */
+        const response = await axios.get(
+          `http://localhost:9000/api/planets/names`
+        );
+        setPlanetNames(response.data);
+      } catch (error) {
+        console.error("Error al obtener los nombres de los planetas:", error);
+      }
+    };
 
-  //   // Llamar a la función para obtener los nombres de los planetas al cargar el componente
-  //   fetchPlanetNames();
-  // }, []);
+    // Llamar a la función para obtener los nombres de los planetas al cargar el componente
+    fetchPlanetNames();
+  }, []);
 
   const links = [
     {
@@ -51,11 +51,11 @@ const Navbar = () => {
           href: "/planetas/acerca-de-los-planetas",
           linkName: "Acerca de los Planetas",
         },
-        // ...planetNames.map((planetName, index) => ({
-        //   id: index + 7,
-        //   href: `/planetas/${planetName}`,
-        //   linkName: planetName,
-        // })),
+        ...planetNames.map((planetName, index) => ({
+          id: index + 7,
+          href: `/planetas/${planetName}`,
+          linkName: planetName,
+        })),
         {
           id: 15,
           href: "/planetas/pluton-y-planetas-enanos",
@@ -131,7 +131,13 @@ const Navbar = () => {
           >
             {link.sublinks ? (
               <div>
-                <div id="planetaCambiarDropdown" onClick={()=>{setIsOpen((prevState) => !prevState)}} className={`hover:scale-105 ${pathname.split("/")[1] === link.href.split("/")[1] ? "scale-105 text-white" : ""}`}>
+                <div
+                  id="planetaCambiarDropdown"
+                  onClick={() => {
+                    setIsOpen((prevState) => !prevState);
+                  }}
+                  className={`hover:scale-105 ${pathname.split("/")[1] === link.href.split("/")[1] ? "scale-105 text-white" : ""}`}
+                >
                   {link.linkName}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -186,7 +192,9 @@ const Navbar = () => {
       <div
         onClick={() => {
           setNav(!nav);
-          nav ? document.body.classList.toggle("nav-open") : document.body.classList.remove("nav-open");
+          nav
+            ? document.body.classList.toggle("nav-open")
+            : document.body.classList.remove("nav-open");
         }}
         className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
       >
@@ -203,7 +211,9 @@ const Navbar = () => {
               {link.linkName === "Planetas" ? (
                 <>
                   <div
-                    onClick={()=>{setIsOpen((prevState) => !prevState)}}
+                    onClick={() => {
+                      setIsOpen((prevState) => !prevState);
+                    }}
                     className={`flex items-center justify-center ${isOpen ? "text-white" : ""}`}
                   >
                     <span className="text-center">{link.linkName}</span>
@@ -260,7 +270,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-  
- 

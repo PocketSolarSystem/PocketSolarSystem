@@ -1,7 +1,6 @@
 import Carousel from "react-multi-carousel";
 import Image from "next/image";
 import Link from "next/link";
-import "./CarouselPlanetas.css"
 
 export function CarouselPlanetas({planetas}:{planetas:Array<any>}){
 
