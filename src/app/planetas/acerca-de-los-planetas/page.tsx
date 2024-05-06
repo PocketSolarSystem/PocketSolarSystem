@@ -3,8 +3,14 @@ import Image from "next/image";
 import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselPlanetas";
 import "react-multi-carousel/lib/styles.css";
 import { InicioTexto } from "@/app/utilidades/ui/inicio-texto";
+import { ComponenteSelector } from "@/app/utilidades/ui/componenteSelector/ComponenteSelector";
+import { planetas } from "../../utilidades/lib/dataPlanetas"
 
 export default function AcercaDeLosPlanetas() {
+
+  const listaPlanetasCortada = planetas.slice(0, (planetas.length/2));
+  const listaPlanetasCortada2 = planetas.slice((planetas.length/2), planetas.length);
+
   return (
     <main className="flex min-h-screen flex-col items-center p-12 pt-24 md:p-24">
       <h1 className="text-4xl mt-4 md:mb-5 basis-40 md:basis-0 lg:basis-0">
@@ -27,10 +33,10 @@ export default function AcercaDeLosPlanetas() {
           todos ubicados en un brazo espiral exterior de la Vía Láctea llamado
           el Brazo de Orión. Gracias a Pocket Solar System puedes navegar a través de los distintos planetas del sistema solar en tres dimensiones."
       />
-
       
+      <ComponenteSelector listaOriginal={planetas} listaCortada1={listaPlanetasCortada} listaCortada2={listaPlanetasCortada2}/>
 
-      <CarouselPlanetas />
+      <CarouselPlanetas planetas={planetas}/>
 
       {/* <div className="m-8">
         <p className="mb-4">

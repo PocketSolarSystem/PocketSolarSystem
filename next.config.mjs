@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['apod.nasa.gov', 'images-assets.nasa.gov'],
+        domains: ['apod.nasa.gov', 'images-assets.nasa.gov', 'www.youtube.com'],
     }
 };
 
