@@ -7,9 +7,7 @@ import { InicioTexto } from "@/app/utilidades/ui/inicio-texto";
 export default function AcercaDeLosPlanetas() {
   return (
     <main className="flex min-h-screen flex-col items-center p-12 pt-24 md:p-24">
-      <h1 className="text-4xl mt-4 md:mb-5 basis-40 md:basis-0 lg:basis-0">
-        Planetas
-      </h1>
+      <h1 className="text-4xl mt-4 md:mb-5 md:basis-0 lg:basis-0">Planetas</h1>
 
       <div className="mb-8 mt-4 relative">
         <Image
