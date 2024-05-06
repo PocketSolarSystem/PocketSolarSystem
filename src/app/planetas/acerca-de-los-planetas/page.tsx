@@ -26,8 +26,6 @@ export default function AcercaDeLosPlanetas() {
           el Brazo de Orión. Gracias a Pocket Solar System puedes navegar a través de los distintos planetas del sistema solar en tres dimensiones."
       />
 
-      
-
       <CarouselPlanetas />
 
       {/* <div className="m-8">
