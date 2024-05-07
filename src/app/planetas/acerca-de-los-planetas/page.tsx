@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { InicioTexto } from "@/app/utilidades/ui/inicio-texto";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ComponenteSelector } from "@/app/utilidades/ui/componenteSelector/ComponenteSelector";
 import { planetas } from "../../utilidades/lib/dataPlanetas";
 import { useEffect, useState } from "react";

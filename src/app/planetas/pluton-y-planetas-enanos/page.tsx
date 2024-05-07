@@ -16,9 +16,9 @@ export default function PlutonYPlanetasEnanos() {
 
           <Image
             src="/planetas-enanos/planetas-enanos-header.jpg"
-            width={1200}
-            height={200}
-            alt="Landing page Saturn image"
+            width={1920}
+            height={640}
+            alt="Planetas Enanos page Planetas Enanos image"
             className="border-2 border-solid border-black skew-y-1 z-0"
           />
 
