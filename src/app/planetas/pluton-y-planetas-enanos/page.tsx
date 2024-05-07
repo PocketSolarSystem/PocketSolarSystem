@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselPlanetas";
 import "react-multi-carousel/lib/styles.css";
-import { planetas } from "../../utilidades/lib/dataPlanetas";
+import { planetasEnanos } from "../../utilidades/lib/dataDwarfPlanets";
 
 export default function PlutonYPlanetasEnanos() {
   return (
@@ -64,7 +64,7 @@ export default function PlutonYPlanetasEnanos() {
           </p>
         </div>
 
-        <CarouselPlanetas planetas={planetas} />
+        <CarouselPlanetas planetas={planetasEnanos} />
 
         <div className="md:mx-32 mt-8">
           <h1 className="font-semibold text-xl text-3x1 mb-4 text-center md:text-left md:ml-8">
