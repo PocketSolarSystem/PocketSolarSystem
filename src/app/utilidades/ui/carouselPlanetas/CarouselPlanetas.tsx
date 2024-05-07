@@ -19,8 +19,8 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
   };
 
   return (
-    <div className="sm:hidden container mx-auto pt-8">
-      <h2 className="text-2xl mt-8 mb-4 text-center">
+    <div className="container mx-auto pt-8">
+      <h2 className="text-3xl mt-8 mb-4 text-center font-bold">
         <strong>NUESTROS PLANETAS</strong>
       </h2>
 
@@ -32,12 +32,13 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
         keyBoardControl={true}
         customTransition="transform 1000ms ease-in-out"
         transitionDuration={1000}
-        itemClass=""
+        itemClass="px-4"
+        containerClass="mt-4"
       >
         {planetas.map((planeta, índice) => (
           <div
             key={índice}
-            className="bg-gray-100 p-8 rounded-lg shadow-lg text-center m-2"
+            className="h-full bg-gray-100 p-4 rounded-lg shadow-lg text-center mx-2"
           >
             <Image
               src={planeta.imagen}
@@ -45,14 +46,17 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
               width={300}
               height={300}
               className="mx-auto rounded-full"
+              priority
             />
-            <h2 className="text-xl mt-4">{planeta.nombre}</h2>
-            <p className="text-gray-700 text-sm">{planeta.descripcion}</p>
+            <h3 className="text-2xl mt-4 font-semibold">{planeta.nombre}</h3>
+            <p className="text-gray-700 mt-2 text-xs sm:text-sm">
+              {planeta.descripcion}
+            </p>
             <Link
-              href=""
-              className="bg-black text-white p-1 mt-8 hover:bg-slate-800"
+              href={planeta.link}
+              className="block bg-black text-white py-2 px-4 mt-8 hover:bg-slate-800"
             >
-              Visualiza {planeta.nombre} en 3D
+              Explora {planeta.nombre}
             </Link>
           </div>
         ))}
