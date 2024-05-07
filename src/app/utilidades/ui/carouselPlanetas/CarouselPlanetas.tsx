@@ -41,7 +41,7 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
               alt={planeta.nombre}
               width={planeta.nombre === "Saturno" ? 384 : 192}
               height={planeta.nombre === "Saturno" ? 384 : 192}
-              className={`mx-auto rounded-full ${planeta.nombre === "Saturno" ? "md:pb-2.5 pb-5" : ""} ${planeta.nombre === "Haumea" ? "pb-3" : ""}`}
+              className={`mx-auto ${planeta.nombre === "Saturno" ? "md:pb-2.5 pb-5" : ""} ${planeta.nombre === "Haumea" ? "pb-3" : ""}`}
               priority
             />
             <h3 className="text-2xl mt-4 font-semibold">{planeta.nombre}</h3>

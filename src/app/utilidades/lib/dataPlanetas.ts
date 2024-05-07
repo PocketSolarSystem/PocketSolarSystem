@@ -47,16 +47,4 @@ export const planetas = [
       imagen: "/planetas/neptuno-model.png",
       link: "Neptuno",
     },
-    {
-      nombre: "Plutón",
-      descripcion: "Un pequeño mundo con un gran corazón.",
-      imagen: "/planetas/pluton-model.png",
-      link: "Pluton",
-    },
-    {
-      nombre: "Exoplanetas",
-      descripcion: "Planetas más allá del sistema solar.",
-      imagen: "/planetas/pluton-model.png",
-      link: "Exoplanetas",
-    },
   ];
