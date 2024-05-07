@@ -55,7 +55,7 @@ const Planeta = () => {
               }
               width={1200}
               height={200}
-              alt="Landing page Saturn image"
+              alt={"Planet page " + decodeURIComponent(planeta) + " image"}
               className="border-2 border-solid border-black skew-y-1 z-0"
             />
 
@@ -63,7 +63,7 @@ const Planeta = () => {
               {decodeURIComponent(planeta)}
             </p>
           </div>
-          <p className="my-8">{planetaData.descripcion}</p>
+          <p className="mt-8">{planetaData.descripcion}</p>
 
           <CarouselPlanetas planetas={planetas} />
 

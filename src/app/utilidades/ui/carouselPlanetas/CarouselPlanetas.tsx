@@ -19,7 +19,7 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
   };
 
   return (
-    <div className="container mx-auto pt-8">
+    <div className="container mx-auto">
       <h2 className="text-3xl mt-8 mb-4 text-center font-bold">
         <strong>NUESTROS PLANETAS</strong>
       </h2>

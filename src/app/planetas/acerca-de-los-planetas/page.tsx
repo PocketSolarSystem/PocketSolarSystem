@@ -46,8 +46,8 @@ export default function AcercaDeLosPlanetas() {
     );
   } else if (planetaData != null) {
     return (
-      <main className="flex min-h-screen flex-col items-center p-12 pt-24">
-        <h1 className="text-4xl mt-4 md:mb-5 basis-40 md:basis-0 lg:basis-0">
+      <main className="flex min-h-screen flex-col items-center md:p-12 p-8 pt-24">
+        <h1 className="text-4xl mt-4 md:mb-5 md:basis-0 md:pt-12">
           <Typewriter
             onInit={(typewriter) => {
               typewriter
@@ -83,7 +83,7 @@ export default function AcercaDeLosPlanetas() {
           listaCortada2={listaPlanetasCortada2}
         />
 
-        <div className="mx-32">
+        <div className="md:mx-32 mt-4">
           <p className="mb-4">
             El sistema solar tiene ocho planetas. Moviendo hacia afuera desde el
             Sol, los planetas son: Mercurio, Venus, Tierra, Marte, Júpiter,
@@ -157,7 +157,7 @@ export default function AcercaDeLosPlanetas() {
                   width={200}
                   height={200}
                   alt={`${planeta.nombre} Image`}
-                  className="w-full"
+                  className="w-full mb-4"
                 />
               </div>
               {/* Texto */}
