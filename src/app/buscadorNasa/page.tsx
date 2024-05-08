@@ -46,7 +46,7 @@ export default function Buscador() {
     if(cargando){ 
         return (
             <main className="flex min-h-screen flex-col justify-between p-24">
-            <p>Cargando...</p>
+                <p>Cargando...</p>
             </main>  
         )
     }else{

@@ -23,8 +23,7 @@ export function ColumnaSelector({planetaSeleccionadoNombre, recogerPlaneta, list
                         width={330}
                         height={330}
                         className={"rounded-full" + `${planetaSeleccionadoNombre !== planeta.nombre ? " grayscale" : " shadow-lg shadow-slate-900"}`}
-                        />
-                    
+                        />  
                 
                 <h2 className="text-xl mt-4 absolute text-white inset-x-0 bottom-0">{planeta.nombre}</h2>
             </button>
