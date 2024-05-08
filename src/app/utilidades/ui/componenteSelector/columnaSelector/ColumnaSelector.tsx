@@ -17,7 +17,6 @@ export function ColumnaSelector(
                 onClick={() => {
                     recogerPlaneta(planeta.nombre)
                 }}>
-                    
                         <Image
                         src={planeta.imagen}
                         alt={planeta.nombre}
@@ -26,7 +25,7 @@ export function ColumnaSelector(
                         className={"rounded-full" + `${planetaSeleccionadoNombre !== planeta.nombre ? " grayscale" : " shadow-lg shadow-slate-900"}`}
                         />
                     
-                <h2 className="text-xl mt-4 absolute text-white inset-x-0 bottom-0">{planeta.nombre}</h2>
+                <h2 className={`text-xl mt-4 absolute text-white inset-x-0 ${planetaSeleccionadoNombre ? "bottom-12" : "bottom-0"} `}>{planeta.nombre}</h2>
             </div>
         ))}
     </div>)
