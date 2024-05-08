@@ -1,10 +1,13 @@
 "use client";
 
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselPlanetas";
+import "react-multi-carousel/lib/styles.css";
+import { planetas } from "../../utilidades/lib/dataPlanetas";
 
 const Planeta = () => {
   const pathname = usePathname();
@@ -52,7 +55,7 @@ const Planeta = () => {
               }
               width={1200}
               height={200}
-              alt="Landing page Saturn image"
+              alt={"Planet page " + decodeURIComponent(planeta) + " image"}
               className="border-2 border-solid border-black skew-y-1 z-0"
             />
 
@@ -60,7 +63,10 @@ const Planeta = () => {
               {decodeURIComponent(planeta)}
             </p>
           </div>
-          <p className="my-8">{planetaData.descripcion}</p>
+          <p className="mt-8">{planetaData.descripcion}</p>
+
+          <CarouselPlanetas planetas={planetas} />
+
           {planetaData && (
             <div className="my-8">
               <p className="mb-4">
@@ -90,17 +96,17 @@ const Planeta = () => {
                         />
                         <p>
                           {planetaData.imagenes.length > 0
-                            ? planetaData.imagenes.length - 1 + " IMAGENES"
+                            ? planetaData.imagenes.length - 2 + " IMAGENES"
                             : ""}
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
+                  <div className="grid grid-cols-2 gap-2 md:grid-cols-5 md:gap-6 xl:gap-8">
                     {planetaData.imagenes.map(
                       (imagen: string, index: number, array: string[]) => {
-                        if (index === 0 /* || index === array.length - 1 */) {
+                        if (index <= 1 /* || index === array.length - 1 */) {
                           return null;
                         }
 
@@ -109,8 +115,10 @@ const Planeta = () => {
                             key={index}
                             href="#"
                             className={`group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg ${
-                              index != 2 ? "" : "md:col-span-2"
-                            } md:h-80`}
+                              index != 4
+                                ? "md:h-60"
+                                : "md:col-span-3 md:row-span-2 md:h-full"
+                            } `}
                           >
                             <img
                               src={imagen}
@@ -127,7 +135,7 @@ const Planeta = () => {
                 </div>
               </div>
 
-              <p className="mb-4">
+              <p className="mb-4 mt-96 md:mt-48">
                 <h1 className="font-semibold text-xl text-4x1 mb-4 text-center md:text-left md:ml-8">
                   Cultura Pop
                 </h1>
