@@ -1,8 +1,13 @@
+'use client';
 import { ColumnaSelector } from "./columnaSelector/ColumnaSelector"
-import Image from "next/image";
+import { Planeta3d } from "@/app/utilidades/ui/planeta3d";
 import { useState } from "react";
 
 export function ComponenteSelector({listaOriginal, listaCortada1, listaCortada2}:{listaOriginal:Array<any>, listaCortada1:Array<any>, listaCortada2:Array<any>}){
+
+    const styling = {
+        backgroundImage: `url('/texturas/estrellas-textura.jpg')`,
+    }
 
     const [planetaSeleccionado, setPlanetaSeleccionado] = useState([]);
 
@@ -17,21 +22,14 @@ export function ComponenteSelector({listaOriginal, listaCortada1, listaCortada2}
             </h2>
             <div className="grid grid-cols-3 gap-4 mt-8 mb-8">
                 <ColumnaSelector planetaSeleccionadoNombre={Object.values(planetaSeleccionado)[0]} recogerPlaneta={recogerPlaneta} listaPlanetas={listaCortada1}/>
-                <div className="text-center border-solid border-2 border-black bg-black">
-                    {planetaSeleccionado.length != 0 && (
-                        <div className="flex flex-col items-center">
-                            <h1 className="text-xl mt-8">{Object.values(planetaSeleccionado)[0]}</h1>
-                            <Image 
-                                src={Object.values(planetaSeleccionado)[2]}
-                                width={400}
-                                height={400}
-                                alt="pruebaImagen"
-                                className="m-8"
-                            />
-                            <p>{Object.values(planetaSeleccionado)[1]}</p>
-                        </div>
-                            
-                    )}
+                <div className="flex flex-col items-center bg-cover rounded-lg" style={styling}>
+                    <p className="text-white mt-4 text-2xl">{<strong>{Object.values(planetaSeleccionado)[0]}</strong>}</p>
+                    <div className="h-80 w-80">
+                        {planetaSeleccionado.length != 0 && (
+                                <Planeta3d textura={`/texturas/${Object.values(planetaSeleccionado)[0]}-textura.jpg`} />
+                        )}
+                    </div>
+                    
                 </div>
                 <ColumnaSelector planetaSeleccionadoNombre={Object.values(planetaSeleccionado)[0]} recogerPlaneta={recogerPlaneta} listaPlanetas={listaCortada2}/>
             </div>

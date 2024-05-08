@@ -12,7 +12,7 @@ export function ColumnaSelector(
     return (
     <div className="grid grid-cols-2 gap-4 mt-12">
         {listaPlanetas.map((planeta, indice) => (
-            <button 
+            <div 
                 key={indice} className={condicionalClase() + `${planetaSeleccionadoNombre === planeta.nombre ? " scale-110" : ""}`} 
                 onClick={() => {
                     recogerPlaneta(planeta.nombre)
@@ -27,7 +27,7 @@ export function ColumnaSelector(
                         />
                     
                 <h2 className="text-xl mt-4 absolute text-white inset-x-0 bottom-0">{planeta.nombre}</h2>
-            </button>
+            </div>
         ))}
     </div>)
 }

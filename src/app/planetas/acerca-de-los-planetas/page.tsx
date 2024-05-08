@@ -4,7 +4,7 @@ import Link from "next/link";
 import { InicioTexto } from "@/app/utilidades/ui/inicio-texto";
 import { usePathname } from "next/navigation";
 import { ComponenteSelector } from "@/app/utilidades/ui/componenteSelector/ComponenteSelector";
-import { planetas } from "../../utilidades/lib/dataPlanetas";
+import { planetas } from "../../utilidades/lib/dataPlanetasSelect";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Typewriter from "typewriter-effect";
@@ -84,7 +84,7 @@ export default function AcercaDeLosPlanetas() {
         />
         
 
-        <div className="md:mx-32 mt-4">
+        {/* <div className="md:mx-32 mt-4">
           <p className="mb-4">
             El sistema solar tiene ocho planetas. Moviendo hacia afuera desde el
             Sol, los planetas son: Mercurio, Venus, Tierra, Marte, Júpiter,
@@ -135,7 +135,7 @@ export default function AcercaDeLosPlanetas() {
             solar. Los científicos los llaman exoplanetas (exo significa
             &quot;desde afuera&quot;).
           </p>
-        </div>
+        </div> */}
 
         <h2 className="text-3xl mt-8 mb-4 text-center">
           Datos de los Planetas
