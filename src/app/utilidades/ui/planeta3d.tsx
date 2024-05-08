@@ -3,16 +3,16 @@ import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import { useRef } from "react";
 import { Mesh } from "three";
+import { OrbitControls } from "@react-three/drei";
 
 export function Planeta3d({textura}:{textura:string}){
     return (
-                
-                    <Canvas>
-                        <ambientLight intensity={2}/>
-                        <directionalLight position={[3, 2, 2]}/>
-                        <Planeta textura={textura} />   
-                    </Canvas>     
-                     
+        <Canvas>
+            <OrbitControls enablePan={false} enableZoom={false}/>
+            <ambientLight intensity={2}/>
+            <directionalLight position={[3, 2, 2]}/>
+            <Planeta textura={textura} />   
+        </Canvas>                    
     );
 }
 
