@@ -7,11 +7,11 @@ export default function Planetas() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("/planetas/acerca-de-los-planetas");
+    router.replace("/sistema-solar/planetas/acerca-de-los-planetas");
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-12 pt-24 md:p-24">
+    <main className="flex min-h-screen flex-col items-center p-12 pt-24 md:p-24 mt-14">
       <p>Bienvenidos a planetas</p>
     </main>
   );

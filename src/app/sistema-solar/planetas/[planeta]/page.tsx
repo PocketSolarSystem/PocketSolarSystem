@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselPlanetas";
 import "react-multi-carousel/lib/styles.css";
-import { planetas } from "../../utilidades/lib/dataPlanetas";
+import { planetas } from "../../../utilidades/lib/dataPlanetas";
 
 const Planeta = () => {
   const pathname = usePathname();
   const partesRuta = pathname.split("/");
-  const planeta = partesRuta[2];
+  const planeta = partesRuta[3];
   const [planetaData, setPlanetaData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -43,7 +43,7 @@ const Planeta = () => {
   } else if (planetaData != null) {
     return (
       <main className="flex min-h-screen flex-col items-center p-8 pt-24 md:px-24">
-        <div className="container mx-auto pt-2 md:pt-8">
+        <div className="container mx-auto pt-2 md:pt-8 mt-14">
           <div className="mb-8 relative">
             <p className="block font-bold text-3xl md:hidden bg-white mb-3 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black">
               {decodeURIComponent(planeta)}
@@ -69,12 +69,10 @@ const Planeta = () => {
 
           {planetaData && (
             <div className="my-8">
-              <p className="mb-4">
-                <h1 className="font-semibold text-xl text-4x1 mb-4 text-center md:text-left md:ml-8">
-                  Visión General Planeta {decodeURIComponent(planeta)}
-                </h1>
-                <p>{planetaData.overview}</p>
-              </p>
+              <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8">
+                Visión General Planeta {decodeURIComponent(planeta)}
+              </h1>
+              <p>{planetaData.overview}</p>
 
               <div className="bg-white h-screen h-full py-4 pb-10">
                 <div className="mx-auto max-w-screen-2xl">
@@ -135,12 +133,10 @@ const Planeta = () => {
                 </div>
               </div>
 
-              <p className="mb-4 mt-96 md:mt-48">
-                <h1 className="font-semibold text-xl text-4x1 mb-4 text-center md:text-left md:ml-8">
-                  Cultura Pop
-                </h1>
-                <p>{planetaData.cultura_pop}</p>
-              </p>
+              <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8 mt-96 md:mt-48">
+                Cultura Pop
+              </h1>
+              <p>{planetaData.cultura_pop}</p>
             </div>
           )}
         </div>
