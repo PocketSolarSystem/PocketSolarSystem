@@ -26,7 +26,7 @@ export function ComponenteSelector({
   };
 
   return (
-    <div className="hidden md:block mt-16 mb-16 p-2">
+    <div className="hidden md:block mt-16 mb-16">
       <h2 className="text-2xl mt-8 mb-4 text-center">
         <strong>SELECCIONA UN PLANETA</strong>
       </h2>
@@ -37,7 +37,7 @@ export function ComponenteSelector({
           listaPlanetas={listaCortada1}
         />
         <div
-          className="flex flex-col items-center bg-cover rounded-lg"
+          className="flex flex-col items-center justify-center bg-cover rounded-lg"
           style={styling}
         >
           {planetaSeleccionado.length != 0 && (
@@ -45,12 +45,14 @@ export function ComponenteSelector({
               <p className="text-white mt-4 text-2xl">
                 {<strong>{Object.values(planetaSeleccionado)[0]}</strong>}
               </p>
-              <div className="h-80 w-80">
+
+              <div className="lg:h-80 lg:w-80 h-40 w-40">
                 <Planeta3d
                   textura={`/texturas/${Object.values(planetaSeleccionado)[0]}-textura.jpg`}
                 />
               </div>
-              <p className="text-white text-lg">
+
+              <p className="text-white text-lg hidden lg:block">
                 {Object.values(planetaSeleccionado)[1]}
               </p>
               <Link
