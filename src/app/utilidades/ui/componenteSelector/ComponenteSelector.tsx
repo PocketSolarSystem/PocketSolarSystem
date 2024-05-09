@@ -26,7 +26,7 @@ export function ComponenteSelector({
   };
 
   return (
-    <div className="hidden md:block mt-16 mb-16">
+    <div className="hidden md:block">
       <h2 className="text-2xl mt-8 mb-4 text-center">
         <strong>SELECCIONA UN PLANETA</strong>
       </h2>
