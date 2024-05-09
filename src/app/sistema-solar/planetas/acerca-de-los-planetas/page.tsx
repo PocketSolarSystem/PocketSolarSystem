@@ -4,7 +4,7 @@ import Link from "next/link";
 import { InicioTexto } from "@/app/utilidades/ui/inicio-texto";
 import { usePathname } from "next/navigation";
 import { ComponenteSelector } from "@/app/utilidades/ui/componenteSelector/ComponenteSelector";
-import { planetas } from "../../../utilidades/lib/dataPlanetas";
+import { planetas } from "../../../utilidades/lib/dataPlanetasSelect";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Typewriter from "typewriter-effect";
