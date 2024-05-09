@@ -47,7 +47,7 @@ export default function AcercaDeLosPlanetas() {
   } else if (planetaData != null) {
     return (
       <main className="flex min-h-screen flex-col items-center md:p-12 p-8 pt-24">
-        <h1 className="text-4xl mt-4 md:mb-5 md:basis-0 md:pt-12 mt-14">
+        <h1 className="md:text-4xl text-2xl md:mb-8 md:basis-0 md:pt-12 mt-20">
           <Typewriter
             onInit={(typewriter) => {
               typewriter
