@@ -1,60 +1,48 @@
-import { ColumnaSelector } from "./columnaSelector/ColumnaSelector";
-import Image from "next/image";
+'use client';
+import { ColumnaSelector } from "./columnaSelector/ColumnaSelector"
+import { Planeta3d } from "@/app/utilidades/ui/planeta3d";
+import Link from "next/link";
 import { useState } from "react";
 
-export function ComponenteSelector({
-  listaOriginal,
-  listaCortada1,
-  listaCortada2,
-}: {
-  listaOriginal: Array<any>;
-  listaCortada1: Array<any>;
-  listaCortada2: Array<any>;
-}) {
-  const [planetaSeleccionado, setPlanetaSeleccionado] = useState([]);
+export function ComponenteSelector({listaOriginal, listaCortada1, listaCortada2}:{listaOriginal:Array<any>, listaCortada1:Array<any>, listaCortada2:Array<any>}){
 
-  const recogerPlaneta = (nombre: string) => {
-    setPlanetaSeleccionado(
-      listaOriginal.find((planeta) => planeta.nombre === nombre)
-    );
-  };
+    const styling = {
+        backgroundImage: `url('/texturas/estrellas-textura.jpg')`,
+    }
 
-  return (
-    <div className="hidden md:block mt-8 mb-8 p-2">
-      <h2 className="text-2xl mt-8 mb-4 text-center">
-        <strong>SELECCIONA UN PLANETA</strong>
-      </h2>
-      <div className="grid grid-cols-3 gap-4 mt-8">
-        <ColumnaSelector
-          planetaSeleccionadoNombre={Object.values(planetaSeleccionado)[0]}
-          recogerPlaneta={recogerPlaneta}
-          listaPlanetas={listaCortada1}
-          segundaLista={false}
-        />
-        <div className="text-center border-solid border-2 border-black">
-          {planetaSeleccionado.length != 0 && (
-            <div className="flex flex-col items-center m-4">
-              <h1 className="text-4xl bg-white mt-7 p-2 text-center border-black">
-                {Object.values(planetaSeleccionado)[0]}
-              </h1>
-              <Image
-                src={Object.values(planetaSeleccionado)[2]}
-                width={768}
-                height={768}
-                alt="pruebaImagen"
-                className="m-8"
-              />
-              <p>{Object.values(planetaSeleccionado)[1]}</p>
+    const [planetaSeleccionado, setPlanetaSeleccionado] = useState([]);
+
+    const recogerPlaneta = (nombre:string) =>{
+        setPlanetaSeleccionado(listaOriginal.find((planeta) => planeta.nombre === nombre));
+    }
+
+    return (
+        <div className="hidden md:block mt-16 mb-16 p-2">
+            <h2 className="text-2xl mt-8 mb-4 text-center">
+                <strong>SELECCIONA UN PLANETA</strong>
+            </h2>
+            <div className="grid grid-cols-3 gap-4 mt-8 mb-8">
+                <ColumnaSelector planetaSeleccionadoNombre={Object.values(planetaSeleccionado)[0]} recogerPlaneta={recogerPlaneta} listaPlanetas={listaCortada1}/>
+                <div className="flex flex-col items-center bg-cover rounded-lg" style={styling}>
+                    {planetaSeleccionado.length != 0 && (
+                        <>
+                            <p className="text-white mt-4 text-2xl">{<strong>{Object.values(planetaSeleccionado)[0]}</strong>}</p>
+                            <div className="h-80 w-80">
+                                
+                                        <Planeta3d textura={`/texturas/${Object.values(planetaSeleccionado)[0]}-textura.jpg`} />
+                                
+                            </div>
+                            <p className="text-white text-lg">{Object.values(planetaSeleccionado)[1]}</p>
+                            <Link
+                            href={Object.values(planetaSeleccionado)[0]}
+                            className="bg-white rounded-full p-2 m-4 hover:cursor-pointer hover:bg-gray-300">
+                                Explora más acerca de {Object.values(planetaSeleccionado)[0]}
+                            </Link>
+                        </>
+                    )}
+                </div>
+                <ColumnaSelector planetaSeleccionadoNombre={Object.values(planetaSeleccionado)[0]} recogerPlaneta={recogerPlaneta} listaPlanetas={listaCortada2}/>
             </div>
-          )}
         </div>
-        <ColumnaSelector
-          planetaSeleccionadoNombre={Object.values(planetaSeleccionado)[0]}
-          recogerPlaneta={recogerPlaneta}
-          listaPlanetas={listaCortada2}
-          segundaLista={true}
-        />
-      </div>
-    </div>
-  );
+    )
 }
