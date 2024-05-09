@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const planetSchema = mongoose.Schema({
+/* const mongoose = require("mongoose"); */
+
+const planetSchema = new mongoose.Schema({
   nombre: {
     type: "String",
     required: true,
@@ -80,4 +82,4 @@ planetSchema.statics.findByNombre = function (nombre) {
   return this.findOne({ nombre });
 };
 
-module.exports = mongoose.model("Planet", planetSchema);
+export default mongoose.model("Planet", planetSchema);

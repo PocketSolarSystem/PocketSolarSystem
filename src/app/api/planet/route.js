@@ -1,9 +1,21 @@
-const express = require("express");
+import { NextResponse } from "next/server";
+import { connectDB } from "../../../libs/mongodb";
+import Planet from "../../../models/planet";
+
+export async function GET() {
+  await connectDB();
+
+  const allPlanets = await Planet.find();
+
+  return NextResponse.json(allPlanets);
+}
+
+/* const express = require("express");
 const planetSchema = require("../../../models/planet");
 
-const router = express.Router();
+const router = express.Router(); */
 
-// create planet
+/* // create planet
 router.post("/planets", (req, res) => {
   const planet = planetSchema(req.body);
   planet
@@ -60,7 +72,7 @@ router.put("/planets/:_id", (req, res) => {
   const { id } = req.params;
   const { nombre, descripcion, overview, cultura_pop, historias, facts } =
     req.body;
-  /* const {
+  const {
     Introduccion,
     Nombre,
     Potencial_para_la_vida,
@@ -73,7 +85,7 @@ router.put("/planets/:_id", (req, res) => {
     Superficie,
     Atmosfera,
     Magnetosfera,
-  } = req.body.facts; */
+  } = req.body.facts;
 
   planetSchema
     .updateOne(
@@ -82,6 +94,6 @@ router.put("/planets/:_id", (req, res) => {
     )
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
-});
+}); */
 
-module.exports = router;
+/* module.exports = router; */

@@ -8,7 +8,7 @@ import axios from "axios";
 import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselPlanetas";
 import "react-multi-carousel/lib/styles.css";
 import { planetas } from "../../../utilidades/lib/dataPlanetas";
-import { connectDB } from "../../../../libs/index";
+import { connectDB } from "../../../../libs/mongodb";
 
 const Planeta = () => {
   const pathname = usePathname();
