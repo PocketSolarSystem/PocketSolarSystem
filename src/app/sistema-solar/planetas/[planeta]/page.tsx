@@ -8,6 +8,7 @@ import axios from "axios";
 import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselPlanetas";
 import "react-multi-carousel/lib/styles.css";
 import { planetas } from "../../../utilidades/lib/dataPlanetas";
+import { connectDB } from "../../../../libs/index";
 
 const Planeta = () => {
   const pathname = usePathname();
@@ -19,6 +20,8 @@ const Planeta = () => {
   useEffect(() => {
     const fetchPlanetaData = async () => {
       try {
+        // Hace un intento de conexion pero peta un modulo
+        //connectDB();
         const response = await axios.get(
           `http://localhost:9000/api/planets/name/${planeta}`
         );

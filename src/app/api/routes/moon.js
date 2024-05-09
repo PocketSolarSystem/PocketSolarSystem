@@ -1,5 +1,5 @@
 const express = require("express");
-const moonSchema = require("../models/moon");
+const moonSchema = require("../../../models/moon");
 
 const router = express.Router();
 

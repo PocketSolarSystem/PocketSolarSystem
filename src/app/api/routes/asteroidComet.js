@@ -1,5 +1,5 @@
 const express = require("express");
-const asteroidCometSchema = require("../models/asteroidComet");
+const asteroidCometSchema = require("../../../models/asteroidComet");
 
 const router = express.Router();
 

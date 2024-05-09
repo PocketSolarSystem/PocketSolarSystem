@@ -2,11 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const cors = require("cors");
-const userRoute = require("./routes/user");
-const planetRoute = require("./routes/planet");
-const solarSystemRoute = require("./routes/solarSystem");
-const moonRoute = require("./routes/moon");
-const asteroidCometRoute = require("./routes/asteroidComet");
+const userRoute = require("../app/api/routes/user");
+const planetRoute = require("../app/api/routes/planet");
+const solarSystemRoute = require("../app/api/routes/solarSystem");
+const moonRoute = require("../app/api/routes/moon");
+const asteroidCometRoute = require("../app/api/routes/asteroidComet");
 
 // settings
 const app = express();
@@ -32,10 +32,17 @@ app.get("/", (req, res) => {
 });
 
 // mongodb connection
-mongoose
+/* mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("Connected to MongoDB Atlas"))
-  .catch((error) => console.error(error));
+  .catch((error) => console.error(error)); */
+
+export async function connectDB() {
+  await mongoose
+    .connect(process.env.MONGODB_URI)
+    .then(() => console.log("Connected to MongoDB Atlas"))
+    .catch((error) => console.error(error));
+}
 
 // server listening
 app.listen(port, () => console.log("Server listening to", port));

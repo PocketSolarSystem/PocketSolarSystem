@@ -1,5 +1,5 @@
 const express = require("express");
-const solarSystemSchema = require("../models/solarSystem");
+const solarSystemSchema = require("../../../models/solarSystem");
 
 const router = express.Router();
 
