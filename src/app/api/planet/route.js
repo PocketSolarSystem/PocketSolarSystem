@@ -10,6 +10,16 @@ export async function GET() {
   return NextResponse.json(allPlanets);
 }
 
+export async function POST() {
+  await connectDB();
+
+  const data = await request.json();
+
+  const allPlanets = await Planet.create(data);
+
+  return NextResponse.json(allPlanets);
+}
+
 /* const express = require("express");
 const planetSchema = require("../../../models/planet");
 

@@ -78,8 +78,4 @@ const planetSchema = new mongoose.Schema({
   },
 });
 
-planetSchema.statics.findByNombre = function (nombre) {
-  return this.findOne({ nombre });
-};
-
-export default mongoose.model("Planet", planetSchema);
+export default mongoose.models.Planet || mongoose.model("Planet", planetSchema);
