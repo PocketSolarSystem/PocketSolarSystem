@@ -17,13 +17,35 @@ async function loadPlanetByName(nombrePlaneta: String) {
   return planet;
 }
 
-async function Planeta() {
+function Planeta() {
+  const [planetaData, setPlanetaData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const pathname = usePathname();
   const partesRuta = pathname.split("/");
   const planetaNombre = partesRuta[3];
 
-  const planetaData = await loadPlanetByName(planetaNombre);
-  console.log(planetaData);
+  useEffect(() => {
+    async function fetchPlanetaData() {
+      try {
+        const data = await loadPlanetByName(planetaNombre);
+        setPlanetaData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error al cargar los datos del planeta:", error);
+        setLoading(false);
+      }
+    }
+
+    fetchPlanetaData();
+  }, [planetaNombre]);
+
+  if (loading) {
+    return <p>Cargando...</p>;
+  }
+
+  if (!planetaData) {
+    return <p>No se encontraron datos del planeta.</p>;
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center p-8 pt-24 md:px-24">
