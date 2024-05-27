@@ -4,12 +4,27 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { usePathname } from "next/navigation";
-import "./navbar.css";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (nav) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [nav]);
 
   const links = [
     {
@@ -39,8 +54,17 @@ const Navbar = () => {
     },
   ];
 
+  const toggleNav = () => {
+    setNav(!nav);
+    if (!nav) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  };
+
   return (
-    <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav z-40 ">
+    <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed top-0 left-0 z-50">
       <div>
         <h1 className="text-xl ml-2">
           <Link
@@ -78,19 +102,14 @@ const Navbar = () => {
       </ul>
 
       <div
-        onClick={() => {
-          setNav(!nav);
-          nav
-            ? document.body.classList.toggle("nav-open")
-            : document.body.classList.remove("nav-open");
-        }}
+        onClick={toggleNav}
         className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
       >
         {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
       </div>
 
       {nav && (
-        <ul className="menu flex flex-col justify-center text-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">
+        <ul className="menu flex flex-col justify-center text-center items-center fixed top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">
           {links.map((link) => (
             <li
               key={link.id}
@@ -124,7 +143,7 @@ const Navbar = () => {
                 </>
               ) : (
                 <Link
-                  onClick={() => setNav(!nav)}
+                  onClick={toggleNav}
                   key={link.id}
                   href={link.href}
                   className={`${pathname === link.href ? "scale-105 text-white" : ""}`}

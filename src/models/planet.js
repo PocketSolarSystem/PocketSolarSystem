@@ -4,19 +4,19 @@ import mongoose from "mongoose";
 
 const planetSchema = new mongoose.Schema({
   nombre: {
-    type: "String",
+    type: String,
     required: true,
   },
   descripcion: {
-    type: "String",
+    type: String,
     required: true,
   },
   overview: {
-    type: "String",
+    type: String,
     required: true,
   },
   cultura_pop: {
-    type: "String",
+    type: String,
     required: true,
   },
   historias: {
@@ -24,54 +24,53 @@ const planetSchema = new mongoose.Schema({
     items: {},
   },
   facts: {
-    type: "Object",
     properties: {
       Introduccion: {
-        type: "String",
+        type: String,
         required: true,
       },
       Nombre: {
-        type: "String",
+        type: String,
         required: true,
       },
       Potencial_para_la_vida: {
-        type: "String",
+        type: String,
         required: true,
       },
       Tamaño_y_Distancia: {
-        type: "String",
+        type: String,
         required: true,
       },
       Orbita_y_Rotacion: {
-        type: "String",
+        type: String,
         required: true,
       },
       Lunas: {
-        type: "String",
+        type: String,
         required: true,
       },
       Anillos: {
-        type: "String",
+        type: String,
         required: true,
       },
       Formacion: {
-        type: "String",
+        type: String,
         required: true,
       },
       Estructura: {
-        type: "String",
+        type: String,
         required: true,
       },
       Superficie: {
-        type: "String",
+        type: String,
         required: true,
       },
       Atmosfera: {
-        type: "String",
+        type: String,
         required: true,
       },
       Magnetosfera: {
-        type: "String",
+        type: String,
         required: true,
       },
     },

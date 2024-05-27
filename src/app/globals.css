@@ -31,3 +31,8 @@
     text-wrap: balance;
   }
 }
+
+/* Estilo para las flechas de navegación del carrusel */
+.react-multiple-carousel__arrow {
+  z-index: 1; /* Ajusta el zIndex para que las flechas estén por debajo de otros elementos */
+}

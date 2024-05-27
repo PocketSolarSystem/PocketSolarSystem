@@ -1,87 +1,51 @@
-const express = require("express");
-const moonSchema = require("../../../models/moon");
+import { NextResponse } from "next/server";
+import { connectDB } from "../../../libs/mongodb";
+import Moon from "../../../models/moon";
 
-const router = express.Router();
+export async function GET() {
+  try {
+    console.log("Connecting to DB...");
+    await connectDB();
+    console.log("Connected to DB, fetching moons...");
+    const allMoons = await Moon.find();
+    console.log("Fetched moons:", allMoons);
+    return NextResponse.json(allMoons);
+  } catch (error) {
+    console.error("Error in GET /api/moon:", error);
+    return NextResponse.json(
+      { message: "Failed to fetch moons", error },
+      { status: 500 }
+    );
+  }
+}
 
-// create moon
-router.post("/moons", (req, res) => {
-  const moon = moonSchema(req.body);
-  moon
-    .save()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
+export async function POST(request) {
+  try {
+    console.log("Connecting to DB...");
+    await connectDB();
+    console.log("Connected to DB, creating moon...");
+    const data = await request.json();
+    // Validación básica (puedes mejorarla según tus necesidades)
+    if (
+      !data.nombre ||
+      !data.descripcion ||
+      !data.overview ||
+      !data.cultura_pop
+    ) {
+      return NextResponse.json(
+        { message: "Missing required fields" },
+        { status: 400 }
+      );
+    }
 
-// get all moons
-router.get("/moons", (req, res) => {
-  moonSchema
-    .find()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-// get all moon names
-router.get("/moons/names", (req, res) => {
-  moonSchema
-    .find({}, { nombre: 1, _id: 0 })
-    .then((data) => res.json(data.map((moon) => moon.nombre)))
-    .catch((error) => res.json({ message: error }));
-});
-
-// get a moon
-router.get("/moons/id/:_id", (req, res) => {
-  const { _id } = req.params;
-  moonSchema
-    .findById(_id)
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-// get a moon by name
-router.get("/moons/name/:nombre", (req, res) => {
-  const { nombre } = req.params;
-  moonSchema
-    .findByNombre(nombre)
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-// delete a moon
-router.delete("/moons/:_id", (req, res) => {
-  const { id } = req.params;
-  moonSchema
-    .remove({ _id: id })
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-// update a moon
-router.put("/moons/:_id", (req, res) => {
-  const { id } = req.params;
-  const { nombre, descripcion, overview, cultura_pop, historias, facts } =
-    req.body;
-  /* const {
-    Introduccion,
-    Nombre,
-    Potencial_para_la_vida,
-    Tamaño_y_Distancia,
-    Orbita_y_Rotacion,
-    Lunas,
-    Anillos,
-    Formacion,
-    Estructura,
-    Superficie,
-    Atmosfera,
-    Magnetosfera,
-  } = req.body.facts; */
-
-  moonSchema
-    .updateOne(
-      { _id: id },
-      { $set: { nombre, descripcion, overview, cultura_pop, historias, facts } }
-    )
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-module.exports = router;
+    const newMoon = await Moon.create(data);
+    console.log("Created new moon:", newMoon);
+    return NextResponse.json(newMoon);
+  } catch (error) {
+    console.error("Error in POST /api/moon:", error);
+    return NextResponse.json(
+      { message: "Failed to create moon", error },
+      { status: 500 }
+    );
+  }
+}

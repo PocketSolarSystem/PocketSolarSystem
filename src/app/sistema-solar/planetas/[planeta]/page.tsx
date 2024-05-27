@@ -2,19 +2,17 @@
 
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselPlanetas";
 import "react-multi-carousel/lib/styles.css";
 import { planetas } from "../../../utilidades/lib/dataPlanetas";
-import { connectDB } from "../../../../libs/mongodb";
-import Planet from "../../../../models/planet";
 
-async function loadPlanetByName(nombrePlaneta: String) {
-  await connectDB();
-  const planet = await Planet.findOne({ nombre: nombrePlaneta });
-  return planet;
+async function fetchPlanetaData(nombrePlaneta: string) {
+  const response = await axios.get(
+    `/api/planet/${encodeURIComponent(nombrePlaneta)}`
+  );
+  return response.data;
 }
 
 function Planeta() {
@@ -22,12 +20,12 @@ function Planeta() {
   const [loading, setLoading] = useState<boolean>(true);
   const pathname = usePathname();
   const partesRuta = pathname.split("/");
-  const planetaNombre = partesRuta[3];
+  const planetaNombre = decodeURIComponent(partesRuta[3]);
 
   useEffect(() => {
-    async function fetchPlanetaData() {
+    async function loadData() {
       try {
-        const data = await loadPlanetByName(planetaNombre);
+        const data = await fetchPlanetaData(planetaNombre);
         setPlanetaData(data);
         setLoading(false);
       } catch (error) {
@@ -36,7 +34,7 @@ function Planeta() {
       }
     }
 
-    fetchPlanetaData();
+    loadData();
   }, [planetaNombre]);
 
   if (loading) {
@@ -59,10 +57,10 @@ function Planeta() {
             src={
               planetaData.imagenes && planetaData.imagenes.length > 0
                 ? planetaData.imagenes[0]
-                : ""
+                : "/placeholder.png"
             }
             width={1200}
-            height={200}
+            height={800}
             alt={"Planet page " + decodeURIComponent(planetaNombre) + " image"}
             className="border-2 border-solid border-black skew-y-1 z-0"
           />
@@ -93,9 +91,9 @@ function Planeta() {
                       <Image
                         src={
                           planetaData.imagenes &&
-                          planetaData.imagenes.length - 1 > 0
-                            ? "/imagen-32.png"
-                            : ""
+                          planetaData.imagenes.length > 0
+                            ? planetaData.imagenes[0]
+                            : "/placeholder.png"
                         }
                         width={16}
                         height={16}
@@ -103,7 +101,7 @@ function Planeta() {
                       />
                       <p>
                         {planetaData.imagenes && planetaData.imagenes.length > 0
-                          ? planetaData.imagenes.length - 2 + " IMAGENES"
+                          ? `${planetaData.imagenes.length} IMAGENES`
                           : ""}
                       </p>
                     </div>
@@ -114,8 +112,8 @@ function Planeta() {
                   {planetaData &&
                     planetaData.imagenes &&
                     planetaData.imagenes.map(
-                      (imagen: string, index: number, array: string[]) => {
-                        if (index <= 1 /* || index === array.length - 1 */) {
+                      (imagen: string, index: number) => {
+                        if (index <= 1) {
                           return null;
                         }
 
@@ -124,13 +122,15 @@ function Planeta() {
                             key={index}
                             href="#"
                             className={`group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg ${
-                              index != 4
+                              index !== 4
                                 ? "md:h-60"
                                 : "md:col-span-3 md:row-span-2 md:h-full"
                             } `}
                           >
-                            <img
+                            <Image
                               src={imagen}
+                              width={300}
+                              height={200}
                               loading="lazy"
                               alt={`Photo ${index + 1}`}
                               className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"

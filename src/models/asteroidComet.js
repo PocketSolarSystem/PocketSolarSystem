@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const asteroidCometSchema = mongoose.Schema({
+const asteroidCometSchema = new mongoose.Schema({
   nombre: {
     type: "String",
     required: true,
@@ -76,8 +76,5 @@ const asteroidCometSchema = mongoose.Schema({
   },
 });
 
-asteroidCometSchema.statics.findByNombre = function (nombre) {
-  return this.findOne({ nombre });
-};
-
-module.exports = mongoose.model("AsteroidComet", asteroidCometSchema);
+export default mongoose.models.AsteroidComet ||
+  mongoose.model("AsteroidComet", asteroidCometSchema);

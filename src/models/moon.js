@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const moonSchema = mongoose.Schema({
+const moonSchema = new mongoose.Schema({
   nombre: {
     type: "String",
     required: true,
@@ -76,8 +76,4 @@ const moonSchema = mongoose.Schema({
   },
 });
 
-moonSchema.statics.findByNombre = function (nombre) {
-  return this.findOne({ nombre });
-};
-
-module.exports = mongoose.model("Moon", moonSchema);
+export default mongoose.models.Moon || mongoose.model("Moon", moonSchema);

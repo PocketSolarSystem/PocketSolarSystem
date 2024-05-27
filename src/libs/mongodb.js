@@ -40,10 +40,22 @@ app.get("/", (req, res) => {
   .catch((error) => console.error(error)); */
 
 export async function connectDB() {
-  await mongoose
-    .connect(process.env.MONGODB_URI)
-    .then(() => console.log("Connected to MongoDB Atlas"))
-    .catch((error) => console.error(error));
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error("MONGODB_URI is not defined in environment variables");
+  }
+
+  try {
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000, // 5 segundos de tiempo de espera para seleccionar el servidor
+      socketTimeoutMS: 45000, // 45 segundos de tiempo de espera para las operaciones de socket
+    });
+    console.log("Connected to MongoDB Atlas");
+  } catch (error) {
+    console.error("Failed to connect to MongoDB Atlas", error);
+  }
 }
 
 /* // server listening

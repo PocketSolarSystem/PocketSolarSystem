@@ -4,42 +4,28 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { usePathname } from "next/navigation";
-import "./navbar.css";
 import axios from "axios";
-import { AxiosError } from "axios";
 
 const NavbarSolarSystem = () => {
   const [nav, setNav] = useState(false);
-  const [isBodyClassSet, setIsBodyClassSet] = useState(false);
-
-  useEffect(() => {
-    if (nav !== isBodyClassSet) {
-      if (nav) {
-        document.body.classList.add("nav-open");
-      } else {
-        document.body.classList.remove("nav-open");
-      }
-      setIsBodyClassSet(nav);
-    }
-  }, [nav, isBodyClassSet]);
+  const [isOpen, setIsOpen] = useState<{ [key: number]: boolean }>({});
+  const [solarSystemNames, setSolarSystemNames] = useState([]);
+  const [planetNames, setPlanetNames] = useState([]);
+  const [moonNames, setMoonNames] = useState([]);
+  const [asteroidsCometsNames, setAsteroidsCometsNames] = useState([]);
 
   const pathname = usePathname();
 
-  type SolarSystemName = string;
-  const [solarSystemNames, setSolarSystemNames] = useState<SolarSystemName[]>(
-    []
-  );
+  useEffect(() => {
+    const handleBodyOverflow = () => {
+      document.body.style.overflow = nav ? "hidden" : "auto";
+    };
+    handleBodyOverflow();
 
-  type PlanetName = string;
-  const [planetNames, setPlanetNames] = useState<PlanetName[]>([]);
-
-  type MoonName = string;
-  const [moonNames, setMoonNames] = useState<MoonName[]>([]);
-
-  type AsteroidsCometsName = string;
-  const [asteroidsCometsNames, setAsteroidsCometsNames] = useState<
-    AsteroidsCometsName[]
-  >([]);
+    return () => {
+      document.body.style.overflow = "auto"; // Reset overflow on unmount
+    };
+  }, [nav]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,10 +36,10 @@ const NavbarSolarSystem = () => {
           moonResponse,
           asteroidsCometsResponse,
         ] = await Promise.all([
-          axios.get(`http://localhost:9000/api/solarSystems/names`),
-          axios.get(`http://localhost:9000/api/planets/names`),
-          axios.get(`http://localhost:9000/api/moons/names`),
-          axios.get(`http://localhost:9000/api/asteroidComets/names`),
+          axios.get(`/api/solarSystem`),
+          axios.get(`/api/planet`),
+          axios.get(`/api/moon`),
+          axios.get(`/api/asteroidComet`),
         ]);
 
         setSolarSystemNames(solarSystemResponse.data);
@@ -62,23 +48,17 @@ const NavbarSolarSystem = () => {
         setAsteroidsCometsNames(asteroidsCometsResponse.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {
-          // El error es de tipo AxiosError
           if (error.response) {
-            // La solicitud fue realizada y el servidor respondió con un estado de error
             console.error(
               "Error de respuesta del servidor:",
               error.response.data
             );
-            // Aquí podrías mostrar un mensaje de error al usuario
           } else if (error.request) {
-            // La solicitud fue realizada pero no se recibió respuesta
             console.error("Error de solicitud:", error.request);
           } else {
-            // Ocurrió un error al configurar la solicitud
             console.error("Error:", error.message);
           }
         } else {
-          // El error no es de tipo AxiosError
           console.error("Error desconocido:", error);
         }
       }
@@ -87,16 +67,23 @@ const NavbarSolarSystem = () => {
     fetchData();
   }, []);
 
+  const toggleDropdown = (id: number) => {
+    setIsOpen((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+  };
+
   const links = [
     {
       id: 1,
       href: "/sistema-solar",
       linkName: "Nuestro Sistema Solar",
       sublinks: [
-        ...solarSystemNames.map((solarSystemName, index) => ({
+        ...solarSystemNames.map((solarSystemName: any, index: number) => ({
           id: index + 5,
-          href: `/sistema-solar/${solarSystemName}`,
-          linkName: solarSystemName,
+          href: `/sistema-solar/${solarSystemName.nombre}`,
+          linkName: solarSystemName.nombre,
         })),
       ],
     },
@@ -110,10 +97,10 @@ const NavbarSolarSystem = () => {
           href: "/sistema-solar/planetas/acerca-de-los-planetas",
           linkName: "Acerca de los Planetas",
         },
-        ...planetNames.map((planetName, index) => ({
+        ...planetNames.map((planetName: any, index: number) => ({
           id: index + 10,
-          href: `/sistema-solar/planetas/${planetName}`,
-          linkName: planetName,
+          href: `/sistema-solar/planetas/${planetName.nombre}`,
+          linkName: planetName.nombre,
         })),
         {
           id: 18,
@@ -132,10 +119,10 @@ const NavbarSolarSystem = () => {
           href: "/sistema-solar/lunas/acerca-de-las-lunas",
           linkName: "Acerca de las Lunas",
         },
-        ...moonNames.map((moonName, index) => ({
+        ...moonNames.map((moonName: any, index: number) => ({
           id: index + 20,
-          href: `/sistema-solar/lunas/${moonName}`,
-          linkName: moonName,
+          href: `/sistema-solar/lunas/${moonName.nombre}`,
+          linkName: moonName.nombre,
         })),
       ],
     },
@@ -149,64 +136,20 @@ const NavbarSolarSystem = () => {
           href: "/sistema-solar/asteroides-cometas-meteoros/acerca-de-asteroides-cometas-meteoros",
           linkName: "Acerca de Asteroides, Cometas y Meteoros",
         },
-        ...asteroidsCometsNames.map((asteroidsCometsName, index) => ({
-          id: index + 28,
-          href: `/sistema-solar/asteroides-cometas-meteoros/${asteroidsCometsName}`,
-          linkName: asteroidsCometsName,
-        })),
+        ...asteroidsCometsNames.map(
+          (asteroidsCometsName: any, index: number) => ({
+            id: index + 28,
+            href: `/sistema-solar/asteroides-cometas-meteoros/${asteroidsCometsName.nombre}`,
+            linkName: asteroidsCometsName.nombre,
+          })
+        ),
       ],
     },
   ];
 
-  // Inicializar isOpen con un objeto vacío en lugar de un array
-  const [isOpen, setIsOpen] = useState<{ [key: number]: boolean }>({});
-
-  // El primer useEffect solo se ejecuta una vez al montar el componente
-  useEffect(() => {
-    setIsOpen({});
-  }, []);
-
-  useEffect(() => {
-    const manejarClickBody = (event: MouseEvent) => {
-      Object.keys(isOpen).forEach((id) => {
-        const linkId = parseInt(id);
-        const cambiarDropdown = document.getElementById(
-          `planetaCambiarDropdown-${linkId}`
-        );
-        if (
-          !(event.target instanceof HTMLElement) ||
-          (cambiarDropdown &&
-            (event.target === cambiarDropdown ||
-              event.target.closest(`#planetaCambiarDropdown-${linkId}`)))
-        ) {
-          return;
-        }
-        setIsOpen((prevState) => ({
-          ...prevState,
-          [linkId]: false,
-        }));
-      });
-    };
-
-    document.body.addEventListener("click", manejarClickBody);
-
-    return () => {
-      document.body.removeEventListener("click", manejarClickBody);
-    };
-  }, [isOpen]);
-
-  const toggleDropdown = (id: number) => {
-    setIsOpen((prevState) => ({
-      ...prevState,
-      [id]: !prevState[id],
-    }));
-  };
-
   return (
     <div className="flex justify-between items-center w-full h-10 px-4 text-white bg-gray-900 fixed top-0 left-0 z-40 mt-20">
       <ul className="hidden md:flex justify-center items-center flex-grow">
-        {" "}
-        {/* Cambiada la clase flex por flex-grow */}
         {links.map((link) => (
           <li
             key={link.id}
@@ -273,9 +216,6 @@ const NavbarSolarSystem = () => {
       <div
         onClick={() => {
           setNav(!nav);
-          nav
-            ? document.body.classList.toggle("nav-open")
-            : document.body.classList.remove("nav-open");
         }}
         className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
       >

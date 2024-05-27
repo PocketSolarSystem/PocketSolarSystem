@@ -8,31 +8,34 @@ import { planetas } from "../../../utilidades/lib/dataPlanetasSelect";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Typewriter from "typewriter-effect";
-import { connectDB } from "../../../../libs/mongodb";
-import Planet from "../../../../models/planet";
 
-async function loadPlanets() {
-  await connectDB();
-  const planet = await Planet.find();
-  return planet;
+async function fetchPlanets() {
+  const response = await axios.get("/api/planet");
+  return response.data;
 }
 
-async function AcercaDeLosPlanetas() {
+const AcercaDeLosPlanetas = () => {
+  const [planetaData, setPlanetaData] = useState([]);
   const listaPlanetasCortada = planetas.slice(0, planetas.length / 2);
   const listaPlanetasCortada2 = planetas.slice(
     planetas.length / 2,
     planetas.length
   );
 
-  const pathname = usePathname();
-  const partesRuta = pathname.split("/");
-  const planeta = partesRuta[2];
-
-  const planetaData = await loadPlanets();
-  console.log(planetaData);
+  useEffect(() => {
+    const loadPlanets = async () => {
+      try {
+        const data = await fetchPlanets();
+        setPlanetaData(data);
+      } catch (error) {
+        console.error("Error fetching planets:", error);
+      }
+    };
+    loadPlanets();
+  }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center md:p-12 p-8 pt-24">
+    <main className="flex min-h-screen flex-col items-center md:p-12 p-8 pt-16">
       <h1 className="md:text-4xl text-2xl md:mb-8 md:basis-0 md:pt-12 mt-20">
         <Typewriter
           onInit={(typewriter) => {
@@ -170,20 +173,16 @@ async function AcercaDeLosPlanetas() {
                   >
                     <span className="mr-2">{`Explora ${planeta.nombre}`}</span>
                     <span className="relative inline-block bg-primary-color h-6 w-6 rounded-full flex items-center justify-center mr-2">
-                      {/* Círculo rojo */}
-                      <span className="absolute inset-0 bg-red-500 hover:bg-red-800 rounded-full"></span>
-                      {/* Flecha blanca */}
                       <svg
-                        className="h-4 w-4 text-white z-10"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
+                        viewBox="0 0 32 32"
+                        fill="none"
                         xmlns="http://www.w3.org/2000/svg"
+                        style={{ width: "24px", height: "24px" }}
                       >
-                        <circle cx="10" cy="10" r="8" fill="white" />
+                        <circle cx="16" cy="16" r="16" fill="#FF0000" />
                         <path
-                          fillRule="evenodd"
-                          d="M13.707 9.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L11.586 11H5a1 1 0 010-2h6.586l-3.293-3.293a1 1 0 111.414-1.414l4 4z"
-                          clipRule="evenodd"
+                          d="M8 16.956h12.604l-3.844 4.106 1.252 1.338L24 16l-5.988-6.4-1.252 1.338 3.844 4.106H8v1.912z"
+                          fill="#FFFFFF"
                         />
                       </svg>
                     </span>
@@ -196,6 +195,6 @@ async function AcercaDeLosPlanetas() {
       </div>
     </main>
   );
-}
+};
 
 export default AcercaDeLosPlanetas;

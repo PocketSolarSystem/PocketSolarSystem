@@ -1,88 +1,53 @@
-const express = require("express");
-const userSchema = require("../../../models/user");
+import { NextResponse } from "next/server";
+import { connectDB } from "../../../libs/mongodb";
+import User from "../../../models/user";
 
-const router = express.Router();
+// Ruta para obtener todos los usuarios
+export async function GET() {
+  try {
+    console.log("Connecting to DB...");
+    await connectDB();
+    console.log("Connected to DB, fetching users...");
+    const allUsers = await User.find();
+    console.log("Fetched users:", allUsers);
+    return NextResponse.json(allUsers);
+  } catch (error) {
+    console.error("Error in GET /api/user:", error);
+    return NextResponse.json(
+      { message: "Failed to fetch users", error },
+      { status: 500 }
+    );
+  }
+}
 
-// create user
-router.post("/users", (req, res) => {
-  const user = userSchema(req.body);
-  user
-    .save()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
+// Ruta para crear un nuevo usuario
+export async function POST(request) {
+  try {
+    console.log("Connecting to DB...");
+    await connectDB();
+    console.log("Connected to DB, creating user...");
+    const data = await request.json();
+    // Validación básica (puedes mejorarla según tus necesidades)
+    if (
+      !data.nombre ||
+      !data.descripcion ||
+      !data.overview ||
+      !data.cultura_pop
+    ) {
+      return NextResponse.json(
+        { message: "Missing required fields" },
+        { status: 400 }
+      );
+    }
 
-// get all users
-router.get("/users", (req, res) => {
-  userSchema
-    .find()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-// get a user
-router.get("/users/:id", (req, res) => {
-  const { id } = req.params;
-  userSchema
-    .findById(id)
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-// delete a user
-router.delete("/users/:id", (req, res) => {
-  const { id } = req.params;
-  userSchema
-    .remove({ _id: id })
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-// update a user
-router.put("/users/:id", (req, res) => {
-  const { id } = req.params;
-  const {
-    nombre,
-    apellidos,
-    correo,
-    codigoPostal,
-    direccion,
-    ciudad,
-    pais,
-    telefono,
-    codigo,
-    tipo,
-    clave,
-    estado,
-    fechaNacimiento,
-    fechaUltimoAcceso,
-    numeroAccesosErroneo,
-  } = req.body;
-  userSchema
-    .updateOne(
-      { _id: id },
-      {
-        $set: {
-          nombre,
-          apellidos,
-          correo,
-          codigoPostal,
-          direccion,
-          ciudad,
-          pais,
-          telefono,
-          codigo,
-          tipo,
-          clave,
-          estado,
-          fechaNacimiento,
-          fechaUltimoAcceso,
-          numeroAccesosErroneo,
-        },
-      }
-    )
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-module.exports = router;
+    const newUser = await User.create(data);
+    console.log("Created new user:", newUser);
+    return NextResponse.json(newUser);
+  } catch (error) {
+    console.error("Error in POST /api/user:", error);
+    return NextResponse.json(
+      { message: "Failed to create user", error },
+      { status: 500 }
+    );
+  }
+}

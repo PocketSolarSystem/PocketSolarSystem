@@ -1,13 +1,12 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { InicioTexto } from "@/app/utilidades/ui/inicio-texto";
-import NavbarSolarSystem from "../utilidades/ui/navbarSolarSystem";
 import Typewriter from "typewriter-effect";
+import CardGrid from "../utilidades/ui/cardGrid/CardGrid";
 
 export default function SistemaSolar() {
   return (
-    <main className="flex min-h-screen flex-col items-center md:p-12 p-8 pt-24">
+    <main className="flex min-h-screen flex-col items-center md:p-12 p-8 pt-16">
       <h1 className="md:text-4xl text-2xl md:mb-8 md:basis-0 md:pt-12 mt-20">
         <Typewriter
           onInit={(typewriter) => {
@@ -58,6 +57,8 @@ export default function SistemaSolar() {
           cientos de lunas; y millones de asteroides, cometas y meteoroides.
         </p>
       </div>
+
+      <CardGrid />
     </main>
   );
 }

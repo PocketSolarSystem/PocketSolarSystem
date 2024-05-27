@@ -1,87 +1,51 @@
-const express = require("express");
-const asteroidCometSchema = require("../../../models/asteroidComet");
+import { NextResponse } from "next/server";
+import { connectDB } from "../../../libs/mongodb";
+import AsteroidComet from "../../../models/asteroidComet";
 
-const router = express.Router();
+export async function GET() {
+  try {
+    console.log("Connecting to DB...");
+    await connectDB();
+    console.log("Connected to DB, fetching asteroidComets...");
+    const allAsteroidComets = await AsteroidComet.find();
+    console.log("Fetched asteroidComets:", allAsteroidComets);
+    return NextResponse.json(allAsteroidComets);
+  } catch (error) {
+    console.error("Error in GET /api/asteroidComet:", error);
+    return NextResponse.json(
+      { message: "Failed to fetch asteroidComets", error },
+      { status: 500 }
+    );
+  }
+}
 
-// create asteroidComet
-router.post("/asteroidComets", (req, res) => {
-  const asteroidComet = asteroidCometSchema(req.body);
-  asteroidComet
-    .save()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
+export async function POST(request) {
+  try {
+    console.log("Connecting to DB...");
+    await connectDB();
+    console.log("Connected to DB, creating asteroidComet...");
+    const data = await request.json();
+    // Validación básica (puedes mejorarla según tus necesidades)
+    if (
+      !data.nombre ||
+      !data.descripcion ||
+      !data.overview ||
+      !data.cultura_pop
+    ) {
+      return NextResponse.json(
+        { message: "Missing required fields" },
+        { status: 400 }
+      );
+    }
 
-// get all asteroidComets
-router.get("/asteroidComets", (req, res) => {
-  asteroidCometSchema
-    .find()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-// get all asteroidComet names
-router.get("/asteroidComets/names", (req, res) => {
-  asteroidCometSchema
-    .find({}, { nombre: 1, _id: 0 })
-    .then((data) => res.json(data.map((asteroidComet) => asteroidComet.nombre)))
-    .catch((error) => res.json({ message: error }));
-});
-
-// get a asteroidComet
-router.get("/asteroidComets/id/:_id", (req, res) => {
-  const { _id } = req.params;
-  asteroidCometSchema
-    .findById(_id)
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-// get a asteroidComet by name
-router.get("/asteroidComets/name/:nombre", (req, res) => {
-  const { nombre } = req.params;
-  asteroidCometSchema
-    .findByNombre(nombre)
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-// delete a asteroidComet
-router.delete("/asteroidComets/:_id", (req, res) => {
-  const { id } = req.params;
-  asteroidCometSchema
-    .remove({ _id: id })
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-// update a asteroidComet
-router.put("/asteroidComets/:_id", (req, res) => {
-  const { id } = req.params;
-  const { nombre, descripcion, overview, cultura_pop, historias, facts } =
-    req.body;
-  /* const {
-    Introduccion,
-    Nombre,
-    Potencial_para_la_vida,
-    Tamaño_y_Distancia,
-    Orbita_y_Rotacion,
-    Lunas,
-    Anillos,
-    Formacion,
-    Estructura,
-    Superficie,
-    Atmosfera,
-    Magnetosfera,
-  } = req.body.facts; */
-
-  asteroidCometSchema
-    .updateOne(
-      { _id: id },
-      { $set: { nombre, descripcion, overview, cultura_pop, historias, facts } }
-    )
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
-
-module.exports = router;
+    const newAsteroidComet = await AsteroidComet.create(data);
+    console.log("Created new asteroidComet:", newAsteroidComet);
+    return NextResponse.json(newAsteroidComet);
+  } catch (error) {
+    console.error("Error in POST /api/asteroidComet:", error);
+    return NextResponse.json(
+      { message: "Failed to create asteroidComet", error },
+      { status: 500 }
+    );
+  }
+}

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const solarSystemSchema = mongoose.Schema({
   nombre: {
@@ -76,8 +76,5 @@ const solarSystemSchema = mongoose.Schema({
   },
 });
 
-solarSystemSchema.statics.findByNombre = function (nombre) {
-  return this.findOne({ nombre });
-};
-
-module.exports = mongoose.model("SolarSystem", solarSystemSchema);
+export default mongoose.models.SolarSystem ||
+  mongoose.model("SolarSystem", solarSystemSchema);
