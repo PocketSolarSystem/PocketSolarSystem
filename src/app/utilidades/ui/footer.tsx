@@ -30,8 +30,8 @@ const Footer = () => {
     },
     {
       id: 2,
-      href: "/planetas",
-      linkName: "Planetas",
+      href: "/sistema-solar",
+      linkName: "Sistema Solar",
     },
     {
       id: 3,
@@ -125,11 +125,7 @@ const Footer = () => {
                 className="cursor-pointer capitalize font-medium text-gray-500 
               hover:scale-105 hover:text-white duration-200 link-underline"
               >
-                <Link
-                  onClick={() => setNav(!nav)}
-                  href={link.href}
-                  className={`cursor-pointer ${pathname === link.href ? "scale-105 text-white" : ""}`}
-                >
+                <Link href={link.href} className={`cursor-pointer`}>
                   {link.linkName === "Facebook" && (
                     <FontAwesomeIcon
                       icon={faFacebook}
@@ -168,10 +164,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="mt-8 text-center">
-        <p className="text-sm">
-          &copy; 2024 Pocket Solar System. Todos los derechos reservados.
-        </p>
-        <div className="mt-4">
+        <div className="mb-4">
           <p className="text-sm mb-2">
             Suscríbete a nuestra newsletter para recibir las últimas
             actualizaciones.
@@ -191,6 +184,9 @@ const Footer = () => {
             </button>
           </form>
         </div>
+        <p className="text-sm">
+          &copy; 2024 Pocket Solar System. Todos los derechos reservados.
+        </p>
         {/* <div className="flex justify-center items-center mt-4">
           <div className="flex flex-col items-center mr-4">
             <FontAwesomeIcon

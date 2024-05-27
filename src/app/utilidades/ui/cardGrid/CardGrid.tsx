@@ -65,7 +65,8 @@ const Card: React.FC<CardProps> = ({ href, imageSrc, text }) => {
 const CardGrid: React.FC = () => {
   const cards: CardProps[] = [
     {
-      href: "/sistema-solar/Sol",
+      //href: "/sistema-solar/Sol",
+      href: `/work-in-progress`,
       imageSrc: "/cardGrid/sistema-solar.jpg",
       text: "Nuestro Sistema Solar",
     },
@@ -75,12 +76,14 @@ const CardGrid: React.FC = () => {
       text: "Acerca de los Planetas",
     },
     {
-      href: "/sistema-solar/lunas/acerca-de-las-lunas",
+      //href: "/sistema-solar/lunas/acerca-de-las-lunas",
+      href: `/work-in-progress`,
       imageSrc: "/cardGrid/lunas.jpg",
       text: "Acerca de las Lunas",
     },
     {
-      href: "/sistema-solar/asteroides-cometas-meteoros/acerca-de-asteroides-cometas-meteoros",
+      //href: "/sistema-solar/asteroides-cometas-meteoros/acerca-de-asteroides-cometas-meteoros",
+      href: `/work-in-progress`,
       imageSrc: "/cardGrid/asteroides-cometas.jpg",
       text: "Acerca de Asteroides y Cometas",
     },

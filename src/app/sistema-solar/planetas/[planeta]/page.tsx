@@ -92,8 +92,8 @@ function Planeta() {
                         src={
                           planetaData.imagenes &&
                           planetaData.imagenes.length > 0
-                            ? planetaData.imagenes[0]
-                            : "/placeholder.png"
+                            ? "/imagen-32.png"
+                            : ""
                         }
                         width={16}
                         height={16}
