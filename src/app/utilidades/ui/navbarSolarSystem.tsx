@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaChevronDown, FaChevronUp, FaPlus } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import axios from "axios";
@@ -16,6 +16,7 @@ const NavbarSolarSystem = () => {
   const [asteroidsCometsNames, setAsteroidsCometsNames] = useState([]);
 
   const pathname = usePathname();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleBodyOverflow = () => {
@@ -69,14 +70,47 @@ const NavbarSolarSystem = () => {
   }, []);
 
   const toggleDropdown = (id: number) => {
-    setIsOpen((prevState) => ({
-      ...prevState,
-      [id]: !prevState[id],
-    }));
+    setIsOpen((prevState) => {
+      const newState = Object.keys(prevState).reduce(
+        (acc, key) => {
+          acc[parseInt(key)] = false;
+          return acc;
+        },
+        {} as { [key: number]: boolean }
+      );
+      newState[id] = !prevState[id];
+      return newState;
+    });
   };
 
   const toggleSmallScreenDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const closeAllDropdowns = () => {
+    setIsOpen({});
+    setIsDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        closeAllDropdowns();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleLinkClick = () => {
+    closeAllDropdowns();
   };
 
   const links = [
@@ -87,7 +121,6 @@ const NavbarSolarSystem = () => {
       sublinks: [
         ...solarSystemNames.map((solarSystemName: any, index: number) => ({
           id: index + 5,
-          //href: `/sistema-solar/${solarSystemName.nombre}`,
           href: `/work-in-progress`,
           linkName: solarSystemName.nombre,
         })),
@@ -122,7 +155,6 @@ const NavbarSolarSystem = () => {
       sublinks: [
         {
           id: 19,
-          //href: "/sistema-solar/lunas/acerca-de-las-lunas",
           href: `/work-in-progress`,
           linkName: "Acerca de las Lunas",
         },
@@ -140,7 +172,6 @@ const NavbarSolarSystem = () => {
       sublinks: [
         {
           id: 27,
-          //href: "/sistema-solar/asteroides-cometas-meteoros/acerca-de-asteroides-cometas-meteoros",
           href: `/work-in-progress`,
           linkName: "Acerca de Asteroides, Cometas y Meteoros",
         },
@@ -156,7 +187,10 @@ const NavbarSolarSystem = () => {
   ];
 
   return (
-    <div className="flex flex-col w-full text-white bg-gray-900 fixed top-0 left-0 z-40 mt-20">
+    <div
+      ref={dropdownRef}
+      className="flex flex-col w-full text-white bg-gray-900 fixed top-0 left-0 z-40 mt-20"
+    >
       <div className="flex justify-between items-center h-10 px-4">
         <ul className="hidden md:flex justify-center items-center flex-grow">
           {links.map((link) => (
@@ -202,6 +236,7 @@ const NavbarSolarSystem = () => {
                             href={sublink.href}
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                             role="menuitem"
+                            onClick={handleLinkClick}
                           >
                             {sublink.linkName}
                           </Link>
@@ -214,6 +249,7 @@ const NavbarSolarSystem = () => {
                 <Link
                   href={link.href}
                   className={`${pathname === link.href || pathname.split("/")[1] === link.href ? "scale-105 text-white" : ""}`}
+                  onClick={handleLinkClick}
                 >
                   {link.linkName}
                 </Link>
@@ -263,6 +299,7 @@ const NavbarSolarSystem = () => {
                       <Link
                         href={sublink.href}
                         className="block px-4 py-2 hover:bg-gray-100"
+                        onClick={handleLinkClick}
                       >
                         {sublink.linkName}
                       </Link>
