@@ -6,7 +6,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function GET() {
   await resend.emails.send({
-    from: 'pocketsolarsystem@mail.pocketsolarsystem.dev',
+    from: 'onboarding@resend.dev',
     to: 'floalonso.abad@gmail.com',
     subject: 'hello world',
     react: WelcomeEmail(),
