@@ -17,6 +17,7 @@ import {
   faCertificate,
 } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkerAlt, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import SubscribeForm from "./newsletterForm";
 
 const Footer = () => {
   const pathname = usePathname();
@@ -164,27 +165,8 @@ const Footer = () => {
         </div>
       </div>
       <div className="mt-8 text-center">
-        <div className="mb-4">
-          <p className="text-sm mb-2">
-            Suscríbete a nuestra newsletter para recibir las últimas
-            actualizaciones.
-          </p>
-          <form className="flex items-center justify-center">
-            <input
-              type="email"
-              placeholder="Tu correo electrónico"
-              className="px-4 py-2 border border-gray-400 rounded-l-md focus:outline-none focus:ring focus:border-blue-300"
-              style={{ borderRightColor: "transparent" }}
-            />
-            <button
-              type="submit"
-              className="bg-blue-500 text-white px-6 py-2 rounded-r-md focus:outline-none focus:ring focus:border-blue-300 hover:bg-blue-600"
-            >
-              Suscribirse
-            </button>
-          </form>
-        </div>
-        <p className="text-sm">
+        <SubscribeForm />
+        <p className="text-sm mt-8">
           &copy; 2024 Pocket Solar System. Todos los derechos reservados.
         </p>
         {/* <div className="flex justify-center items-center mt-4">
