@@ -3,10 +3,12 @@ import React, { useState } from "react";
 const SubscribeForm = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setError(""); // Clear any previous error
+    setError("");
+    setSuccessMessage("");
 
     const response = await fetch("/api/subscribe", {
       method: "POST",
@@ -16,10 +18,11 @@ const SubscribeForm = () => {
       body: JSON.stringify({ email }),
     });
 
+    const result = await response.json();
     if (response.ok) {
+      setSuccessMessage(result.message);
       console.log("Correo enviado y suscripción exitosa");
     } else {
-      const result = await response.json();
       setError(result.message || "Error al enviar el correo");
     }
   };
@@ -38,6 +41,9 @@ const SubscribeForm = () => {
           required
           className="w-full px-4 py-2 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
+        {successMessage && (
+          <p className="text-green-500 text-sm">{successMessage}</p>
+        )}
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <button
           type="submit"

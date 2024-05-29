@@ -9,7 +9,7 @@ export async function fetchFotoDelDia() {
         revalidate: 3600,
       },
     });
-    const dataJSON = data.json();
+    const dataJSON = await data.json();
     return dataJSON;
   } catch (error) {
     console.error('Database Error:', error);

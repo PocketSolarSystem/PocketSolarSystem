@@ -22,7 +22,7 @@ export async function POST(request:any) {
     // Enviar correo de bienvenida
     await sendEmail(email, "Bienvenido a nuestro Newsletter");
 
-    return NextResponse.json(newSubscriber);
+    return NextResponse.json({ message: "¡Te has suscrito correctamente!" });
   } catch (error) {
     return NextResponse.json({ message: "Error al suscribirse", error }, { status: 500 });
   }
