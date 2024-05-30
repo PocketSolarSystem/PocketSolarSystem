@@ -1,8 +1,9 @@
 const nodemailer = require("nodemailer");
-
 const ReactDOMServer = require("react-dom/server");
 const React = require("react");
 const WelcomeEmail = require("../emails/welcome").default;
+const FollowUpEmail = require("../emails/followUp").default;
+const DatoCurioso = require("../emails/datocurioso").default;
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -12,8 +13,16 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendEmail = (to, subject) => {
-  const htmlContent = ReactDOMServer.renderToStaticMarkup(<WelcomeEmail />);
+const sendEmail = (to, subject, type = "welcome") => {
+  let htmlContent;
+
+  if (type === "welcome") {
+    htmlContent = ReactDOMServer.renderToStaticMarkup(<WelcomeEmail />);
+  } else if (type === "followUp") {
+    htmlContent = ReactDOMServer.renderToStaticMarkup(<FollowUpEmail />);
+  } else if (type === "custom") {
+    htmlContent = ReactDOMServer.renderToStaticMarkup(<DatoCurioso />);
+  }
 
   const mailOptions = {
     from: "pocketsolarsystem@gmail.com",
