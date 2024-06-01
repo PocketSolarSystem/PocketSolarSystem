@@ -1,6 +1,7 @@
 import Carousel from "react-multi-carousel";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
   const responsive = {
@@ -19,7 +20,7 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
   };
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="container mx-auto mt-8 relative">
       <Carousel
         responsive={responsive}
         infinite={true}
@@ -30,6 +31,7 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
         transitionDuration={1000}
         itemClass="px-4"
         containerClass="mt-4"
+        customButtonGroup={<CustomButtonGroup />}
       >
         {planetas.map((planeta, índice) => (
           <div
@@ -41,7 +43,9 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
               alt={planeta.nombre}
               width={planeta.nombre === "Saturno" ? 384 : 192}
               height={planeta.nombre === "Saturno" ? 384 : 192}
-              className={`mx-auto ${planeta.nombre === "Saturno" ? "md:pb-2.5 pb-5" : ""} ${planeta.nombre === "Haumea" ? "pb-3" : ""}`}
+              className={`mx-auto ${
+                planeta.nombre === "Saturno" ? "md:pb-2.5 pb-5" : ""
+              } ${planeta.nombre === "Haumea" ? "pb-3" : ""}`}
               priority
             />
             <h3 className="text-2xl mt-4 font-semibold">{planeta.nombre}</h3>
@@ -57,6 +61,45 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
           </div>
         ))}
       </Carousel>
+    </div>
+  );
+}
+
+function CustomButtonGroup() {
+  const carouselRef = useRef<any>(null);
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        carouselRef.current.next();
+      } else if (e.key === "ArrowLeft") {
+        carouselRef.current.previous();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+
+  return (
+    <div className="custom-button-group">
+      <button
+        className="button z-10"
+        onClick={() => carouselRef.current.previous()}
+        style={{ zIndex: 1 }}
+      >
+        Prev
+      </button>
+      <button
+        className="button z-10"
+        onClick={() => carouselRef.current.next()}
+        style={{ zIndex: 1 }}
+      >
+        Next
+      </button>
     </div>
   );
 }

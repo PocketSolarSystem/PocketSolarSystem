@@ -7,8 +7,8 @@ import { planetasEnanos } from "../../../utilidades/lib/dataDwarfPlanets";
 
 export default function PlutonYPlanetasEnanos() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 pt-24 md:px-24">
-      <div className="container mx-auto pt-2 md:pt-8 mt-14">
+    <main className="flex min-h-screen flex-col items-center md:px-12 px-8 pb-12">
+      <div className="container mx-auto pt-2 md:pt-8 mt-14 text-justify">
         <div className="mb-8 relative">
           <p className="block font-bold text-3xl md:hidden bg-white mb-3 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black">
             Planetas enanos

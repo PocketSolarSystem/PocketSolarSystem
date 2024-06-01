@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./utilidades/ui/navbar";
 import Footer from "./utilidades/ui/footer";
 import { chakra, inter } from "./utilidades/ui/fonts";
+import Breadcrumbs from "@/app/utilidades/ui/caminoDeMigas/CaminoDeMigas";
 
 export const metadata: Metadata = {
   title: "Pocket Solar System",
@@ -19,6 +20,7 @@ export default function RootLayout({
       <head>{/* <script src="http://localhost:8097"></script> */}</head>
       <body className={`${chakra.className} antialiased`}>
         <Navbar />
+        <Breadcrumbs />
         {children}
         <Footer />
       </body>

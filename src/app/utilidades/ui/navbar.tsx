@@ -29,26 +29,31 @@ const Navbar = () => {
   const links = [
     {
       id: 1,
+      href: "/mapa-web",
+      linkName: "Mapa Web",
+    },
+    {
+      id: 2,
       href: "/",
       linkName: "Inicio",
     },
     {
-      id: 2,
+      id: 3,
       href: "/sistema-solar",
       linkName: "Sistema Solar",
     },
     {
-      id: 3,
+      id: 4,
       href: "/fotodeldia",
       linkName: "Foto del día",
     },
     {
-      id: 4,
+      id: 5,
       href: "/fotosMarte",
       linkName: "Fotos de Marte",
     },
     {
-      id: 5,
+      id: 6,
       href: "/buscadorNasa",
       linkName: "Buscador archivos NASA",
     },
