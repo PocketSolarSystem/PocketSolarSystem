@@ -38,23 +38,21 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
             key={índice}
             className="h-full bg-gray-100 p-4 rounded-lg shadow-lg text-center mx-2"
           >
-            <Image
-              src={planeta.imagen}
-              alt={planeta.nombre}
-              width={planeta.nombre === "Saturno" ? 384 : 192}
-              height={planeta.nombre === "Saturno" ? 384 : 192}
-              className={`mx-auto ${
-                planeta.nombre === "Saturno" ? "md:pb-2.5 pb-5" : ""
-              } ${planeta.nombre === "Haumea" ? "pb-3" : ""}`}
-              priority
-            />
+            <div className="w-full h-[256px] relative flex items-center justify-center">
+              <Image
+                src={planeta.imagen}
+                alt={planeta.nombre}
+                width={planeta.nombre === "Saturno" ? 512 : 256}
+                height={planeta.nombre === "Saturno" ? 512 : 256}
+                className="rounded-t-lg"
+                priority
+              />
+            </div>
             <h3 className="text-2xl mt-4 font-semibold">{planeta.nombre}</h3>
-            <p className="text-gray-700 mt-2 text-xs sm:text-sm">
-              {planeta.descripcion}
-            </p>
+            <p className="text-gray-700 mt-2 text-sm">{planeta.descripcion}</p>
             <Link
               href={planeta.link}
-              className="block bg-black text-white py-2 px-4 mt-8 hover:bg-slate-800"
+              className="block bg-black text-white py-2 px-4 mt-8 hover:bg-slate-800 rounded-full"
             >
               Explora {planeta.nombre}
             </Link>
