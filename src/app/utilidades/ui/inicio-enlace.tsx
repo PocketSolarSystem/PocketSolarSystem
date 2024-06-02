@@ -48,9 +48,15 @@ export function InicioEnlace({
           </Link>
         </>
       ) : (
-        <p className="absolute hidden md:block text-2xl bg-white mt-7 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black right-6 bottom-6">
-          {textoEnlace}
-        </p>
+        <>
+          <p className="absolute hidden md:block text-2xl bg-white mt-7 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black right-6 bottom-6">
+            {textoEnlace}
+          </p>
+
+          <p className="block text-lg md:hidden bg-white mt-3 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black">
+            {textoEnlace}
+          </p>
+        </>
       )}
     </div>
   );
