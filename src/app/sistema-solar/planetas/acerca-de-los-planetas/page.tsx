@@ -64,7 +64,7 @@ const AcercaDeLosPlanetas = () => {
             title="Solar System"
           />
           <PlanetsOverview />
-          <h2 className="text-3xl font-bold mt-8 mb-4 text-center">
+          <h2 className="text-3xl font-bold my-8 text-center">
             Datos de los Planetas
           </h2>
           <PlanetData planetaData={planetaData} />

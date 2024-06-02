@@ -37,23 +37,23 @@ const PlanetData = ({ planetaData }: PlanetDataProps) => (
             className="w-full mb-4"
           />
         </div>
-        <div className="md:w-1/2 md:order-2">
-          <h2 className="text-2xl font-bold mb-2 text-gray-500 font-futuristic relative">
-            <span className="absolute top-0 left-0.5 transform origin-top-left">
-              /
-            </span>
-            {`0${index + 1}`}
-          </h2>
-          <h3 className="text-lg font-semibold mb-2">{`Datos sobre ${planeta.nombre}`}</h3>
+        <div className="md:w-1/2 md:order-2 flex items-center justify-center">
           <div className="text-justify">
+            <h2 className="text-2xl font-bold mb-2 text-gray-500 font-futuristic relative">
+              <span className="absolute top-0 left-0.5 transform origin-top-left">
+                /
+              </span>
+              {`0${index + 1}`}
+            </h2>
+            <h3 className="text-lg font-semibold mb-2">{`Datos sobre ${planeta.nombre}`}</h3>
             <p>{planeta.facts.Introduccion}</p>
             <p>
               <Link
                 href={planeta.nombre}
-                className="block text-lg font-semibold py-2 mt-2 transition duration-300 flex items-center"
+                className="block text-lg font-semibold py-2 mt-2 transition duration-300 flex items-center justify-start"
               >
-                <span className="mr-2">{`Explora ${planeta.nombre}`}</span>
-                <span className="relative inline-block bg-primary-color h-6 w-6 rounded-full flex items-center justify-center mr-2">
+                <span>{`Explora ${planeta.nombre}`}</span>
+                <span className="relative inline-block bg-primary-color h-6 w-6 rounded-full flex items-center justify-center ml-2">
                   <svg
                     viewBox="0 0 32 32"
                     fill="none"
