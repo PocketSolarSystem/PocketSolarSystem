@@ -15,7 +15,9 @@ const Breadcrumbs = () => {
 
   const breadcrumbs = pathSegments.map((segment, index) => {
     // Cambiamos los - por " "
-    const formattedSegment = segment.replace(/-/g, " ").toUpperCase();
+    const formattedSegment = decodeURIComponent(
+      segment.replace(/-/g, " ").toUpperCase()
+    );
     const segmentPath = `/${pathSegments.slice(0, index + 1).join("/")}`;
     const isLast = index === pathSegments.length - 1;
     return (

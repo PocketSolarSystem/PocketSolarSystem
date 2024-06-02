@@ -5,7 +5,28 @@ import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselP
 import "react-multi-carousel/lib/styles.css";
 import { planetasEnanos } from "../../../utilidades/lib/dataDwarfPlanets";
 
+import SkeletonPlutonYPlanetasEnanos from "@/app/utilidades/ui/componentesSistemaSolar/componentesPlutonYPlanetasEnanos/esqueletoPlutonYPlanetasEnanos/SkeletonPlutonYPlanetasEnanos";
+import { useState, useEffect } from "react";
+
 export default function PlutonYPlanetasEnanos() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simula la carga de datos
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <main className="flex min-h-screen flex-col items-center md:px-12 px-8 pb-12">
+        <SkeletonPlutonYPlanetasEnanos />
+      </main>
+    );
+  }
   return (
     <main className="flex min-h-screen flex-col items-center md:px-12 px-8 pb-12">
       <div className="container mx-auto pt-2 md:pt-8 mt-14 text-justify">
