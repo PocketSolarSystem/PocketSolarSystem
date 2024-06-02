@@ -77,10 +77,11 @@ function Planeta() {
             className="border-2 border-solid border-black skew-y-1 z-0"
           />
 
-          <p className="absolute hidden md:block text-4xl bg-white mt-7 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black right-6 bottom-6">
+          <p className="absolute hidden md:block text-4xl bg-white p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black right-6 bottom-6 md:right-6 md:bottom-6">
             {planetaNombre}
           </p>
         </div>
+
         <p className="mt-8 text-left md:text-justify">
           {planetaData.descripcion}
         </p>
