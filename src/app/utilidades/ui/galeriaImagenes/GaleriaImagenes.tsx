@@ -13,7 +13,7 @@ const GaleriaImagenes: React.FC<GaleriaImagenesProps> = ({
   imagenes,
 }) => {
   return (
-    <div className="bg-white h-screen h-full py-4 pb-10">
+    <div className="bg-white py-4 pb-10">
       <div className="mx-auto max-w-screen-2xl">
         <div className="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-8">
           <div className="items-center gap-12">

@@ -88,7 +88,7 @@ function Planeta() {
               planetaNombre={planetaNombre}
               imagenes={planetaData.imagenes}
             />
-            <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8 mt-96 md:mt-48">
+            <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8">
               Cultura Pop
             </h1>
             <p>{planetaData.cultura_pop}</p>
