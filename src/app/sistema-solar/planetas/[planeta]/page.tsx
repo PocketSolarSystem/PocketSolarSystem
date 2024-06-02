@@ -8,6 +8,7 @@ import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselP
 import "react-multi-carousel/lib/styles.css";
 import { planetas } from "../../../utilidades/lib/dataPlanetas";
 import Link from "next/link";
+import { InicioEnlace } from "@/app/utilidades/ui/inicio-enlace";
 import SkeletonPlaneta from "@/app/utilidades/ui/componentesSistemaSolar/componentesPlaneta/esqueletoPlaneta/SkeletonPlaneta";
 import GaleriaImagenes from "@/app/utilidades/ui/galeriaImagenes/GaleriaImagenes";
 
@@ -58,14 +59,14 @@ function Planeta() {
 
   return (
     <main className="flex min-h-screen flex-col items-center md:px-24 px-8 pb-12">
-      <div className="container mx-auto pt-2 md:pt-8 mt-14">
+      <div className="container mx-auto md:pt-2 pt-8">
         <div className="mb-8 relative">
           <p className="block font-bold text-3xl md:hidden bg-white mb-3 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black">
             {planetaNombre}
           </p>
 
-          <Image
-            src={
+          <InicioEnlace
+            srcImagen={
               planetaData.imagenes && planetaData.imagenes.length > 0
                 ? planetaData.imagenes[0]
                 : "/placeholder.png"
@@ -74,14 +75,9 @@ function Planeta() {
             height={800}
             alt={`Imagen del planeta ${planetaNombre}`}
             title={`Imagen del planeta ${planetaNombre}`}
-            className="border-2 border-solid border-black skew-y-1 z-0"
+            textoEnlace={planetaNombre}
           />
-
-          <p className="absolute hidden md:block text-4xl bg-white p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black right-6 bottom-6 md:right-6 md:bottom-6">
-            {planetaNombre}
-          </p>
         </div>
-
         <p className="mt-8 text-left md:text-justify">
           {planetaData.descripcion}
         </p>

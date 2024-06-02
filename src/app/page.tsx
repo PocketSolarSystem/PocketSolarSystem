@@ -33,7 +33,7 @@ export default function Home() {
       <InicioEnlace
         srcImagen="/apollo-inicio.jpg"
         textoEnlace="Explora el sistema solar en 3D"
-        hrefEnlace="planetas"
+        hrefEnlace="sistema-solar"
       />
 
       <InicioTexto
