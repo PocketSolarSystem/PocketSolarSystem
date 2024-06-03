@@ -66,8 +66,8 @@ function Planeta() {
               ? planetaData.imagenes[0]
               : "/placeholder.png"
           }
-          width={1200}
-          height={800}
+          width={1920}
+          height={640}
           alt={`Imagen del planeta ${planetaNombre}`}
           title={`Imagen del planeta ${planetaNombre}`}
           textoEnlace={planetaNombre}
