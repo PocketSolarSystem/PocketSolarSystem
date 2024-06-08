@@ -20,7 +20,7 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
   };
 
   return (
-    <div className="container mx-auto mt-8 relative">
+    <div className="container mx-auto mt-8 relative z-0">
       <Carousel
         responsive={responsive}
         infinite={true}

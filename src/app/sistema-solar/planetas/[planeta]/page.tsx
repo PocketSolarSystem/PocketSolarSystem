@@ -7,10 +7,9 @@ import axios from "axios";
 import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselPlanetas";
 import "react-multi-carousel/lib/styles.css";
 import { planetas } from "../../../utilidades/lib/dataPlanetas";
-import Link from "next/link";
-import { InicioEnlace } from "@/app/utilidades/ui/inicio-enlace";
 import SkeletonPlaneta from "@/app/utilidades/ui/componentesSistemaSolar/componentesPlaneta/esqueletoPlaneta/SkeletonPlaneta";
 import GaleriaImagenes from "@/app/utilidades/ui/galeriaImagenes/GaleriaImagenes";
+import { Planeta3d } from "@/app/utilidades/ui/planeta3d";
 
 interface PlanetaData {
   nombre: string;
@@ -33,6 +32,9 @@ function Planeta() {
   const pathname = usePathname();
   const partesRuta = pathname.split("/");
   const planetaNombre = decodeURIComponent(partesRuta[3]);
+  const styling = {
+    backgroundImage: `url('/texturas/estrellas-textura.jpg')`,
+  };
 
   useEffect(() => {
     async function loadData() {
@@ -60,10 +62,10 @@ function Planeta() {
   return (
     <main className="flex min-h-screen flex-col items-center md:px-24 px-8 pb-12">
       <div className="container mx-auto pt-2 md:pt-8 mt-2">
-        <p className="block text-3xl bg-white mb-8 p-2 text-center">
+        <p className="block text-3xl bg-white mb-2 p-2 text-center">
           {decodeURIComponent(planetaNombre)}
         </p>
-        <div className="flex flex-col mb-8 items-center">
+        {/* <div className="flex flex-col mb-8 items-center">
           <Image
             src={
               planetaData.imagenes && planetaData.imagenes.length > 0
@@ -75,14 +77,17 @@ function Planeta() {
             alt={"Planet page " + decodeURIComponent(planetaNombre) + " image"}
             className="border-2 border-solid border-black z-0"
           />
+        </div> */}
+        <div className="flex flex-col items-center justify-center text-center ml-2 mb-12 bg-cover rounded-lg" style={styling}>
+              <div className="lg:h-80 lg:w-80 h-40 w-40">
+                  <Planeta3d
+                    textura={`/texturas/${planetaNombre}-textura.jpg`}
+                  />
+              </div>
         </div>
         <p className="mt-8 text-center">
           {planetaData.descripcion}
         </p>
-
-        <CarouselPlanetas planetas={planetas} />
-
-        {planetaData && (
           <div className="my-8 text-justify">
             <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8">
               Visión General Planeta {planetaNombre}
@@ -96,8 +101,12 @@ function Planeta() {
               Cultura Pop
             </h1>
             <p>{planetaData.cultura_pop}</p>
+            
           </div>
-        )}
+          <h1 className="font-semibold text-xl text-4x1 mb-8 mt-12 text-center md:text-left md:ml-8">
+              Explora más planetas del Sistema Solar
+          </h1>
+          <CarouselPlanetas planetas={planetas} />
       </div>
     </main>
   );
