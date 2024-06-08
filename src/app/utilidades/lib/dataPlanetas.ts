@@ -27,7 +27,7 @@ export const planetas = [
       nombre: "Júpiter",
       descripcion: "Rey de los planetas.",
       imagen: "/planetas/jupiter-model.png",
-      link: "Jupiter",
+      link: "Júpiter",
     },
     {
       nombre: "Saturno",
