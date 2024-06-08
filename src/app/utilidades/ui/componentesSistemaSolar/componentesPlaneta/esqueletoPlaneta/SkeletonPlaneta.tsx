@@ -10,13 +10,13 @@ const SkeletonPlaneta = () => {
         {/* Sección del título y la imagen principal del planeta */}
         <div className="mb-8 relative">
           {/* Título para pantallas móviles */}
-          <div className="block font-bold text-3xl md:hidden bg-gray-300 mb-3 p-2 text-center skew-y-1 animate-pulse w-1/2 mx-auto"></div>
+          <div className="block font-bold text-3xl md:hidden bg-gray-300 mb-3 p-2 text-center animate-pulse w-1/2 mx-auto"></div>
 
           {/* Imagen principal simulada con un div */}
-          <div className="w-full h-64 bg-gray-300 border-2 border-solid border-black skew-y-1 z-0 animate-pulse"></div>
+          <div className="w-full h-64 bg-gray-300 border-2 border-solid border-black z-0 animate-pulse"></div>
 
           {/* Título para pantallas grandes, posicionado de forma absoluta */}
-          <div className="absolute hidden md:block text-4xl bg-gray-300 mt-7 p-2 text-center skew-y-1 animate-pulse w-1/4 right-6 bottom-6"></div>
+          <div className="absolute hidden md:block text-4xl bg-gray-300 mt-7 p-2 text-center animate-pulse w-1/4 right-6 bottom-6"></div>
         </div>
 
         {/* Sección para la descripción del planeta */}

@@ -16,7 +16,7 @@ const MainImage = ({ src, width, height, alt, title }: MainImageProps) => (
       height={height}
       alt={alt}
       title={title}
-      className="border-2 border-solid border-black skew-y-1 z-0"
+      className="border-2 border-solid border-black z-0"
     />
   </div>
 );

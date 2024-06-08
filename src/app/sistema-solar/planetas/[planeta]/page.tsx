@@ -59,20 +59,24 @@ function Planeta() {
 
   return (
     <main className="flex min-h-screen flex-col items-center md:px-24 px-8 pb-12">
-      <div className="container mx-auto pt-2">
-        <InicioEnlace
-          srcImagen={
-            planetaData.imagenes && planetaData.imagenes.length > 0
-              ? planetaData.imagenes[0]
-              : "/placeholder.png"
-          }
-          width={1920}
-          height={640}
-          alt={`Imagen del planeta ${planetaNombre}`}
-          title={`Imagen del planeta ${planetaNombre}`}
-          textoEnlace={planetaNombre}
-        />
-        <p className="mt-8 text-left md:text-justify">
+      <div className="container mx-auto pt-2 md:pt-8 mt-2">
+        <p className="block text-3xl bg-white mb-8 p-2 text-center">
+          {decodeURIComponent(planetaNombre)}
+        </p>
+        <div className="flex flex-col mb-8 items-center">
+          <Image
+            src={
+              planetaData.imagenes && planetaData.imagenes.length > 0
+                ? planetaData.imagenes[0]
+                : "/placeholder.png"
+            }
+            width={1200}
+            height={800}
+            alt={"Planet page " + decodeURIComponent(planetaNombre) + " image"}
+            className="border-2 border-solid border-black z-0"
+          />
+        </div>
+        <p className="mt-8 text-center">
           {planetaData.descripcion}
         </p>
 

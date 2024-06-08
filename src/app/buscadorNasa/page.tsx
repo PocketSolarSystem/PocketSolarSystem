@@ -36,6 +36,7 @@ export default function Buscador() {
   async function realizarBusqueda(evento: any) {
     evento.preventDefault();
     setCargando(true);
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     setTextoBuscado(buscar);
     const objetoJSON = await fetchBuscadorNasaPorPalabra(buscar);
     const items = objetoJSON.collection.items;
@@ -45,9 +46,9 @@ export default function Buscador() {
 
   if (cargando) {
     return (
-      <main className="flex min-h-screen flex-col justify-center items-center p-24">
+      <main className="flex min-h-screen flex-col items-center mt-72">
         <p className="text-3xl font-bold mb-4 text-gray-800">Cargando...</p>
-        <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24"></div>
+        <div className="loader"></div>
       </main>
     );
   } else {
