@@ -94,7 +94,7 @@ const Galeria = () => {
           {/* Botón y Lista de Planetas en pantallas pequeñas */}
           <div
             ref={planetListRef}
-            className="block md:hidden w-full md:w-1/4 p-4 z-50 relative"
+            className="block md:hidden w-full md:w-1/4 p-4 z-10 relative"
           >
             <button
               onClick={() => setShowPlanetList(!showPlanetList)}
