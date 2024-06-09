@@ -6,18 +6,18 @@ export function ImagenPreview(
     {imagenUrl:string, nasaId:any}
 ){
     return(
-        <div className="relative hover:scale-110 hover:shadow-slate-600 hover:shadow-lg">
-            <Link
+        <div className="relative">
+            {/* <Link
                 href={`/buscadorNasa/${nasaId}`}
-            >
+            > */}
                 <Image 
                     width={250}
                     height={125}
                     src={imagenUrl}
                     alt="search photo"
-                    className="border-solid border-black border-2"
+                    className="border-solid border-black/75 border rounded-lg hover:scale-110 hover:shadow-slate-600 hover:shadow-lg"
                 />
-            </Link>
+            {/* </Link> */}
         </div>
     )
 }

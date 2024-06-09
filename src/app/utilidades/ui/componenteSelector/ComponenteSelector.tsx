@@ -57,7 +57,7 @@ export function ComponenteSelector({
               </p>
               <Link
                 href={Object.values(planetaSeleccionado)[0]}
-                className="bg-white rounded-full p-2 m-4 hover:cursor-pointer hover:bg-gray-300"
+                className="bg-white rounded-full p-2 m-4 text-center hover:cursor-pointer hover:bg-gray-300"
               >
                 Explora más acerca de {Object.values(planetaSeleccionado)[0]}
               </Link>

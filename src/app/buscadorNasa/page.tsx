@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import { ImagenPreview } from "../utilidades/ui/buscadorNasa/ImagenPreview";
 import { fetchBuscadorNasa } from "../utilidades/lib/apidata";
 import { fetchBuscadorNasaPorPalabra } from "../utilidades/lib/apidata";
+import { VisualizarImagen } from "../utilidades/ui/visualizarImagen";
 
 export default function Buscador() {
   const [buscar, setBuscar] = useState("");
   const [textoBuscado, setTextoBuscado] = useState("");
   const [fotos, setFotos] = useState([]);
   const [cargando, setCargando] = useState(false);
+  const [urlImagenMostrada, setUrlImagenMostrada] = useState("");
 
   const condicionalComponente = () => {
     if (textoBuscado && fotos.length > 0) {
@@ -42,6 +44,10 @@ export default function Buscador() {
     const items = objetoJSON.collection.items;
     setFotos(items);
     setCargando(false);
+  }
+
+  function seleccionarImagen(url:string, titulo:string){
+    setUrlImagenMostrada(url);
   }
 
   if (cargando) {
@@ -96,7 +102,7 @@ export default function Buscador() {
         <div className="md:grid md:grid-cols-4 md:gap-4 items-center mt-6">
           {fotos &&
             fotos.map((preview: any) => (
-              <div key={preview.data[0].nasa_id} className="p-4">
+              <div key={preview.data[0].nasa_id} className="p-4 cursor-pointer" onClick={()=>{seleccionarImagen(preview.links[0].href, preview.data[0].nasa_id)}}>
                 <ImagenPreview
                   nasaId={preview.data[0].nasa_id}
                   imagenUrl={preview.links[0].href}
@@ -104,6 +110,7 @@ export default function Buscador() {
               </div>
             ))}
         </div>
+        <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo=""/>
       </main>
     );
   }

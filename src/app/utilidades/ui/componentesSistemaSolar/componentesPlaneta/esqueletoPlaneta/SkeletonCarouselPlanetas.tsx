@@ -21,7 +21,7 @@ export function SkeletonCarouselPlanetas() {
   const skeletonItems = Array.from({ length: 5 });
 
   return (
-    <div className="container mx-auto mt-8 relative">
+    <div className="container mx-auto mt-8 relative z-0">
       <Carousel
         responsive={responsive}
         infinite={true}
