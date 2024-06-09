@@ -3,15 +3,17 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface GaleriaImagenesProps {
-  planetaNombre: string;
-  imagenes: string[];
-}
-
-const GaleriaImagenes: React.FC<GaleriaImagenesProps> = ({
+const GaleriaImagenes = ({
   planetaNombre,
   imagenes,
+  setUrlImagenMostrada,
+} : 
+{
+  planetaNombre: string, 
+  imagenes:string[],
+  setUrlImagenMostrada:Function
 }) => {
+
   return (
     <div className="bg-white py-4 pb-10">
       <div className="mx-auto max-w-screen-2xl">
@@ -44,7 +46,7 @@ const GaleriaImagenes: React.FC<GaleriaImagenesProps> = ({
               <h1 className="font-semibold text-xl text-4x1 mb-4 text-center md:text-left md:ml-8">
                 Ir a la galería
               </h1>
-              <span className="relative inline-block bg-primary-color h-6 w-6 rounded-full flex items-center justify-center ml-2 mb-4">
+              <span className="relative bg-primary-color h-6 w-6 rounded-full flex items-center justify-center ml-2 mb-4">
                 <svg
                   viewBox="0 0 32 32"
                   fill="none"
@@ -72,11 +74,12 @@ const GaleriaImagenes: React.FC<GaleriaImagenesProps> = ({
               return (
                 <div
                   key={index}
-                  className={`group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg ${
+                  className={`group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg hover:cursor-pointer ${
                     index !== 4
                       ? "md:h-60"
                       : "md:col-span-3 md:row-span-2 md:h-full"
                   } `}
+                  onClick={()=>{setUrlImagenMostrada(imagen)}}
                 >
                   <Image
                     src={imagen}

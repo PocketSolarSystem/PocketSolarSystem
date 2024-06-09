@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselPlanetas";
@@ -10,6 +9,7 @@ import { planetas } from "../../../utilidades/lib/dataPlanetas";
 import SkeletonPlaneta from "@/app/utilidades/ui/componentesSistemaSolar/componentesPlaneta/esqueletoPlaneta/SkeletonPlaneta";
 import GaleriaImagenes from "@/app/utilidades/ui/galeriaImagenes/GaleriaImagenes";
 import { Planeta3d } from "@/app/utilidades/ui/planeta3d";
+import { VisualizarImagen } from "@/app/utilidades/ui/visualizarImagen";
 
 interface PlanetaData {
   nombre: string;
@@ -29,6 +29,7 @@ async function fetchPlanetaData(nombrePlaneta: string): Promise<PlanetaData> {
 function Planeta() {
   const [planetaData, setPlanetaData] = useState<PlanetaData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [urlImagenMostrada, setUrlImagenMostrada]  = useState("");
   const pathname = usePathname();
   const partesRuta = pathname.split("/");
   const planetaNombre = decodeURIComponent(partesRuta[3]);
@@ -65,29 +66,23 @@ function Planeta() {
         <p className="block text-3xl bg-white mb-2 p-2 text-center">
           {decodeURIComponent(planetaNombre)}
         </p>
-        {/* <div className="flex flex-col mb-8 items-center">
-          <Image
-            src={
-              planetaData.imagenes && planetaData.imagenes.length > 0
-                ? planetaData.imagenes[0]
-                : "/placeholder.png"
-            }
-            width={1200}
-            height={800}
-            alt={"Planet page " + decodeURIComponent(planetaNombre) + " image"}
-            className="border-2 border-solid border-black z-0"
-          />
-        </div> */}
+        
+        <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo={planetaNombre} />
+        
         <div className="flex flex-col items-center justify-center text-center ml-2 mb-12 bg-cover rounded-lg" style={styling}>
-              <div className="lg:h-80 lg:w-80 h-40 w-40">
-                  <Planeta3d
-                    textura={`/texturas/${planetaNombre}-textura.jpg`}
-                  />
-              </div>
+          <div className="lg:h-80 lg:w-80 h-40 w-40">
+              <Planeta3d
+                textura={`/texturas/${planetaNombre}-textura.jpg`}
+              />
+          </div>
         </div>
         <p className="mt-8 text-center">
           {planetaData.descripcion}
         </p>
+        <h1 className="font-semibold text-xl text-4x1 mb-8 mt-12 text-center md:text-left md:ml-8">
+              Explora más planetas del Sistema Solar
+        </h1>
+        <CarouselPlanetas planetas={planetas} />
           <div className="my-8 text-justify">
             <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8">
               Visión General Planeta {planetaNombre}
@@ -96,6 +91,7 @@ function Planeta() {
             <GaleriaImagenes
               planetaNombre={planetaNombre}
               imagenes={planetaData.imagenes}
+              setUrlImagenMostrada={setUrlImagenMostrada}
             />
             <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8">
               Cultura Pop
@@ -103,10 +99,6 @@ function Planeta() {
             <p>{planetaData.cultura_pop}</p>
             
           </div>
-          <h1 className="font-semibold text-xl text-4x1 mb-8 mt-12 text-center md:text-left md:ml-8">
-              Explora más planetas del Sistema Solar
-          </h1>
-          <CarouselPlanetas planetas={planetas} />
       </div>
     </main>
   );
