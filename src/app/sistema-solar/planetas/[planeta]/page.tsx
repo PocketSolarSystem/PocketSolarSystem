@@ -66,9 +66,6 @@ function Planeta() {
         <p className="block text-3xl bg-white mb-2 p-2 text-center">
           {decodeURIComponent(planetaNombre)}
         </p>
-        
-        <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo={planetaNombre} />
-        
         <div className="flex flex-col items-center justify-center text-center ml-2 mb-12 bg-cover rounded-lg" style={styling}>
           <div className="lg:h-80 lg:w-80 h-40 w-40">
               <Planeta3d
@@ -97,9 +94,9 @@ function Planeta() {
               Cultura Pop
             </h1>
             <p>{planetaData.cultura_pop}</p>
-            
           </div>
       </div>
+      <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo={planetaNombre} />
     </main>
   );
 }

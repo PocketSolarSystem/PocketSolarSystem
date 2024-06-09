@@ -8,15 +8,12 @@ export default function DetalleFoto(
 ){
     const [archivo, setArchivos] = useState([]);
     const [cargando, setCargando] = useState(false);
-
     useEffect( () => {
         const getItems = async()=>{
             setCargando(true);
-
             const objetoJSON = await fetchBuscadorNasaId(params.nasaId);
             const item = objetoJSON.collection.items;
             setArchivos(item);
-
             setCargando(false);
         }
         getItems();
