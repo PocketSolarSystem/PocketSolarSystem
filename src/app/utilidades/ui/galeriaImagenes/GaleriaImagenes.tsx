@@ -7,13 +7,11 @@ const GaleriaImagenes = ({
   planetaNombre,
   imagenes,
   setUrlImagenMostrada,
-} : 
-{
-  planetaNombre: string, 
-  imagenes:string[],
-  setUrlImagenMostrada:Function
+}: {
+  planetaNombre: string;
+  imagenes: string[];
+  setUrlImagenMostrada: Function;
 }) => {
-
   return (
     <div className="bg-white py-4 pb-10">
       <div className="mx-auto max-w-screen-2xl">
@@ -42,7 +40,10 @@ const GaleriaImagenes = ({
             </div>
           </div>
           <div className="flex items-center md:mt-10">
-            <Link href={`/work-in-progress`} className="flex items-center">
+            <Link
+              href={`/sistema-solar/planetas/galeria?planeta=${planetaNombre}`}
+              className="flex items-center"
+            >
               <h1 className="font-semibold text-xl text-4x1 mb-4 text-center md:text-left md:ml-8">
                 Ir a la galería
               </h1>
@@ -79,7 +80,9 @@ const GaleriaImagenes = ({
                       ? "md:h-60"
                       : "md:col-span-3 md:row-span-2 md:h-full"
                   } `}
-                  onClick={()=>{setUrlImagenMostrada(imagen)}}
+                  onClick={() => {
+                    setUrlImagenMostrada(imagen);
+                  }}
                 >
                   <Image
                     src={imagen}

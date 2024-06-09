@@ -29,7 +29,7 @@ const AcercaDeLosPlanetas = () => {
         setPlanetaData(data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching planets:", error);
+        console.error("Error fetching planetas:", error);
         setLoading(false);
       }
     };
