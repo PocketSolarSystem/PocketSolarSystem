@@ -12,7 +12,7 @@ export function ImagenPreview(
                 height={125}
                 src={imagenUrl}
                 alt={"search photo " + nasaId}
-                className="border-solid border-black/75 border rounded-lg transition hover:scale-110 hover:shadow-slate-600 hover:shadow-lg"
+                className="w-full h-auto border-solid border-black/75 border rounded-lg transition hover:scale-110 hover:shadow-slate-600 hover:shadow-lg"
             />
         </div>
     );

@@ -5,7 +5,7 @@ import Image from "next/image";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import Cargando from "./loading";
-
+import { VisualizarImagen } from "@/app/utilidades/ui/visualizarImagen/visualizarImagen";
 interface Planet {
   _id: string;
   nombre: string;
@@ -17,6 +17,7 @@ const Galeria = () => {
   const [selectedPlanet, setSelectedPlanet] = useState<Planet | null>(null);
   const [showPlanetList, setShowPlanetList] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [urlImagenMostrada, setUrlImagenMostrada] = useState("");
   const searchParams = useSearchParams();
   const planetaNombre = searchParams.get("planeta");
   const planetListRef = useRef<HTMLDivElement>(null);
@@ -149,6 +150,7 @@ const Galeria = () => {
                       <div
                         key={index}
                         className={`group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg hover:cursor-pointer md:h-60`}
+                        onClick={()=>{setUrlImagenMostrada(imagen)}}
                       >
                         <Image
                           src={imagen}
@@ -171,6 +173,7 @@ const Galeria = () => {
           </div>
         </div>
       )}
+      <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Imagen Galería" nasaId=""></VisualizarImagen>
     </div>
   );
 };

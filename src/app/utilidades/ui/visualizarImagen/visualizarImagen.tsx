@@ -61,7 +61,7 @@ export function VisualizarImagen({
                         width={500}
                         height={500}
                         alt="detailed photo"
-                        className='md:block mr-2 border-solid border-black border-2 rounded-lg max-h-screen'
+                        className='md:block mr-2 border-solid border-black border-2 rounded-lg'
                     />
                     <div className="col-start-2">
                         <h1 className="mt-2 mb-5"><strong>Titulo:</strong> {archivo.data[0].title}</h1>
@@ -83,7 +83,7 @@ export function VisualizarImagen({
               width={500}
               height={500}
               alt={titulo}
-              className="rounded-lg"
+              className="rounded-lg max-h-screen"
             />
           )}
           <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} />
