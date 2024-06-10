@@ -48,7 +48,7 @@ export function VisualizarImagen({
       return(
         <>
           {archivo && archivo.map((archivo:any)=>
-            <div key={archivo.data[0].nasa_id} className="p-6 bg-white rounded-lg relative m-4 max-h-screen">
+            <div key={archivo.data[0].nasa_id} className="p-6 bg-white rounded-lg relative m-4 max-h-screen max-w-screen">
                 <h1 className="text-4xl mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
                     Información detallada acerca de {archivo.data[0].title}
                 </h1>
