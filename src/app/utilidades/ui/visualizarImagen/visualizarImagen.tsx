@@ -1,5 +1,6 @@
 "use client";
 
+import './visualizarImagen.css';
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { fetchBuscadorNasaId } from "@/app/utilidades/lib/apidata";
@@ -48,8 +49,8 @@ export function VisualizarImagen({
       return(
         <>
           {archivo && archivo.map((archivo:any)=>
-            <div key={archivo.data[0].nasa_id} className="p-6 bg-white rounded-lg relative m-4 max-h-screen max-w-screen">
-                <h1 className="text-4xl mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
+            <div key={archivo.data[0].nasa_id} id="divImagenApi" className="p-6 bg-white rounded-lg relative m-4 md:max-h-screen max-w-96 md:max-w-screen-lg lg:max-w-screen-xl overflow-y-auto">
+                <h1 className="text-4xl text-center mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
                     Información detallada acerca de {archivo.data[0].title}
                 </h1>
                 <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} />
@@ -60,10 +61,10 @@ export function VisualizarImagen({
                         width={500}
                         height={500}
                         alt="detailed photo"
-                        className='md:block mr-2 border-solid border-black border-2 rounded-lg'
+                        className='md:block mr-2 border-solid border-black border-2 rounded-lg max-h-screen'
                     />
                     <div className="col-start-2">
-                        <h1 className="mt-12 mb-5"><strong>Titulo:</strong> {archivo.data[0].title}</h1>
+                        <h1 className="mt-2 mb-5"><strong>Titulo:</strong> {archivo.data[0].title}</h1>
                         <p className="mb-5"><strong>Descripción:</strong> {archivo.data[0].description}</p>
                         <p className="mb-5"><strong>Fecha del archivo: </strong>{archivo.data[0].date_created.split('T')[0]}</p>
                         <p className="mb-5"><strong>Centro: </strong>{archivo.data[0].center}</p>
