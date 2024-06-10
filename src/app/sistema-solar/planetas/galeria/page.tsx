@@ -83,7 +83,7 @@ const Galeria = () => {
               {planets.map((planet) => (
                 <li
                   key={planet._id}
-                  className="cursor-pointer hover:bg-gray-100 rounded p-2"
+                  className={`cursor-pointer hover:bg-gray-100 rounded p-2 ${selectedPlanet?.nombre == planet.nombre ? 'bg-gray-100' : ''}`}
                   onClick={() => handlePlanetClick(planet)}
                 >
                   {planet.nombre}
@@ -99,7 +99,7 @@ const Galeria = () => {
           >
             <button
               onClick={() => setShowPlanetList(!showPlanetList)}
-              className={`block md:hidden w-full bg-gray-200 text-left py-2 px-4 rounded-md focus:outline-none focus:ring focus:border-blue-300 ${
+              className={`block md:hidden w-full bg-gray-200 text-left py-2 px-4 rounded-md focus:outline-none hover:ring hover:border-blue-300 ${
                 showPlanetList ? "mb-2" : ""
               }`}
             >
@@ -126,7 +126,7 @@ const Galeria = () => {
               {planets.map((planet) => (
                 <li
                   key={planet._id}
-                  className="cursor-pointer hover:bg-gray-100 rounded p-2"
+                  className={`cursor-pointer hover:bg-gray-100 rounded p-2`}
                   onClick={() => handlePlanetClick(planet)}
                 >
                   {planet.nombre}
@@ -138,7 +138,7 @@ const Galeria = () => {
           {/* Galería de Imágenes */}
           <div className="w-full md:w-3/4 p-4">
             <h2 className="font-bold text-xl mb-4 text-center md:text-left">
-              Galería
+              Galería de { selectedPlanet?.nombre}
             </h2>
             <div
               className={`grid gap-4 ${selectedPlanet ? "md:grid-cols-3" : ""}`}

@@ -17,7 +17,7 @@ export default function Buscador() {
     if (textoBuscado && fotos.length > 0) {
       return `Mostrando ${fotos.length} resultados encontrados para "${textoBuscado}"`;
     } else if (!textoBuscado && fotos.length > 0) {
-      return "Mostrando los 20 primeros resultados por defecto";
+      return `Mostrando los ${fotos.length} primeros resultados por defecto`;
     } else if (!textoBuscado && fotos.length == 0) {
       return "Algo ha fallado en el servidor.";
     } else {
@@ -43,7 +43,7 @@ export default function Buscador() {
     setTextoBuscado(buscar);
     const objetoJSON = await fetchBuscadorNasaPorPalabra(buscar);
     const items = objetoJSON.collection.items;
-    setFotos(items);
+    setFotos(buscar !== "" ? items : items.slice(0, 20));
     setCargando(false);
   }
 

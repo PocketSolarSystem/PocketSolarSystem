@@ -17,7 +17,7 @@ export function VisualizarImagen({
   titulo: string;
   nasaId:string;
 }) {
-  const [archivo, setArchivos] = useState([]);
+  const [archivo, setArchivos] = useState<any | null>(null);
 
   useEffect(() => {
     if (urlImagenMostrada !== "") {
@@ -33,12 +33,11 @@ export function VisualizarImagen({
   }, [urlImagenMostrada]);
 
   useEffect(() => {
-    console.log(nasaId);
     if (nasaId) {
       const getItems = async() =>{
         const objetoJSON = await fetchBuscadorNasaId(nasaId);
         const item = objetoJSON.collection.items;
-        setArchivos(item);
+        setArchivos(item[0]);
       }
       getItems();
     }
@@ -48,7 +47,7 @@ export function VisualizarImagen({
     if (nasaId) {
       return(
         <>
-          {archivo && archivo.map((archivo:any)=>
+          {archivo &&
             <div key={archivo.data[0].nasa_id} id="divImagenApi" className="p-6 bg-white rounded-lg relative m-4 md:max-h-screen max-w-96 md:max-w-screen-lg lg:max-w-screen-xl overflow-y-auto">
                 <h1 className="text-4xl text-center mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
                     Información detallada acerca de {archivo.data[0].title}
@@ -71,7 +70,7 @@ export function VisualizarImagen({
                     </div>
                 </div>
             </div>        
-            )}
+            }
         </>
       );
     }else{
