@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { ImagenPreview } from "../utilidades/ui/buscadorNasa/ImagenPreview";
 import { fetchBuscadorNasa } from "../utilidades/lib/apidata";
 import { fetchBuscadorNasaPorPalabra } from "../utilidades/lib/apidata";
-import { VisualizarImagen } from "../utilidades/ui/visualizarImagen";
+import { VisualizarImagen } from "../utilidades/ui/visualizarImagen/visualizarImagen";
 
 export default function Buscador() {
   const [buscar, setBuscar] = useState("");
@@ -11,6 +11,7 @@ export default function Buscador() {
   const [fotos, setFotos] = useState([]);
   const [cargando, setCargando] = useState(false);
   const [urlImagenMostrada, setUrlImagenMostrada] = useState("");
+  const [nasaId, setNasaId] = useState("");
 
   const condicionalComponente = () => {
     if (textoBuscado && fotos.length > 0) {
@@ -46,8 +47,9 @@ export default function Buscador() {
     setCargando(false);
   }
 
-  function seleccionarImagen(url:string, titulo:string){
+  function seleccionarImagen(url:string, nasaId:string){
     setUrlImagenMostrada(url);
+    setNasaId(nasaId);
   }
 
   if (cargando) {
@@ -110,7 +112,7 @@ export default function Buscador() {
               </div>
             ))}
         </div>
-        <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo=""/>
+        <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Buscador imagen" nasaId={nasaId}/>
       </main>
     );
   }

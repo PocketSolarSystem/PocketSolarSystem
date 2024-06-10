@@ -7,17 +7,13 @@ export function ImagenPreview(
 ){
     return(
         <div className="relative">
-            {/* <Link
-                href={`/buscadorNasa/${nasaId}`}
-            > */}
-                <Image 
-                    width={250}
-                    height={125}
-                    src={imagenUrl}
-                    alt="search photo"
-                    className="border-solid border-black/75 border rounded-lg hover:scale-110 hover:shadow-slate-600 hover:shadow-lg"
-                />
-            {/* </Link> */}
+            <Image 
+                width={250}
+                height={125}
+                src={imagenUrl}
+                alt={"search photo " + nasaId}
+                className="border-solid border-black/75 border rounded-lg transition hover:scale-110 hover:shadow-slate-600 hover:shadow-lg"
+            />
         </div>
-    )
+    );
 }

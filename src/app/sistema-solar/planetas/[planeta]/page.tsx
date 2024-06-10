@@ -9,7 +9,7 @@ import { planetas } from "../../../utilidades/lib/dataPlanetas";
 import SkeletonPlaneta from "@/app/utilidades/ui/componentesSistemaSolar/componentesPlaneta/esqueletoPlaneta/SkeletonPlaneta";
 import GaleriaImagenes from "@/app/utilidades/ui/galeriaImagenes/GaleriaImagenes";
 import { Planeta3d } from "@/app/utilidades/ui/planeta3d";
-import { VisualizarImagen } from "@/app/utilidades/ui/visualizarImagen";
+import { VisualizarImagen } from "@/app/utilidades/ui/visualizarImagen/visualizarImagen";
 
 interface PlanetaData {
   nombre: string;
@@ -96,7 +96,7 @@ function Planeta() {
             <p>{planetaData.cultura_pop}</p>
           </div>
       </div>
-      <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo={planetaNombre} />
+      <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo={planetaNombre} nasaId=""/>
     </main>
   );
 }

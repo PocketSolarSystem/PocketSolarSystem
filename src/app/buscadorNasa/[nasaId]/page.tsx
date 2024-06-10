@@ -18,7 +18,6 @@ export default function DetalleFoto(
         }
         getItems();
     }, []);
-
     if(cargando){ 
         return (
             <main className="flex min-h-screen flex-col justify-between p-24">
@@ -35,7 +34,7 @@ export default function DetalleFoto(
             <main>
                 {archivo && archivo.map((archivo:any)=>
                     <div key={archivo.data[0].nasa_id} className="min-h-screen p-12 pt-24 md:p-24">
-                        <h1 className="text-4xl mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
+                        <h1 className="text-4xl mb-1 md:mb-2 basis-40 md:basis-0 lg:basis-0">
                             Información detallada acerca de {archivo.data[0].title}
                         </h1>
                         <div className="md:grid md:grid-cols-2 items-start">
@@ -54,8 +53,6 @@ export default function DetalleFoto(
                                 <p><strong>Centro: </strong>{archivo.data[0].center}</p>
                             </div>
                         </div>
-                        
-                        
                     </div>        
                     )}
             </main>
