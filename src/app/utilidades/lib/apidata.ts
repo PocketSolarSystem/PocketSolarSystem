@@ -60,10 +60,10 @@ export async function fetchBuscadorNasaPorPalabra(palabra:string){
   }
 }
 
-export async function fetchFotosMarte(){
+export async function fetchFotosMarte(fechaTerrestre:string){
   try{
 
-    const data = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2024-1-8&page=1&api_key=${apiKey}`);
+    const data = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${fechaTerrestre ? fechaTerrestre : '2024-01-08'}&page=1&api_key=${apiKey}`);
     const dataJSON = data.json();
     return dataJSON;
 
