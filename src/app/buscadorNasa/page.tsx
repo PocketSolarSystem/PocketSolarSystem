@@ -100,10 +100,10 @@ export default function Buscador() {
         </form>
         <div className="text-center">{condicionalComponente()}</div>
 
-        <div className="md:grid md:grid-cols-4 md:gap-4 items-center mt-6">
+        <div className="md:grid md:grid-cols-4 md:gap-10 items-center m-5 mt-6">
           {fotos &&
             fotos.map((preview: any) => (
-              <div key={preview.data[0].nasa_id} className="p-4 cursor-pointer" onClick={()=>{seleccionarImagen(preview.links[0].href, preview.data[0].nasa_id)}}>
+              <div key={preview.data[0].nasa_id} className="mt-5 cursor-pointer" onClick={()=>{seleccionarImagen(preview.links[0].href, preview.data[0].nasa_id)}}>
                 <ImagenPreview
                   nasaId={preview.data[0].nasa_id}
                   imagenUrl={preview.links[0].href}

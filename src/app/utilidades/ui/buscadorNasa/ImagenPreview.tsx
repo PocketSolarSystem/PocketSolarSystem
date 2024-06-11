@@ -5,7 +5,7 @@ export function ImagenPreview(
     {imagenUrl:string, nasaId:any}
 ){
     return(
-        <div className="relative h-56 w-80">
+        <div className="relative h-56">
             <Image 
                 width={250}
                 height={125}

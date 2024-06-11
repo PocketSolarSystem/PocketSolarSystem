@@ -97,15 +97,6 @@ export function VisualizarImagen({
                       <p className="mb-5"><strong>Nombre completo de la cámara: </strong>{objetoInformacion.camera.full_name}</p>
                       <p className="mb-5"><strong>Fecha terrestre de la imagen: </strong>{objetoInformacion.earth_date}</p>
                       <p className="mb-5"><strong>Día marciano de la imagen: </strong>{objetoInformacion.sol}</p>
-                      {/* <p className="mb-5"><strong>Más información acerca del rover {objetoInformacion.rover.name}:</strong></p>
-                      <ul>
-                        <li>+<strong>Fecha de aterrizaje: </strong> {objetoInformacion.rover.launch_date}</li>
-                        <li>+<strong>Fecha de despegue: </strong> {objetoInformacion.rover.landing_date}</li>
-                        <li>+<strong>Estado: </strong>{objetoInformacion.rover.status}</li>
-                        <li>+<strong>Último día marciano que hemos recibido imagenes del {objetoInformacion.rover.name}: </strong>{objetoInformacion.rover.max_sol}</li>
-                        <li>+<strong>Último fecha terrestre que hemos recibido imagenes del {objetoInformacion.rover.name}: </strong>{objetoInformacion.rover.max_date}</li>
-                        <li>+<strong>Número total de fotos enviadas: </strong>{objetoInformacion.rover.total_photos}</li>
-                      </ul> */}
                   </div>
               </div>
           </div>        

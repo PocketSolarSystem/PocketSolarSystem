@@ -110,13 +110,13 @@ export default function FotosDeMarte(){
                     </p>
                 </div>
                 
-                <div className="md:grid md:grid-cols-5 md:gap-4 items-center mt-6">
+                <div className="md:grid md:grid-cols-5 md:gap-10 items-center mt-6">
                     {archivos && archivos.map((archivo:any)=>(
-                        <div key={archivo.id} className="p-4 cursor-pointer" onClick={()=>{
+                        <div key={archivo.id} className="mt-5 cursor-pointer" onClick={()=>{
                             setUrlImagenMostrada(archivo.img_src)
                             setObjetoInformacion(archivo);
                         }}>
-                            <ImagenPreview key={'img'+archivo.id} imagenUrl={archivo.img_src} nasaId={archivo.id}/>
+                            <ImagenPreview key={'img-' + archivo.id} imagenUrl={archivo.img_src} nasaId={archivo.id}/>
                         </div>
                     ))}
                 </div>
