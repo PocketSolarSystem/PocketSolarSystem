@@ -15,6 +15,7 @@ export default function FotosDeMarte(){
     const [fechaBuscada, setFechaBuscada] = useState("2024-01-08");
     const [sol, setSol] = useState("");
     const [solBuscado, setSolBuscado] = useState("");
+    const [objetoInformacion, setObjetoInformacion] = useState<any | null>(null);
     
     useEffect(() => {
         const getItems = async()=>{
@@ -63,13 +64,13 @@ export default function FotosDeMarte(){
         }else if(archivos.length > 0 && fechaBuscada === "" && sol != ""){
             return(
                 <>
-                    Mostrando imágenes del sol: {solBuscado}
+                    Mostrando imágenes del día marciano: {solBuscado}
                 </>
             );
         }else if(archivos.length > 0 && fechaBuscada === "" && sol != ""){
             return(
                 <>
-                    No se ha encontrado imágenes imágenes del sol: {solBuscado}
+                    No se ha encontrado imágenes imágenes del día marciano: {solBuscado}
                 </>
             );
         }
@@ -111,12 +112,15 @@ export default function FotosDeMarte(){
                 
                 <div className="md:grid md:grid-cols-5 md:gap-4 items-center mt-6">
                     {archivos && archivos.map((archivo:any)=>(
-                        <div key={archivo.id} className="p-4 cursor-pointer" onClick={()=>{setUrlImagenMostrada(archivo.img_src)}}>
+                        <div key={archivo.id} className="p-4 cursor-pointer" onClick={()=>{
+                            setUrlImagenMostrada(archivo.img_src)
+                            setObjetoInformacion(archivo);
+                        }}>
                             <ImagenPreview key={'img'+archivo.id} imagenUrl={archivo.img_src} nasaId={archivo.id}/>
                         </div>
                     ))}
                 </div>
-                <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Mars photo" nasaId=""/>
+                <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Mars photo" nasaId="" objetoInformacion={objetoInformacion}/>
             </main>
         );
     }

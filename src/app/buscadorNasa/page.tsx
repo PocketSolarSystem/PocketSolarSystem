@@ -111,7 +111,7 @@ export default function Buscador() {
               </div>
             ))}
         </div>
-        <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Buscador imagen" nasaId={nasaId}/>
+        <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Buscador imagen" nasaId={nasaId} objetoInformacion={null}/>
       </main>
     );
   }

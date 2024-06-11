@@ -173,7 +173,7 @@ const Galeria = () => {
           </div>
         </div>
       )}
-      <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Imagen Galería" nasaId=""></VisualizarImagen>
+      <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Imagen Galería" nasaId="" objetoInformacion={null}></VisualizarImagen>
     </div>
   );
 };
