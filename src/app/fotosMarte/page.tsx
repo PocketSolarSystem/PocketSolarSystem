@@ -90,21 +90,21 @@ export default function FotosDeMarte(){
                     <h1 className="text-4xl md:mb-9 basis-40 md:basis-0 lg:basis-0">
                         Galería de imagenes enviadas desde Marte
                     </h1>
-                    <p className="mt-5 md:mt-10  text-xl">
+                    <form className="mt-10 text-xl" onSubmit={() => {buscarPorFechaTerrestre()}}>
                         <span className="mr-5">
                             Buscar por fecha terrestre:
                         </span> <br className="md:hidden"/>
                         <input type="date" className="border-2 border-black rounded-md p-1 mr-5" value={fechaSeleccionada} onChange={(evento)=>{setFechaSeleccionada(evento.target.value)}}/>
-                        <button className="rounded-md text-white p-1 bg-black hover:bg-zinc-700" onClick={()=>{buscarPorFechaTerrestre()}}>Buscar</button>
-                    </p>
+                        <button className="rounded-md text-white p-1 bg-black hover:bg-zinc-700">Buscar</button>
+                    </form>
                     <p className="mt-7">*Los días marcianos son las rotaciones que Marte ha realizado sobre su eje desde el aterrizaje del rover en el planeta*</p>
-                    <p className="mt-5  text-xl">
+                    <form className="mt-5 text-xl" onSubmit={() => {buscarPorSol();}}>
                         <span className="mr-5">
                             Buscar por días marcianos:
                         </span>
                         <input type="text" placeholder="1000" className="border-2 border-black rounded-md p-1 mr-5 w-40 md:w-auto" value={sol} onChange={(evento)=>{setSol(evento.target.value)}}/>
-                        <button className="rounded-md text-white p-1 bg-black hover:bg-zinc-700" onClick={()=>{buscarPorSol()}}>Buscar</button>
-                    </p>
+                        <button className="rounded-md text-white p-1 bg-black hover:bg-zinc-700" type="submit">Buscar</button>
+                    </form>
                     <p className="mt-20">
                        {condicionalCadena()}
                     </p>
