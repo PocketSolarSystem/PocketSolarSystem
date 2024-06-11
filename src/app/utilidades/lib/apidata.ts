@@ -60,10 +60,24 @@ export async function fetchBuscadorNasaPorPalabra(palabra:string){
   }
 }
 
-export async function fetchFotosMarte(fechaTerrestre:string){
+export async function fetchFotosMarteFecha(fechaTerrestre:string){
   try{
 
     const data = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${fechaTerrestre ? fechaTerrestre : '2024-01-08'}&page=1&api_key=${apiKey}`);
+    const dataJSON = data.json();
+    return dataJSON;
+
+  }catch (error) {
+
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch revenue data.');
+  }
+}
+
+export async function fetchFotosMarteSol(sol:string){
+  try{
+
+    const data = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${sol}&page=1&api_key=${apiKey}`);
     const dataJSON = data.json();
     return dataJSON;
 
