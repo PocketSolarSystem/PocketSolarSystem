@@ -17,7 +17,7 @@ export default function Buscador() {
     if (textoBuscado && fotos.length > 0) {
       return `Mostrando ${fotos.length} resultados encontrados para "${textoBuscado}"`;
     } else if (!textoBuscado && fotos.length > 0) {
-      return "Mostrando los 20 primeros resultados por defecto";
+      return `Mostrando los ${fotos.length} primeros resultados por defecto`;
     } else if (!textoBuscado && fotos.length == 0) {
       return "Algo ha fallado en el servidor.";
     } else {
@@ -39,11 +39,10 @@ export default function Buscador() {
   async function realizarBusqueda(evento: any) {
     evento.preventDefault();
     setCargando(true);
-    await new Promise((resolve) => setTimeout(resolve, 3000));
     setTextoBuscado(buscar);
     const objetoJSON = await fetchBuscadorNasaPorPalabra(buscar);
     const items = objetoJSON.collection.items;
-    setFotos(items);
+    setFotos(buscar !== "" ? items : items.slice(0, 20));
     setCargando(false);
   }
 
@@ -101,10 +100,10 @@ export default function Buscador() {
         </form>
         <div className="text-center">{condicionalComponente()}</div>
 
-        <div className="md:grid md:grid-cols-4 md:gap-4 items-center mt-6">
+        <div className="md:grid md:grid-cols-4 md:gap-10 items-center m-5 mt-6">
           {fotos &&
             fotos.map((preview: any) => (
-              <div key={preview.data[0].nasa_id} className="p-4 cursor-pointer" onClick={()=>{seleccionarImagen(preview.links[0].href, preview.data[0].nasa_id)}}>
+              <div key={preview.data[0].nasa_id} className="mt-5 cursor-pointer" onClick={()=>{seleccionarImagen(preview.links[0].href, preview.data[0].nasa_id)}}>
                 <ImagenPreview
                   nasaId={preview.data[0].nasa_id}
                   imagenUrl={preview.links[0].href}
@@ -112,7 +111,7 @@ export default function Buscador() {
               </div>
             ))}
         </div>
-        <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Buscador imagen" nasaId={nasaId}/>
+        <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Buscador imagen" nasaId={nasaId} objetoInformacion={null}/>
       </main>
     );
   }

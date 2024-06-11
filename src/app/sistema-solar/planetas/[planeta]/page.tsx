@@ -96,7 +96,7 @@ function Planeta() {
             <p>{planetaData.cultura_pop}</p>
           </div>
       </div>
-      <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo={planetaNombre} nasaId=""/>
+      <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo={planetaNombre} nasaId="" objetoInformacion={null}/>
     </main>
   );
 }
