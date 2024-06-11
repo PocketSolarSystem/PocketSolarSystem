@@ -59,3 +59,17 @@ export async function fetchBuscadorNasaPorPalabra(palabra:string){
     throw new Error('Failed to fetch revenue data.');
   }
 }
+
+export async function fetchFotosMarte(){
+  try{
+
+    const data = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2024-1-8&page=1&api_key=${apiKey}`);
+    const dataJSON = data.json();
+    return dataJSON;
+
+  }catch (error) {
+
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch revenue data.');
+  }
+}

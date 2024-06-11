@@ -39,7 +39,6 @@ export default function Buscador() {
   async function realizarBusqueda(evento: any) {
     evento.preventDefault();
     setCargando(true);
-    await new Promise((resolve) => setTimeout(resolve, 3000));
     setTextoBuscado(buscar);
     const objetoJSON = await fetchBuscadorNasaPorPalabra(buscar);
     const items = objetoJSON.collection.items;
