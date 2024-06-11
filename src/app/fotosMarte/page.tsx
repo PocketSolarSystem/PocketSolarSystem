@@ -1,10 +1,11 @@
 'use client';
-import {useState, useEffect} from "react";
+
+import { useEffect, useState } from "react";
 import { fetchFotosMarte } from "../utilidades/lib/apidata";
 import { ImagenPreview } from "../utilidades/ui/buscadorNasa/ImagenPreview";
 import { VisualizarImagen } from "../utilidades/ui/visualizarImagen/visualizarImagen";
 
-export default function fotosDeMarte(){
+export default function FotosDeMarte(){
 
     const [cargando, setCargando] = useState(false);
     const [archivos, setArchivos] = useState<any | null>(null);
@@ -61,7 +62,7 @@ export default function fotosDeMarte(){
                 <div className="md:grid md:grid-cols-5 md:gap-4 items-center mt-6">
                     {archivos && archivos.map((archivo:any)=>(
                         <div key={archivo.id} className="p-4 cursor-pointer" onClick={()=>{setUrlImagenMostrada(archivo.img_src)}}>
-                            <ImagenPreview imagenUrl={archivo.img_src} nasaId={archivo.id}/>
+                            <ImagenPreview key={'img'+archivo.id} imagenUrl={archivo.img_src} nasaId={archivo.id}/>
                         </div>
                     ))}
                 </div>
