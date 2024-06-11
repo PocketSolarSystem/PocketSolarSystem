@@ -6,7 +6,7 @@ import { InicioTexto } from "./utilidades/ui/inicio-texto";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center md:px-12 px-8 pb-12">
-      <h1 className="text-4xl mt-4 md:mb-5 basis-40 md:basis-0 lg:basis-0">
+      <h1 className="text-4xl mt-4 md:mb-5 md:basis-0 lg:basis-0">
         <Typewriter
           onInit={(typewriter) => {
             typewriter

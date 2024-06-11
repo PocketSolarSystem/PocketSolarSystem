@@ -2,12 +2,11 @@ import { Html, Text, Container, Heading, Img } from "@react-email/components";
 import * as React from "react";
 
 const imageContainerStyle: React.CSSProperties = {
-  position: "relative",
   width: "100%",
   height: "auto",
   overflow: "hidden",
-  margin: "-20% auto",
-  marginBottom: "20px",
+  marginTop: "-20%",
+  marginBottom: "-6%",
 };
 
 const titleImageStyle: React.CSSProperties = {
@@ -19,13 +18,9 @@ const titleImageStyle: React.CSSProperties = {
 };
 
 const headingStyle: React.CSSProperties = {
-  position: "absolute",
-  top: "80%",
-  left: "40%",
-  transform: "translate(-50%, -50%)",
   zIndex: 1,
   color: "#ffffff",
-  fontSize: "28px",
+  fontSize: "18px",
   fontWeight: "bold",
   textAlign: "center",
   backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -59,15 +54,15 @@ export default function DatoCurioso() {
   return (
     <Html>
       <Container style={styles.container}>
+        <Heading style={styles.heading}>
+          Temperaturas en nuestro Sistema Solar
+        </Heading>
         <div style={styles.imageContainer}>
           <Img
             src="https://science.nasa.gov/wp-content/uploads/2023/10/edu-solar-system-large.png?w=2560&format=webp"
             alt="Imagen de temperaturas"
             style={styles.titleImage}
           />
-          <Heading style={styles.heading}>
-            Temperaturas en nuestro Sistema Solar
-          </Heading>
         </div>
         <Text style={styles.text}>
           ¿Cómo es el clima por ahí? Nos referimos a allá afuera en nuestro
@@ -118,7 +113,6 @@ const styles = {
   image: {
     maxWidth: "100%",
     height: "auto",
-    marginBottom: "20px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   },
   text: textStyle,

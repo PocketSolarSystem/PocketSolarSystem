@@ -159,7 +159,7 @@ const Footer = () => {
             </li>
             <li>
               <FontAwesomeIcon icon={faEnvelope} /> Email:
-              info@pocketsolarsystem.com
+              pocketsolarsystem@gmail.com
             </li>
           </ul>
         </div>
@@ -167,10 +167,15 @@ const Footer = () => {
       <div className="mt-8 text-center">
         <SubscribeForm />
         <p className="text-sm mt-8">
-          &copy; 2024 Pocket Solar System. Todos los derechos reservados.
+          &copy; 2024 Pocket Solar System. &nbsp;
+          <Link href="/politica-de-privacidad">
+            <span className="text-blue-500 underline">
+              Todos los derechos reservados.
+            </span>
+          </Link>
         </p>
-        {/* <div className="flex justify-center items-center mt-4">
-          <div className="flex flex-col items-center mr-4">
+        <div className="flex justify-center items-center mt-4">
+          {/* <div className="flex flex-col items-center mr-4">
             <FontAwesomeIcon
               icon={faLock}
               size="2x"
@@ -213,8 +218,8 @@ const Footer = () => {
             <span className="text-xs hidden sm:inline-block">
               Norton Secured
             </span>
-          </div>
-        </div> */}
+          </div> */}
+        </div>
       </div>
     </footer>
   );
