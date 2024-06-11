@@ -85,11 +85,11 @@ export default function FotosDeMarte(){
           );
     }else if (archivos){
         return(
-            <main className="flex min-h-screen flex-col items-center p-12 pt-24 md:p-12">
+            <main className="flex min-h-screen flex-col items-center md:px-24 px-8 pb-12">
+                <h1 className="text-4xl text-center mt-4 md:mb-9 basis-40 md:basis-0 lg:basis-0">
+                    Galería de imagenes enviadas desde Marte
+                </h1>
                 <div className="mb-5 text-center">
-                    <h1 className="text-4xl md:mb-9 basis-40 md:basis-0 lg:basis-0">
-                        Galería de imagenes enviadas desde Marte
-                    </h1>
                     <form className="mt-10 text-xl" onSubmit={() => {buscarPorFechaTerrestre()}}>
                         <span className="mr-5">
                             Buscar por fecha terrestre:
@@ -97,7 +97,7 @@ export default function FotosDeMarte(){
                         <input type="date" className="border-2 border-black rounded-md p-1 mr-5" value={fechaSeleccionada} onChange={(evento)=>{setFechaSeleccionada(evento.target.value)}}/>
                         <button className="rounded-md text-white p-1 bg-black hover:bg-zinc-700">Buscar</button>
                     </form>
-                    <p className="mt-7">*Los días marcianos son las rotaciones que Marte ha realizado sobre su eje desde el aterrizaje del rover en el planeta*</p>
+                    <p className="mt-7">*Los días marcianos son el número de rotaciones que Marte ha realizado sobre su eje desde el aterrizaje del rover en el planeta*</p>
                     <form className="mt-5 text-xl" onSubmit={() => {buscarPorSol();}}>
                         <span className="mr-5">
                             Buscar por días marcianos:
