@@ -5,11 +5,13 @@ import { fetchBuscadorNasa } from "../utilidades/lib/apidata";
 import { fetchBuscadorNasaPorPalabra } from "../utilidades/lib/apidata";
 import { VisualizarImagen } from "../utilidades/ui/visualizarImagen/visualizarImagen";
 
+import SkeletonNasaFileSearch from "../utilidades/ui/esqueletoArchivosNasa/SkeletonNasaFileSearch";
+
 export default function Buscador() {
   const [buscar, setBuscar] = useState("");
   const [textoBuscado, setTextoBuscado] = useState("");
   const [fotos, setFotos] = useState([]);
-  const [cargando, setCargando] = useState(false);
+  const [cargando, setCargando] = useState(true);
   const [urlImagenMostrada, setUrlImagenMostrada] = useState("");
   const [nasaId, setNasaId] = useState("");
 
@@ -46,18 +48,13 @@ export default function Buscador() {
     setCargando(false);
   }
 
-  function seleccionarImagen(url:string, nasaId:string){
+  function seleccionarImagen(url: string, nasaId: string) {
     setUrlImagenMostrada(url);
     setNasaId(nasaId);
   }
 
   if (cargando) {
-    return (
-      <main className="flex min-h-screen flex-col items-center mt-72">
-        <p className="text-3xl font-bold mb-4 text-gray-800">Cargando...</p>
-        <div className="loader"></div>
-      </main>
-    );
+    return <SkeletonNasaFileSearch />;
   } else {
     return (
       <main className="flex min-h-screen flex-col items-center md:px-12 px-8 pb-12">
@@ -103,7 +100,16 @@ export default function Buscador() {
         <div className="md:grid md:grid-cols-4 md:gap-10 items-center m-5 mt-6">
           {fotos &&
             fotos.map((preview: any) => (
-              <div key={preview.data[0].nasa_id} className="mt-5 cursor-pointer" onClick={()=>{seleccionarImagen(preview.links[0].href, preview.data[0].nasa_id)}}>
+              <div
+                key={preview.data[0].nasa_id}
+                className="mt-5 cursor-pointer"
+                onClick={() => {
+                  seleccionarImagen(
+                    preview.links[0].href,
+                    preview.data[0].nasa_id
+                  );
+                }}
+              >
                 <ImagenPreview
                   nasaId={preview.data[0].nasa_id}
                   imagenUrl={preview.links[0].href}
@@ -111,7 +117,13 @@ export default function Buscador() {
               </div>
             ))}
         </div>
-        <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Buscador imagen" nasaId={nasaId} objetoInformacion={null}/>
+        <VisualizarImagen
+          urlImagenMostrada={urlImagenMostrada}
+          setUrlImagenMostrada={setUrlImagenMostrada}
+          titulo="Buscador imagen"
+          nasaId={nasaId}
+          objetoInformacion={null}
+        />
       </main>
     );
   }

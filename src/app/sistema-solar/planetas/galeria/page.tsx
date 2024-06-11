@@ -70,76 +70,82 @@ const Galeria = () => {
 
   return (
     <div>
-      {loading ? (
-        <div className="flex items-center justify-center bg-white z-50">
-          <Cargando />
+      <div className="flex flex-col md:flex-row my-8">
+        {/* Lista de Planetas en pantallas grandes */}
+        <div className="hidden md:block w-1/4 p-4">
+          <h2 className="font-bold text-xl mb-4">Planetas</h2>
+          <ul className="space-y-2">
+            {loading
+              ? Array.from({ length: 8 }).map((_, index) => (
+                  <li key={index} className="animate-pulse">
+                    <div className="h-10 bg-gray-200 rounded"></div>
+                  </li>
+                ))
+              : planets.map((planet) => (
+                  <li
+                    key={planet._id}
+                    className={`cursor-pointer hover:bg-gray-100 rounded p-2 ${selectedPlanet?.nombre == planet.nombre ? "bg-gray-100" : ""}`}
+                    onClick={() => handlePlanetClick(planet)}
+                  >
+                    {planet.nombre}
+                  </li>
+                ))}
+          </ul>
         </div>
-      ) : (
-        <div className="flex flex-col md:flex-row my-8">
-          {/* Lista de Planetas en pantallas grandes */}
-          <div className="hidden md:block w-1/4 p-4">
-            <h2 className="font-bold text-xl mb-4">Planetas</h2>
-            <ul className="space-y-2">
-              {planets.map((planet) => (
-                <li
-                  key={planet._id}
-                  className={`cursor-pointer hover:bg-gray-100 rounded p-2 ${selectedPlanet?.nombre == planet.nombre ? 'bg-gray-100' : ''}`}
-                  onClick={() => handlePlanetClick(planet)}
-                >
-                  {planet.nombre}
-                </li>
-              ))}
-            </ul>
-          </div>
 
-          {/* Botón y Lista de Planetas en pantallas pequeñas */}
-          <div
-            ref={planetListRef}
-            className="block md:hidden w-full md:w-1/4 p-4 z-10 relative"
+        {/* Botón y Lista de Planetas en pantallas pequeñas */}
+        <div
+          ref={planetListRef}
+          className="block md:hidden w-full md:w-1/4 p-4 z-10 relative"
+        >
+          <button
+            onClick={() => setShowPlanetList(!showPlanetList)}
+            className={`block md:hidden w-full bg-gray-200 text-left py-2 px-4 rounded-md focus:outline-none hover:ring hover:border-blue-300 ${
+              showPlanetList ? "mb-2" : ""
+            }`}
           >
-            <button
-              onClick={() => setShowPlanetList(!showPlanetList)}
-              className={`block md:hidden w-full bg-gray-200 text-left py-2 px-4 rounded-md focus:outline-none hover:ring hover:border-blue-300 ${
-                showPlanetList ? "mb-2" : ""
+            Selecciona un planeta
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`h-5 w-5 float-right transition-transform ${
+                showPlanetList ? "-rotate-180" : ""
               }`}
+              viewBox="0 0 20 20"
+              fill="currentColor"
             >
-              Selecciona un planeta
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className={`h-5 w-5 float-right transition-transform ${
-                  showPlanetList ? "-rotate-180" : ""
-                }`}
-                viewBox="0 0 20 20"
-                fill="currentColor"
+              <path
+                fillRule="evenodd"
+                d="M3.292 6.293a1 1 0 0 1 1.414-1.414L10 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414l-6 6a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 0-1.414z"
+              />
+            </svg>
+          </button>
+          <ul
+            className={`absolute left-0 mt-2 w-full bg-white shadow-md ${
+              showPlanetList ? "block" : "hidden"
+            } md:hidden`}
+          >
+            {planets.map((planet) => (
+              <li
+                key={planet._id}
+                className={`cursor-pointer hover:bg-gray-100 rounded p-2`}
+                onClick={() => handlePlanetClick(planet)}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M3.292 6.293a1 1 0 0 1 1.414-1.414L10 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414l-6 6a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 0-1.414z"
-                />
-              </svg>
-            </button>
-            <ul
-              className={`absolute left-0 mt-2 w-full bg-white shadow-md ${
-                showPlanetList ? "block" : "hidden"
-              } md:hidden`}
-            >
-              {planets.map((planet) => (
-                <li
-                  key={planet._id}
-                  className={`cursor-pointer hover:bg-gray-100 rounded p-2`}
-                  onClick={() => handlePlanetClick(planet)}
-                >
-                  {planet.nombre}
-                </li>
-              ))}
-            </ul>
-          </div>
+                {planet.nombre}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          {/* Galería de Imágenes */}
-          <div className="w-full md:w-3/4 p-4">
-            <h2 className="font-bold text-xl mb-4 text-center md:text-left">
-              Galería de { selectedPlanet?.nombre}
-            </h2>
+        {/* Galería de Imágenes */}
+        <div className="w-full md:w-3/4 p-4">
+          <h2 className="font-bold text-xl mb-4 text-center md:text-left">
+            Galería de {selectedPlanet?.nombre}
+          </h2>
+          {loading ? (
+            <div className="flex items-center justify-center h-full">
+              <Cargando />
+            </div>
+          ) : (
             <div
               className={`grid gap-4 ${selectedPlanet ? "md:grid-cols-3" : ""}`}
             >
@@ -150,13 +156,15 @@ const Galeria = () => {
                       <div
                         key={index}
                         className={`group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg hover:cursor-pointer md:h-60`}
-                        onClick={()=>{setUrlImagenMostrada(imagen)}}
+                        onClick={() => {
+                          setUrlImagenMostrada(imagen);
+                        }}
                       >
                         <Image
                           src={imagen}
                           loading="lazy"
-                          alt={`Foto ${index + 1} del planeta ${planetaNombre}`}
-                          title={`Foto ${index + 1} del planeta ${planetaNombre}`}
+                          alt={`Foto ${index + 1} del planeta ${selectedPlanet.nombre}`}
+                          title={`Foto ${index + 1} del planeta ${selectedPlanet.nombre}`}
                           width={300}
                           height={200}
                           className="inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
@@ -170,10 +178,16 @@ const Galeria = () => {
                 </p>
               )}
             </div>
-          </div>
+          )}
         </div>
-      )}
-      <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo="Imagen Galería" nasaId="" objetoInformacion={null}></VisualizarImagen>
+      </div>
+      <VisualizarImagen
+        urlImagenMostrada={urlImagenMostrada}
+        setUrlImagenMostrada={setUrlImagenMostrada}
+        titulo="Imagen Galería"
+        nasaId=""
+        objetoInformacion={null}
+      />
     </div>
   );
 };
