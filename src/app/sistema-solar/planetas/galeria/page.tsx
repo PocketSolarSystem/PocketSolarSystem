@@ -187,6 +187,7 @@ const Galeria = () => {
         titulo="Imagen Galería"
         nasaId=""
         objetoInformacion={null}
+        objetoRover={null}
       />
     </div>
   );
