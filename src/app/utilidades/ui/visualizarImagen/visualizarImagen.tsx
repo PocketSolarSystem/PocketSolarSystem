@@ -11,13 +11,15 @@ export function VisualizarImagen({
   setUrlImagenMostrada,
   titulo,
   nasaId,
-  objetoInformacion
+  objetoInformacion,
+  objetoRover
 }: {
   urlImagenMostrada: string;
   setUrlImagenMostrada: Function;
   titulo: string;
   nasaId:string;
   objetoInformacion:any;
+  objetoRover:any;
 }) {
   const [archivo, setArchivos] = useState<any | null>(null);
 
@@ -46,7 +48,7 @@ export function VisualizarImagen({
   }, [nasaId]);
 
   function mostrarHtml(){
-    if (nasaId && !objetoInformacion) {
+    if (nasaId && !objetoInformacion && !objetoRover) {
       return(
         <>
           {archivo &&
@@ -75,7 +77,37 @@ export function VisualizarImagen({
             }
         </>
       );
-    }else if(!nasaId && objetoInformacion){
+    }else if (!nasaId && !objetoInformacion && objetoRover){
+      return(
+        <>
+          <div key={objetoRover.id} id="divImagenApi" className="p-6 bg-white rounded-lg relative m-4 md:max-h-screen max-w-96 md:max-w-screen-lg lg:max-w-screen-xl overflow-y-auto">
+              <h1 className="text-4xl text-center mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
+                  Información detallada del rover {objetoRover.name}
+              </h1>
+              <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} />
+              <div className="md:grid md:grid-cols-2 items-start">
+                  <Image  
+                      key={objetoRover.id}
+                      src={`/rovers/${objetoRover.name}.jpg`}
+                      width={500}
+                      height={500}
+                      alt="detailed photo"
+                      className='md:block mr-10 border-solid border-black border-2 rounded-lg'
+                  />
+                  <div className="col-start-2">
+                      <h1 className="mt-2 mb-5"><strong>Nombre del rover: </strong>{objetoRover.name}</h1>
+                      <p className="mb-5"><strong>Fecha de despegue: </strong>{objetoRover.launch_date}</p>
+                      <p className="mb-5"><strong>Fecha de aterrizaje: </strong>{objetoRover.landing_date}</p>
+                      <p className="mb-5"><strong>Estado actual del rover: </strong>{objetoRover.status}</p>
+                      <p className="mb-5"><strong>Último día marciano en el que ha enviado imágenes: </strong>{objetoRover.max_sol}</p>
+                      <p className="mb-5"><strong>Último fecha terrestre en el que ha enviado imágenes: </strong>{objetoRover.max_date}</p>
+                      <p className="mb-5"><strong>Fotos totales enviadas: </strong>{objetoRover.total_photos}</p>
+                  </div>
+              </div>
+          </div>        
+        </>
+      );
+    }else if (!nasaId && objetoInformacion && !objetoRover){
       return(
         <>
           <div key={objetoInformacion.id} id="divImagenApi" className="p-6 bg-white rounded-lg relative m-4 md:max-h-screen max-w-96 md:max-w-screen-lg lg:max-w-screen-xl overflow-y-auto">

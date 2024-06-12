@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { fetchFotosMarteFecha, fetchInformacionRover,fetchFotosMarteSol } from "../utilidades/lib/apidata";
 import { ImagenPreview } from "../utilidades/ui/buscadorNasa/ImagenPreview";
 import { VisualizarImagen } from "../utilidades/ui/visualizarImagen/visualizarImagen";
+import Link from "next/link";
 
 import SkeletonMarsGallery from "../utilidades/ui/esqueletoFotosMarte/SkeletonMarsGallery";
 
 export default function FotosDeMarte() {
-  const [cargando, setCargando] = useState(true);
+  const [cargando, setCargando] = useState(false);
   const [archivos, setArchivos] = useState<any | null>(null);
   const [urlImagenMostrada, setUrlImagenMostrada] = useState("");
   const [fechaSeleccionada, setFechaSeleccionada] = useState("");
@@ -155,15 +156,20 @@ export default function FotosDeMarte() {
         </div>
         <div className="text-xl text-center mt-10">
           Selecciona un rover:<br className="md:hidden"/>
-            <span className="md:ml-5 md:mr-5">
-              <label htmlFor="optionPerseverance" className="mr-1">Perseverance</label>
-              <input type="radio" name="nombrePerseverance" value="Perseverance" id="optionPerseverance" onChange={(evento)=>{busquedaRover(evento)}} checked={nombreRover === "Perseverance"}/> 
+            <span className="mb-7 mt-7 hover:cursor-pointer md:mt-0 md:mb-0 md:ml-5 md:mr-5">
+              <label htmlFor="optionPerseverance" className="mr-1 hover:cursor-pointer">Perseverance</label>
+              <input type="radio" name="nombrePerseverance" value="Perseverance" id="optionPerseverance" className="hover:cursor-pointer" onChange={(evento)=>{busquedaRover(evento)}} checked={nombreRover === "Perseverance"}/> 
             </span><br className="md:hidden"/>
             <span className="md:mr-5">
-              <label htmlFor="optionCuriosity" className="mr-1">Curiosity</label> 
-              <input type="radio" name="nombreRover" value="Curiosity" id="optionCuriosity" onChange={(evento)=>{busquedaRover(evento)}} checked={nombreRover === "Curiosity"}/> 
+              <label htmlFor="optionCuriosity" className="mr-1 hover:cursor-pointer">Curiosity</label> 
+              <input type="radio" name="nombreRover" value="Curiosity" id="optionCuriosity" className="hover:cursor-pointer" onChange={(evento)=>{busquedaRover(evento)}} checked={nombreRover === "Curiosity"}/> 
             </span><br className="md:hidden"/>          
         </div>
+        <p className="mt-5 bg-black text-white hover:bg-slate-700 p-1">
+          <Link href="/fotosMarte/infoRovers">
+            Descubre más acerca de los rovers
+          </Link>
+        </p>
         <p className="mt-20">{condicionalCadena()}</p>
 
         <div className="md:grid md:grid-cols-5 md:gap-10 items-center mt-6">
@@ -181,6 +187,7 @@ export default function FotosDeMarte() {
                   key={"img-" + archivo.id}
                   imagenUrl={archivo.img_src}
                   nasaId={archivo.id}
+                  titulo=""
                 />
               </div>
             ))}
@@ -191,6 +198,7 @@ export default function FotosDeMarte() {
           titulo="Mars photo"
           nasaId=""
           objetoInformacion={objetoInformacion}
+          objetoRover={null}
         />
       </main>
     );

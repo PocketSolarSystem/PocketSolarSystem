@@ -113,6 +113,7 @@ export default function Buscador() {
                 <ImagenPreview
                   nasaId={preview.data[0].nasa_id}
                   imagenUrl={preview.links[0].href}
+                  titulo=""
                 />
               </div>
             ))}
@@ -123,6 +124,7 @@ export default function Buscador() {
           titulo="Buscador imagen"
           nasaId={nasaId}
           objetoInformacion={null}
+          objetoRover={null}
         />
       </main>
     );

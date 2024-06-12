@@ -101,3 +101,16 @@ export async function fetchInformacionRover(roverNombre:string){
   }
 }
 
+export async function fetchRovers(){
+  try{
+    const data = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/?api_key=${apiKey}`);
+    const dataJSON = data.json();
+    return dataJSON;
+
+  }catch (error) {
+
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch revenue data.');
+  }
+}
+
