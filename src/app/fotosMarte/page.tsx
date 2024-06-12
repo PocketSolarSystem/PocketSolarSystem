@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchFotosMarteFecha } from "../utilidades/lib/apidata";
-import { fetchFotosMarteSol } from "../utilidades/lib/apidata";
+import { fetchFotosMarteFecha, fetchInformacionRover,fetchFotosMarteSol } from "../utilidades/lib/apidata";
 import { ImagenPreview } from "../utilidades/ui/buscadorNasa/ImagenPreview";
 import { VisualizarImagen } from "../utilidades/ui/visualizarImagen/visualizarImagen";
 
@@ -12,64 +11,80 @@ export default function FotosDeMarte() {
   const [cargando, setCargando] = useState(true);
   const [archivos, setArchivos] = useState<any | null>(null);
   const [urlImagenMostrada, setUrlImagenMostrada] = useState("");
-  const [fechaSeleccionada, setFechaSeleccionada] = useState("2024-01-08");
-  const [fechaBuscada, setFechaBuscada] = useState("2024-01-08");
+  const [fechaSeleccionada, setFechaSeleccionada] = useState("");
+  const [fechaBuscada, setFechaBuscada] = useState("");
   const [sol, setSol] = useState("");
   const [solBuscado, setSolBuscado] = useState("");
   const [objetoInformacion, setObjetoInformacion] = useState<any | null>(null);
+  const [nombreRover, setNombreRover] = useState("Perseverance");
 
   useEffect(() => {
     const getItems = async () => {
       setCargando(true);
-      const objetoJSON = await fetchFotosMarteFecha(fechaSeleccionada);
-      const items = objetoJSON.photos;
-      setCargando(false);
+      const objetoJSONRover = await fetchInformacionRover(nombreRover);
+      setFechaBuscada(objetoJSONRover.rover.max_date);
+      setFechaSeleccionada(objetoJSONRover.rover.max_date);
+      const objetoJSONFotos = await fetchFotosMarteFecha(objetoJSONRover.rover.max_date, nombreRover);
+      const items = objetoJSONFotos.photos;
       setArchivos(items);
+      setCargando(false);
     };
     getItems();
   }, []);
 
   async function buscarPorFechaTerrestre() {
     setCargando(true);
-    const objetoJSON = await fetchFotosMarteFecha(fechaSeleccionada);
+    const objetoJSON = await fetchFotosMarteFecha(fechaSeleccionada, nombreRover);
     const items = objetoJSON.photos;
     setFechaBuscada(fechaSeleccionada);
-    setSol("");
+    setSolBuscado("");
     setArchivos(items);
     setCargando(false);
   }
 
   async function buscarPorSol() {
     setCargando(true);
-    setSolBuscado(sol);
-    const objetoJSON = await fetchFotosMarteSol(sol);
+    const objetoJSON = await fetchFotosMarteSol(sol, nombreRover);
     const items = objetoJSON.photos;
+    setSolBuscado(sol);
     setFechaBuscada("");
     setArchivos(items);
     setCargando(false);
   }
 
+  async function busquedaRover(evento:any) {
+    setCargando(true);
+    setNombreRover(evento.target.value);
+    const objetoJSONRover = await fetchInformacionRover(evento.target.value);
+    setFechaBuscada(objetoJSONRover.rover.max_date);
+    setFechaSeleccionada(objetoJSONRover.rover.max_date);
+    const objetoJSONFotos = await fetchFotosMarteFecha(objetoJSONRover.rover.max_date, evento.target.value);
+    const items = objetoJSONFotos.photos;
+    setArchivos(items);
+    setCargando(false);
+  }
+
   function condicionalCadena() {
-    if (archivos.length > 0 && fechaBuscada !== "" && sol === "") {
+    if (archivos.length > 0 && fechaBuscada !== "" && solBuscado === "") {
       return (
         <>
-          Mostrando imágenes enviadas por el Curiosity en la siguiente fecha
+          Mostrando imágenes enviadas por el rover {nombreRover} en la siguiente fecha
           terrestre: {fechaBuscada}
         </>
       );
-    } else if (archivos.length == 0 && fechaBuscada !== "") {
+    } else if (archivos.length === 0 && fechaBuscada !== "") {
       return (
         <>
-          No se ha encontrado imágenes para la siguiente fecha terrestre:{" "}
+          No se han encontrado imágenes para la siguiente fecha terrestre:{" "}
           {fechaBuscada}
         </>
       );
-    } else if (archivos.length > 0 && fechaBuscada === "" && sol != "") {
+    } else if (archivos.length > 0 && fechaBuscada === "" && solBuscado != "") {
       return <>Mostrando imágenes del día marciano: {solBuscado}</>;
-    } else if (archivos.length > 0 && fechaBuscada === "" && sol != "") {
+    } else if (archivos.length === 0 && fechaBuscada === "" && solBuscado != "") {
       return (
         <>
-          No se ha encontrado imágenes imágenes del día marciano: {solBuscado}
+          No se han encontrado imágenes imágenes del día marciano: {solBuscado}
         </>
       );
     }
@@ -122,7 +137,7 @@ export default function FotosDeMarte() {
           >
             <span className="mr-5">Buscar por días marcianos:</span>
             <input
-              type="text"
+              type="number"
               placeholder="1000"
               className="border-2 border-black rounded-md p-1 mr-5 w-40 md:w-auto"
               value={sol}
@@ -137,8 +152,19 @@ export default function FotosDeMarte() {
               Buscar
             </button>
           </form>
-          <p className="mt-20">{condicionalCadena()}</p>
         </div>
+        <div className="text-xl text-center mt-10">
+          Selecciona un rover:<br className="md:hidden"/>
+            <span className="md:ml-5 md:mr-5">
+              <label htmlFor="optionPerseverance" className="mr-1">Perseverance</label>
+              <input type="radio" name="nombrePerseverance" value="Perseverance" id="optionPerseverance" onChange={(evento)=>{busquedaRover(evento)}} checked={nombreRover === "Perseverance"}/> 
+            </span><br className="md:hidden"/>
+            <span className="md:mr-5">
+              <label htmlFor="optionCuriosity" className="mr-1">Curiosity</label> 
+              <input type="radio" name="nombreRover" value="Curiosity" id="optionCuriosity" onChange={(evento)=>{busquedaRover(evento)}} checked={nombreRover === "Curiosity"}/> 
+            </span><br className="md:hidden"/>          
+        </div>
+        <p className="mt-20">{condicionalCadena()}</p>
 
         <div className="md:grid md:grid-cols-5 md:gap-10 items-center mt-6">
           {archivos &&
