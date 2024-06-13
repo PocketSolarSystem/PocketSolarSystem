@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Login from "@/components/Login";
-
+// pure
 export default function Protected() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
