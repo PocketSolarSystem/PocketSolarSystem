@@ -31,7 +31,7 @@ export default function FotosDeMarte() {
       setCargando(false);
     };
     getItems();
-  }, []);
+  }, [nombreRover]);
 
   async function buscarPorFechaTerrestre() {
     setCargando(true);
