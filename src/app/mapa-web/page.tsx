@@ -35,6 +35,15 @@ const MapaWeb = () => {
                       </span>
                     </Link>
                   </li>
+                  <ul className="pl-4">
+                    <li className="mb-1">
+                      <Link href="/sistema-solar/planetas/galeria">
+                        <span className="text-gray-400 cursor-pointer hover:underline">
+                          Galería
+                        </span>
+                      </Link>
+                    </li>
+                  </ul>
                   <li className="mb-1">
                     <Link href="/sistema-solar/planetas/pluton-y-planetas-enanos">
                       <span className="text-blue-500 cursor-pointer hover:underline">
