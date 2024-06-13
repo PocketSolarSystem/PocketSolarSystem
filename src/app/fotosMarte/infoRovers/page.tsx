@@ -35,12 +35,12 @@ export default function InfoRovers(){
                     {rovers &&
                     rovers.map((rover: any) => (
                         <div key={rover.id} className="text-center hover:cursor-pointer mb-5 md:mb-0" onClick={()=>{
-                            setUrlImagenMostrada(`/apollo-inicio.jpg`);
+                            setUrlImagenMostrada(`/rovers/${rover.name}.jpg`);
                             setObjetoRover(rover);
                             }}>
                             <ImagenPreview
                                 key={"img-" + rover.id}
-                                imagenUrl={`/apollo-inicio.jpg`}
+                                imagenUrl={`/rovers/${rover.name}.jpg`}
                                 nasaId={rover.id}
                                 titulo={rover.name}
                             />
