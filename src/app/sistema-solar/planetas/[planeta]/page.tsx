@@ -29,8 +29,12 @@ async function fetchPlanetaData(nombrePlaneta: string): Promise<PlanetaData> {
 function Planeta() {
   const [planetaData, setPlanetaData] = useState<PlanetaData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [urlImagenMostrada, setUrlImagenMostrada]  = useState("");
+  const [urlImagenMostrada, setUrlImagenMostrada] = useState("");
   const pathname = usePathname();
+  // tengo que meter esto ahora por que no se que error da al subirlo al git
+  if (!pathname) {
+    return null;
+  }
   const partesRuta = pathname.split("/");
   const planetaNombre = decodeURIComponent(partesRuta[3]);
   const styling = {
@@ -66,37 +70,43 @@ function Planeta() {
         <p className="block text-3xl bg-white mb-2 p-2 text-center">
           {decodeURIComponent(planetaNombre)}
         </p>
-        <div className="flex flex-col items-center justify-center text-center ml-2 mb-12 bg-cover rounded-lg" style={styling}>
+        <div
+          className="flex flex-col items-center justify-center text-center ml-2 mb-12 bg-cover rounded-lg"
+          style={styling}
+        >
           <div className="lg:h-80 lg:w-80 h-40 w-40">
-              <Planeta3d
-                textura={`/texturas/${planetaNombre}-textura.jpg`}
-              />
+            <Planeta3d textura={`/texturas/${planetaNombre}-textura.jpg`} />
           </div>
         </div>
-        <p className="mt-8 text-center">
-          {planetaData.descripcion}
-        </p>
+        <p className="mt-8 text-center">{planetaData.descripcion}</p>
         <h1 className="font-semibold text-xl text-4x1 mb-8 mt-12 text-center md:text-left md:ml-8">
-              Explora más planetas del Sistema Solar
+          Explora más planetas del Sistema Solar
         </h1>
         <CarouselPlanetas planetas={planetas} />
-          <div className="my-8 text-justify">
-            <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8">
-              Visión General Planeta {planetaNombre}
-            </h1>
-            <p>{planetaData.overview}</p>
-            <GaleriaImagenes
-              planetaNombre={planetaNombre}
-              imagenes={planetaData.imagenes}
-              setUrlImagenMostrada={setUrlImagenMostrada}
-            />
-            <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8">
-              Cultura Pop
-            </h1>
-            <p>{planetaData.cultura_pop}</p>
-          </div>
+        <div className="my-8 text-justify">
+          <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8">
+            Visión General Planeta {planetaNombre}
+          </h1>
+          <p>{planetaData.overview}</p>
+          <GaleriaImagenes
+            planetaNombre={planetaNombre}
+            imagenes={planetaData.imagenes}
+            setUrlImagenMostrada={setUrlImagenMostrada}
+          />
+          <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8">
+            Cultura Pop
+          </h1>
+          <p>{planetaData.cultura_pop}</p>
+        </div>
       </div>
-      <VisualizarImagen urlImagenMostrada={urlImagenMostrada} setUrlImagenMostrada={setUrlImagenMostrada} titulo={planetaNombre} nasaId="" objetoInformacion={null} objetoRover={null}/>
+      <VisualizarImagen
+        urlImagenMostrada={urlImagenMostrada}
+        setUrlImagenMostrada={setUrlImagenMostrada}
+        titulo={planetaNombre}
+        nasaId=""
+        objetoInformacion={null}
+        objetoRover={null}
+      />
     </main>
   );
 }
