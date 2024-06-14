@@ -17,8 +17,8 @@ export function InicioEnlace({
   hrefEnlace,
   width = 970,
   height = 537.6,
-  alt = "Landing page Saturn image",
-  title = "",
+  alt = "Default Imagen",
+  title = "Default Imagen",
 }: InicioEnlaceProps) {
   return (
     <div className="mt-8 mb-8 md:mt-16 relative md:mb-12">
