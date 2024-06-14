@@ -98,7 +98,7 @@ const Navbar = () => {
           >
             <Link
               href={link.href}
-              className={`${pathname === link.href || pathname.split("/")[1] === link.href ? "scale-105 text-white" : ""}`}
+              className={`${pathname === link.href || pathname?.split("/")[1] === link.href ? "scale-105 text-white" : ""}`}
             >
               {link.linkName}
             </Link>

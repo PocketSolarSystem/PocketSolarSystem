@@ -203,7 +203,7 @@ const NavbarSolarSystem = () => {
                   <div
                     id={`planetaCambiarDropdown-${link.id}`}
                     onClick={() => toggleDropdown(link.id)}
-                    className={`hover:scale-105 ${pathname.split("/")[1] === link.href.split("/")[1] ? "scale-105 text-white" : ""}`}
+                    className={`hover:scale-105 ${pathname?.split("/")[1] === link.href.split("/")[1] ? "scale-105 text-white" : ""}`}
                   >
                     {link.linkName}
                     <svg
@@ -248,7 +248,7 @@ const NavbarSolarSystem = () => {
               ) : (
                 <Link
                   href={link.href}
-                  className={`${pathname === link.href || pathname.split("/")[1] === link.href ? "scale-105 text-white" : ""}`}
+                  className={`${pathname === link.href || pathname?.split("/")[1] === link.href ? "scale-105 text-white" : ""}`}
                   onClick={handleLinkClick}
                 >
                   {link.linkName}
