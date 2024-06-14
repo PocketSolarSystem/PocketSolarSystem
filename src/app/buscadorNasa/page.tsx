@@ -53,6 +53,30 @@ export default function Buscador() {
     setNasaId(nasaId);
   }
 
+  function validaArchivo(preview:any){
+    if (preview.links && preview.data) {
+      return(
+        <div
+          key={preview.data[0].nasa_id}
+          className="mt-5 cursor-pointer"
+          onClick={() => {
+            seleccionarImagen(
+              preview.links[0].href,
+              preview.data[0].nasa_id
+            );
+          }}
+        >
+          <ImagenPreview
+            nasaId={preview.data[0].nasa_id}
+            imagenUrl={preview.links[0].href}
+            titulo=""
+            booleanVideo={preview.data[0].media_type === 'video' ? true : false}
+          />
+        </div>
+      ); 
+    }
+  }
+
   if (cargando) {
     return <SkeletonNasaFileSearch />;
   } else {
@@ -100,23 +124,7 @@ export default function Buscador() {
         <div className="md:grid md:grid-cols-4 md:gap-10 items-center m-5 mt-6">
           {fotos &&
             fotos.map((preview: any) => (
-              <div
-                key={preview.data[0].nasa_id}
-                className="mt-5 cursor-pointer"
-                onClick={() => {
-                  seleccionarImagen(
-                    preview.links[0].href,
-                    preview.data[0].nasa_id
-                  );
-                }}
-              >
-                <ImagenPreview
-                  nasaId={preview.data[0].nasa_id}
-                  imagenUrl={preview.links[0].href}
-                  titulo=""
-                  booleanVideo={preview.data[0].media_type === 'video' ? true : false}
-                />
-              </div>
+              validaArchivo(preview)
             ))}
         </div>
         <VisualizarImagen
