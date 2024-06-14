@@ -1,7 +1,7 @@
 'use client';
 
 import { fetchRovers } from "@/app/utilidades/lib/apidata";
-import { useActionState, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SkeletonNasaFileSearch from "@/app/utilidades/ui/esqueletoArchivosNasa/SkeletonNasaFileSearch";
 import { ImagenPreview } from "@/app/utilidades/ui/buscadorNasa/ImagenPreview";
 import { VisualizarImagen } from "@/app/utilidades/ui/visualizarImagen/visualizarImagen";
@@ -39,7 +39,7 @@ export default function InfoRovers(){
                             setObjetoRover(rover);
                             }}>
                             <ImagenPreview
-                                imagenUrl={'/rovers/Spirit.jpg'}
+                                imagenUrl={'/rovers/' + rover.name + '.jpg'}
                                 nasaId={rover.id}
                                 titulo={rover.name}
                             />
