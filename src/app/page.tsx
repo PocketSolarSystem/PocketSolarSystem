@@ -22,6 +22,8 @@ export default function Home() {
       <InicioEnlace
         srcImagen="/saturno-inicio.jpg"
         textoEnlace="Descubre la foto del día"
+        alt="Descubre la foto del día"
+        title="Descubre la foto del día"
         hrefEnlace="fotodeldia"
       />
 
@@ -33,6 +35,8 @@ export default function Home() {
       <InicioEnlace
         srcImagen="/apollo-inicio.jpg"
         textoEnlace="Explora el sistema solar en 3D"
+        alt="Explora el sistema solar en 3D"
+        title="Explora el sistema solar en 3D"
         hrefEnlace="sistema-solar"
       />
 
@@ -45,6 +49,8 @@ export default function Home() {
       <InicioEnlace
         srcImagen="/launch-inicio.jpg"
         textoEnlace="Navega a través de los archivos de la NASA"
+        alt="Navega a través de los archivos de la NASA"
+        title="Navega a través de los archivos de la NASA"
         hrefEnlace="buscadorNasa"
       />
 
@@ -56,6 +62,8 @@ export default function Home() {
       <InicioEnlace
         srcImagen="/curiosity-marte-inicio.jpg"
         textoEnlace="Visualiza imágenes enviadas desde Marte"
+        alt="Visualiza imágenes enviadas desde Marte"
+        title="Visualiza imágenes enviadas desde Marte"
         hrefEnlace="fotosMarte"
       />
 

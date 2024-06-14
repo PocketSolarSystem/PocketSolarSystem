@@ -79,7 +79,8 @@ const Navbar = () => {
           >
             <Image
               src="/logo-pocket-solar-system.png"
-              alt="Logo of the application"
+              alt="Logo de la aplicacion"
+              title="Logo de la aplicacion"
               width={70}
               height={70}
               className="hidden md:block mr-2"

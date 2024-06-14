@@ -26,7 +26,13 @@ const Card: React.FC<CardProps> = ({ href, imageSrc, text }) => {
           cursor: "pointer",
         }}
       >
-        <Image src={imageSrc} alt={text} layout="fill" objectFit="cover" />
+        <Image
+          src={imageSrc}
+          alt={text}
+          title={text}
+          layout="fill"
+          objectFit="cover"
+        />
         <div
           style={{
             position: "absolute",

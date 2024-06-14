@@ -42,6 +42,7 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
               <Image
                 src={planeta.imagen}
                 alt={planeta.nombre}
+                title={planeta.nombre}
                 width={planeta.nombre === "Saturno" ? 512 : 256}
                 height={planeta.nombre === "Saturno" ? 512 : 256}
                 className="rounded-t-lg"

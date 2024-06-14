@@ -61,7 +61,7 @@ const AcercaDeLosPlanetas = () => {
             width={900}
             height={400}
             alt="About the Planets page Solar System image"
-            title="Solar System"
+            title="About the Planets page Solar System image"
           />
           <PlanetsOverview />
           <h2 className="text-3xl font-bold my-8 text-center">

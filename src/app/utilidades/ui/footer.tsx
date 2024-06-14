@@ -81,7 +81,8 @@ const Footer = () => {
             >
               <Image
                 src="/logo-pocket-solar-system.png"
-                alt="Logo of the application"
+                alt="Logo de la aplicacion"
+                title="Logo de la aplicacion"
                 width={100}
                 height={100}
                 className="sm:hidden mb-6"
