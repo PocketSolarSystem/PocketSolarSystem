@@ -43,23 +43,17 @@ export function VisualizarImagen({
       const getItems = async() =>{
         const objetoJSON = await fetchBuscadorNasaId(nasaId);
         const item = objetoJSON.collection.items;
+        if (item[0]?.data[0].media_type === 'video') {
+          const response = await fetch(item[0].href);
+          const data = await response.json();
+          setlistaVideos(data);
+        }
         setArchivos(item[0]);
       }
       getItems();
     }
   }, [nasaId]);
   
-  useEffect(() => {
-    if (archivo?.data[0].media_type === 'video') {
-      const getVideo = async() =>{
-        const response = await fetch(archivo.href);
-        const data = await response.json();
-        setlistaVideos(data);
-      }
-      getVideo(); 
-    }
-  }, [archivo]);
-
   function compruebaArchivo(archivo:any) {
     if (archivo.data[0].media_type === 'image'){
       return(
@@ -73,18 +67,15 @@ export function VisualizarImagen({
         />
       );
     }else if(archivo.data[0].media_type === 'video' && listaVideos){
-      return(
-        <video width="600" height="520" autoPlay controls className='md:block mr-10 border-solid border-black border-2 rounded-lg'>
-          <source src={listaVideos[0]} type="video/mp4"/>
-          <track
-            src={archivo.links[1].href}
-            kind={archivo.links[1].rel}
-            srcLang="en"
-            label="English"
-          />
+      const regex = /~orig\.mp4$/;
+
+      const videosFiltrados = listaVideos.filter((urlVideo:string) => regex.test(urlVideo)).map((urlVideo:string) => (
+        <video key={urlVideo} width="600" height="520" autoPlay controls className='md:block mr-10 border-solid border-black border-2 rounded-lg'>
+          <source src={urlVideo} type="video/mp4"/>
           Your browser does not support the video tag.
         </video>
-      );
+      ));
+      return videosFiltrados[0];
     }
   }
 
