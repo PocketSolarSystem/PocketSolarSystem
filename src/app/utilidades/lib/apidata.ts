@@ -21,7 +21,7 @@ export async function fetchBuscadorNasa(){
 
   try {
 
-    const data = await fetch(`https://images-api.nasa.gov/search?media_type=image`, {} );
+    const data = await fetch(`https://images-api.nasa.gov/search?media_type=video`, {} );
     const dataJSON = data.json();
     return dataJSON;
 
@@ -49,7 +49,7 @@ export async function fetchBuscadorNasaId(nasaId:string){
 export async function fetchBuscadorNasaPorPalabra(palabra:string){
   try {
     
-    const data = await fetch(`https://images-api.nasa.gov/search?media_type=image&q=${palabra}`, {} );
+    const data = await fetch(`https://images-api.nasa.gov/search?q=${palabra}`, {} );
     const dataJSON = data.json();
     return dataJSON;
 

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { fetchBuscadorNasaId } from "@/app/utilidades/lib/apidata";
 import CerrarImagen from "./cerrarImagen";
+import { arch } from 'process';
 
 export function VisualizarImagen({
   urlImagenMostrada,
@@ -22,6 +23,7 @@ export function VisualizarImagen({
   objetoRover:any;
 }) {
   const [archivo, setArchivos] = useState<any | null>(null);
+  const [listaVideos, setlistaVideos] = useState<any | null>(null);
 
   useEffect(() => {
     if (urlImagenMostrada !== "") {
@@ -46,9 +48,48 @@ export function VisualizarImagen({
       getItems();
     }
   }, [nasaId]);
+  
+  useEffect(() => {
+    if (archivo?.data[0].media_type === 'video') {
+      const getVideo = async() =>{
+        const response = await fetch(archivo.href);
+        const data = await response.json();
+        setlistaVideos(data);
+      }
+      getVideo(); 
+    }
+  }, [archivo]);
+
+  function compruebaArchivo(archivo:any) {
+    if (archivo.data[0].media_type === 'image'){
+      return(
+        <Image  
+          key={archivo.data[0].nasa_id}
+          src={archivo.links[0].href}
+          width={500}
+          height={500}
+          alt="detailed photo"
+          className='md:block mr-10 border-solid border-black border-2 rounded-lg'
+        />
+      );
+    }else if(archivo.data[0].media_type === 'video' && listaVideos){
+      return(
+        <video width="600" height="520" autoPlay controls className='md:block mr-10 border-solid border-black border-2 rounded-lg'>
+          <source src={listaVideos[0]} type="video/mp4"/>
+          <track
+            src={archivo.links[1].href}
+            kind={archivo.links[1].rel}
+            srcLang="en"
+            label="English"
+          />
+          Your browser does not support the video tag.
+        </video>
+      );
+    }
+  }
 
   function mostrarHtml(){
-    if (nasaId && !objetoInformacion && !objetoRover) {
+    if (nasaId && archivo && !objetoInformacion && !objetoRover) {
       return(
         <>
           {archivo &&
@@ -58,20 +99,13 @@ export function VisualizarImagen({
                 </h1>
                 <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} />
                 <div className="md:grid md:grid-cols-2 items-start">
-                    <Image  
-                        key={archivo.data[0].nasa_id}
-                        src={archivo.links[0].href}
-                        width={500}
-                        height={500}
-                        alt="detailed photo"
-                        className='md:block mr-10 border-solid border-black border-2 rounded-lg'
-                    />
-                    <div className="col-start-2">
-                        <h1 className="mt-2 mb-5"><strong>Titulo:</strong> {archivo.data[0].title}</h1>
-                        <p className="mb-5"><strong>Descripción:</strong> {archivo.data[0].description}</p>
-                        <p className="mb-5"><strong>Fecha del archivo: </strong>{archivo.data[0].date_created.split('T')[0]}</p>
-                        <p className="mb-5"><strong>Centro: </strong>{archivo.data[0].center}</p>
-                    </div>
+                  {compruebaArchivo(archivo)}
+                  <div className="col-start-2">
+                      <h1 className="mt-2 mb-5"><strong>Titulo:</strong> {archivo.data[0].title}</h1>
+                      <p className="mb-5"><strong>Descripción:</strong> {archivo.data[0].description}</p>
+                      <p className="mb-5"><strong>Fecha del archivo: </strong>{archivo.data[0].date_created.split('T')[0]}</p>
+                      <p className="mb-5"><strong>Centro: </strong>{archivo.data[0].center}</p>
+                  </div>
                 </div>
             </div>        
             }

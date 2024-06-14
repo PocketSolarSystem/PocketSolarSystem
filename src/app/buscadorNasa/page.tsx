@@ -114,6 +114,7 @@ export default function Buscador() {
                   nasaId={preview.data[0].nasa_id}
                   imagenUrl={preview.links[0].href}
                   titulo=""
+                  booleanVideo={preview.data[0].media_type === 'video' ? true : false}
                 />
               </div>
             ))}
