@@ -39,7 +39,7 @@ export default function InfoRovers(){
                             setObjetoRover(rover);
                             }}>
                             <ImagenPreview
-                                imagenUrl={'/rovers/' + rover.name + '.jpg'}
+                                imagenUrl={'/rovers/Spirit.jpg'}
                                 nasaId={rover.id}
                                 titulo={rover.name}
                             />
