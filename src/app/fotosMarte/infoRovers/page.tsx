@@ -42,6 +42,7 @@ export default function InfoRovers(){
                                 imagenUrl={'/rovers/' + rover.name + '.jpg'}
                                 nasaId={rover.id}
                                 titulo={rover.name}
+                                booleanVideo={false}
                             />
                         </div>
                     ))}

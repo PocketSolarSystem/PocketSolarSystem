@@ -188,6 +188,7 @@ export default function FotosDeMarte() {
                   imagenUrl={archivo.img_src}
                   nasaId={archivo.id}
                   titulo=""
+                  booleanVideo={false}
                 />
               </div>
             ))}
