@@ -19,7 +19,7 @@ const Galeria = () => {
   const [loading, setLoading] = useState(true);
   const [urlImagenMostrada, setUrlImagenMostrada] = useState("");
   const searchParams = useSearchParams();
-  const planetaNombre = searchParams.get("planeta");
+  const planetaNombre = searchParams?.get("planeta");
   const planetListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
