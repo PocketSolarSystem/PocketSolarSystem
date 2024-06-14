@@ -68,7 +68,7 @@ export function VisualizarImagen({
     }else if(archivo.data[0].media_type === 'video' && listaVideos){
       const regex = /~orig\.mp4$/;
       const videosFiltrados = listaVideos.filter((urlVideo:string) => regex.test(urlVideo)).map((urlVideo:string) => (
-        <video key={archivo.data[0].nasa_id} id="video" width="600" height="520" autoPlay controls className='md:block mr-10 border-solid border-black border-2 rounded-lg'>
+        <video key={archivo.data[0].nasa_id} id="video" width="600" height="520" controls className='md:block mr-10 border-solid border-black border-2 rounded-lg'>
           <source src={urlVideo} type="video/mp4"/>
           Your browser does not support the video tag.
         </video>
