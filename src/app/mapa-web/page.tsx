@@ -67,6 +67,15 @@ const MapaWeb = () => {
                   </span>
                 </Link>
               </li>
+              <ul className="pl-4">
+                  <li className="mb-1">
+                    <Link href="/fotosMarte/infoRovers">
+                      <span className="text-blue-500 cursor-pointer hover:underline">
+                        infoRovers
+                      </span>
+                    </Link>
+                  </li>
+              </ul>
               <li className="mb-1">
                 <Link href="/buscadorNasa">
                   <span className="font-bold text-lg text-gray-800 cursor-pointer hover:underline">

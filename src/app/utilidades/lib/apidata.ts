@@ -46,10 +46,10 @@ export async function fetchBuscadorNasaId(nasaId:string){
   }
 }
 
-export async function fetchBuscadorNasaPorPalabra(palabra:string){
+export async function fetchBuscadorNasaPorPalabra(palabra:string, tipoContenido:string){
   try {
     
-    const data = await fetch(`https://images-api.nasa.gov/search?q=${palabra}`, {} );
+    const data = await fetch(`https://images-api.nasa.gov/search?${tipoContenido !== 'todos' ? 'media_type=' + tipoContenido + '&' : ''}q=${palabra}`, {} );
     const dataJSON = data.json();
     return dataJSON;
 

@@ -14,6 +14,7 @@ export default function Buscador() {
   const [cargando, setCargando] = useState(true);
   const [urlImagenMostrada, setUrlImagenMostrada] = useState("");
   const [nasaId, setNasaId] = useState("");
+  const [filtroArchivo, setFiltroArchivo] = useState("todos");
 
   const condicionalComponente = () => {
     if (textoBuscado && fotos.length > 0) {
@@ -42,7 +43,7 @@ export default function Buscador() {
     evento.preventDefault();
     setCargando(true);
     setTextoBuscado(buscar);
-    const objetoJSON = await fetchBuscadorNasaPorPalabra(buscar);
+    const objetoJSON = await fetchBuscadorNasaPorPalabra(buscar, filtroArchivo);
     const items = objetoJSON.collection.items;
     setFotos(buscar !== "" ? items : items.slice(0, 20));
     setCargando(false);
@@ -118,6 +119,21 @@ export default function Buscador() {
           >
             Buscar
           </button>
+          <div className="text-xl text-center mt-10">
+          Filtrar busqueda por:<br className="md:hidden"/>
+            <span className="mb-7 mt-7 hover:cursor-pointer md:mt-0 md:mb-0 md:ml-5 md:mr-5">
+              <label htmlFor="optionImagenes" className="mr-1 hover:cursor-pointer">Imágenes</label>
+              <input type="radio" value="image" className="hover:cursor-pointer" id="optionImagenes" onChange={(evento)=>{setFiltroArchivo(evento.target.value)}} checked={filtroArchivo === 'image'}/> 
+            </span><br className="md:hidden"/>
+            <span className="md:mr-5">
+              <label htmlFor="optionVideos" className="mr-1 hover:cursor-pointer">Vídeos</label> 
+              <input type="radio" value="video" className="hover:cursor-pointer" id="optionVideos" onChange={(evento)=>{setFiltroArchivo(evento.target.value)}} checked={filtroArchivo === 'video'}/> 
+            </span><br className="md:hidden"/>          
+            <span className="md:mr-5">
+              <label htmlFor="optionTodos" className="mr-1 hover:cursor-pointer">Fotos y vídeos</label> 
+              <input type="radio" value="todos" className="hover:cursor-pointer" id="optionTodos" onChange={(evento)=>{setFiltroArchivo(evento.target.value)}} checked={filtroArchivo === 'todos'}/> 
+            </span><br className="md:hidden"/> 
+          </div>
         </form>
         <div className="text-center">{condicionalComponente()}</div>
 
