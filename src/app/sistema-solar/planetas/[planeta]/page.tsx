@@ -31,12 +31,13 @@ function Planeta() {
   const [loading, setLoading] = useState<boolean>(true);
   const [urlImagenMostrada, setUrlImagenMostrada] = useState("");
   const pathname = usePathname();
-  // tengo que meter esto ahora por que no se que error da al subirlo al git
-  if (!pathname) {
-    return null;
+
+  let planetaNombre:string = "";
+  if (pathname) {
+    const partesRuta = pathname.split("/");
+    planetaNombre = decodeURIComponent(partesRuta[3]);
   }
-  const partesRuta = pathname.split("/");
-  const planetaNombre = decodeURIComponent(partesRuta[3]);
+  
   const styling = {
     backgroundImage: `url('/texturas/estrellas-textura.jpg')`,
   };
