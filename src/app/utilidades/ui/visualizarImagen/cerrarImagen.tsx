@@ -1,8 +1,15 @@
-export default function CerrarImagen({setUrlImagenMostrada}:{setUrlImagenMostrada:Function}){
+
+
+export default function CerrarImagen({setUrlImagenMostrada, esVideo}:{setUrlImagenMostrada:Function, esVideo:boolean}){
+
     return(<span
         className="absolute bg-black right-2 top-2 cursor-pointer rounded-md p-1 hover:bg-slate-600"
         onClick={() => {
           setUrlImagenMostrada("");
+          if(esVideo){
+            const video = document.querySelector("#video") as HTMLVideoElement;
+            video?.pause();
+          }
         }}
       >
         <svg

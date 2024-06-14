@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { fetchBuscadorNasaId } from "@/app/utilidades/lib/apidata";
 import CerrarImagen from "./cerrarImagen";
-import { arch } from 'process';
 
 export function VisualizarImagen({
   urlImagenMostrada,
@@ -13,7 +12,7 @@ export function VisualizarImagen({
   titulo,
   nasaId,
   objetoInformacion,
-  objetoRover
+  objetoRover,
 }: {
   urlImagenMostrada: string;
   setUrlImagenMostrada: Function;
@@ -68,9 +67,8 @@ export function VisualizarImagen({
       );
     }else if(archivo.data[0].media_type === 'video' && listaVideos){
       const regex = /~orig\.mp4$/;
-
       const videosFiltrados = listaVideos.filter((urlVideo:string) => regex.test(urlVideo)).map((urlVideo:string) => (
-        <video key={urlVideo} width="600" height="520" autoPlay controls className='md:block mr-10 border-solid border-black border-2 rounded-lg'>
+        <video key={archivo.data[0].nasa_id} id="video" width="600" height="520" autoPlay controls className='md:block mr-10 border-solid border-black border-2 rounded-lg'>
           <source src={urlVideo} type="video/mp4"/>
           Your browser does not support the video tag.
         </video>
@@ -88,12 +86,12 @@ export function VisualizarImagen({
                 <h1 className="text-4xl text-center mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
                     Información detallada acerca de {archivo.data[0].title}
                 </h1>
-                <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} />
+                <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={archivo.data[0].media_type === 'video' ? true : false}/>
                 <div className="md:grid md:grid-cols-2 items-start">
                   {compruebaArchivo(archivo)}
                   <div className="col-start-2">
-                      <h1 className="mt-2 mb-5"><strong>Titulo:</strong> {archivo.data[0].title}</h1>
-                      <p className="mb-5"><strong>Descripción:</strong> {archivo.data[0].description}</p>
+                      <h1 className="mt-2 mb-5"><strong>Titulo: </strong> {archivo.data[0].title}</h1>
+                      <p className="mb-5"><strong>Descripción: </strong> {archivo.data[0].description}</p>
                       <p className="mb-5"><strong>Fecha del archivo: </strong>{archivo.data[0].date_created.split('T')[0]}</p>
                       <p className="mb-5"><strong>Centro: </strong>{archivo.data[0].center}</p>
                   </div>
@@ -109,7 +107,7 @@ export function VisualizarImagen({
               <h1 className="text-4xl text-center mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
                   Información detallada del rover {objetoRover.name}
               </h1>
-              <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} />
+              <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={false}/>
               <div className="md:grid md:grid-cols-2 items-start">
                   <Image  
                       key={objetoRover.id}
@@ -139,7 +137,7 @@ export function VisualizarImagen({
               <h1 className="text-4xl text-center mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
                   Información detallada de la imagen enviada por {objetoInformacion.rover.name}
               </h1>
-              <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} />
+              <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={false}/>
               <div className="md:grid md:grid-cols-2 items-start">
                   <Image  
                       key={objetoInformacion.id}
@@ -171,7 +169,7 @@ export function VisualizarImagen({
               className="rounded-lg max-h-screen"
             />
           )}
-          <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} />
+          <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={false}/>
         </div>
       )
     }
