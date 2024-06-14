@@ -15,10 +15,10 @@ export function InicioEnlace({
   srcImagen,
   textoEnlace,
   hrefEnlace,
-  width = 970, // Valor predeterminado para width
-  height = 537.6, // Valor predeterminado para height
-  alt = "Landing page Saturn image", // Valor predeterminado para alt
-  title = "", // Valor predeterminado para title
+  width = 970,
+  height = 537.6,
+  alt = "Landing page Saturn image",
+  title = "",
 }: InicioEnlaceProps) {
   return (
     <div className="mt-8 mb-8 md:mt-16 relative md:mb-12">
