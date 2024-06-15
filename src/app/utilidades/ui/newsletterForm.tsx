@@ -21,7 +21,6 @@ const SubscribeForm = () => {
     const result = await response.json();
     if (response.ok) {
       setSuccessMessage(result.message);
-      console.log("Correo enviado y suscripción exitosa");
     } else {
       setError(result.message || "Error al enviar el correo");
     }

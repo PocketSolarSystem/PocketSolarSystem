@@ -4,11 +4,8 @@ import Moon from "../../../models/moon";
 
 export async function GET() {
   try {
-    console.log("Connecting to DB...");
     await connectDB();
-    console.log("Connected to DB, fetching moons...");
     const allMoons = await Moon.find();
-    console.log("Fetched moons:", allMoons);
     return NextResponse.json(allMoons);
   } catch (error) {
     console.error("Error in GET /api/moon:", error);
@@ -21,9 +18,7 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    console.log("Connecting to DB...");
     await connectDB();
-    console.log("Connected to DB, creating moon...");
     const data = await request.json();
     // Validación básica (puedes mejorarla según tus necesidades)
     if (
@@ -39,7 +34,6 @@ export async function POST(request) {
     }
 
     const newMoon = await Moon.create(data);
-    console.log("Created new moon:", newMoon);
     return NextResponse.json(newMoon);
   } catch (error) {
     console.error("Error in POST /api/moon:", error);

@@ -4,11 +4,8 @@ import SolarSystem from "../../../models/solarSystem";
 
 export async function GET() {
   try {
-    console.log("Connecting to DB...");
     await connectDB();
-    console.log("Connected to DB, fetching solarSystems...");
     const allSolarSystems = await SolarSystem.find();
-    console.log("Fetched solarSystems:", allSolarSystems);
     return NextResponse.json(allSolarSystems);
   } catch (error) {
     console.error("Error in GET /api/solarSystem:", error);
@@ -21,9 +18,7 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    console.log("Connecting to DB...");
     await connectDB();
-    console.log("Connected to DB, creating solarSystem...");
     const data = await request.json();
     // Validación básica (puedes mejorarla según tus necesidades)
     if (
@@ -39,7 +34,6 @@ export async function POST(request) {
     }
 
     const newSolarSystem = await SolarSystem.create(data);
-    console.log("Created new solarSystem:", newSolarSystem);
     return NextResponse.json(newSolarSystem);
   } catch (error) {
     console.error("Error in POST /api/solarSystem:", error);

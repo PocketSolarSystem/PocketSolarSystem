@@ -5,11 +5,8 @@ import User from "../../../models/user";
 // Ruta para obtener todos los usuarios
 export async function GET() {
   try {
-    console.log("Connecting to DB...");
     await connectDB();
-    console.log("Connected to DB, fetching users...");
     const allUsers = await User.find();
-    console.log("Fetched users:", allUsers);
     return NextResponse.json(allUsers);
   } catch (error) {
     console.error("Error in GET /api/user:", error);
@@ -23,9 +20,7 @@ export async function GET() {
 // Ruta para crear un nuevo usuario
 export async function POST(request) {
   try {
-    console.log("Connecting to DB...");
     await connectDB();
-    console.log("Connected to DB, creating user...");
     const data = await request.json();
     // Validación básica (puedes mejorarla según tus necesidades)
     if (
@@ -41,7 +36,6 @@ export async function POST(request) {
     }
 
     const newUser = await User.create(data);
-    console.log("Created new user:", newUser);
     return NextResponse.json(newUser);
   } catch (error) {
     console.error("Error in POST /api/user:", error);

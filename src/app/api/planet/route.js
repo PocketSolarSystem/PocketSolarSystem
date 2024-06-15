@@ -5,11 +5,8 @@ import Planet from "../../../models/planet";
 // Ruta para obtener todos los planetas
 export async function GET() {
   try {
-    console.log("Connecting to DB...");
     await connectDB();
-    console.log("Connected to DB, fetching planets...");
     const allPlanets = await Planet.find();
-    console.log("Fetched planets:", allPlanets);
     return NextResponse.json(allPlanets);
   } catch (error) {
     console.error("Error in GET /api/planet:", error);
@@ -23,9 +20,7 @@ export async function GET() {
 // Ruta para crear un nuevo planeta
 export async function POST(request) {
   try {
-    console.log("Connecting to DB...");
     await connectDB();
-    console.log("Connected to DB, creating planet...");
     const data = await request.json();
     // Validación básica (puedes mejorarla según tus necesidades)
     if (
@@ -41,7 +36,6 @@ export async function POST(request) {
     }
 
     const newPlanet = await Planet.create(data);
-    console.log("Created new planet:", newPlanet);
     return NextResponse.json(newPlanet);
   } catch (error) {
     console.error("Error in POST /api/planet:", error);
