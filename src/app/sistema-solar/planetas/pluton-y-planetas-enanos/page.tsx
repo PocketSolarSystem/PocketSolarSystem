@@ -22,7 +22,7 @@ export default function PlutonYPlanetasEnanos() {
         >
           <div className="lg:h-80 lg:w-80 h-40 w-40">
             <Planeta3d textura='/texturas/Pluton-textura.jpg' />
-            <p>*Textura semi-ficticia de Plutón*</p>
+            <p className="md:text-sm text-xs text-gray-400 mb-6">Textura semi-ficticia de Plutón</p>
           </div>
         </div>
         <p className="my-8">
