@@ -1,51 +1,32 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { CarouselPlanetas } from "@/app/utilidades/ui/carouselPlanetas/CarouselPlanetas";
 import "react-multi-carousel/lib/styles.css";
 import { planetasEnanos } from "../../../utilidades/lib/dataDwarfPlanets";
+import { Planeta3d } from "@/app/utilidades/ui/planeta3d";
 
 import SkeletonPlutonYPlanetasEnanos from "@/app/utilidades/ui/componentesSistemaSolar/componentesPlutonYPlanetasEnanos/esqueletoPlutonYPlanetasEnanos/SkeletonPlutonYPlanetasEnanos";
 import { useState, useEffect } from "react";
 
-export default function PlutonYPlanetasEnanos() {
-  const [loading, setLoading] = useState(true);
+export default function PlutonYPlanetasEnanos() {  
+  const styling = {
+    backgroundImage: `url('/texturas/estrellas-textura.jpg')`,
+  };
 
-  useEffect(() => {
-    // Simula la carga de datos
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <main className="flex min-h-screen flex-col items-center md:px-12 px-8 pb-12">
-        <SkeletonPlutonYPlanetasEnanos />
-      </main>
-    );
-  }
   return (
     <main className="flex min-h-screen flex-col items-center md:px-12 px-8 pb-12">
       <div className="container mx-auto pt-2 md:pt-8 mt-14 text-justify">
-        <div className="mb-8 relative">
-          <p className="block font-bold text-3xl md:hidden bg-white mb-3 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black">
-            Planetas enanos
+      <p className="block text-3xl mb-2 p-2 text-center">
+            Plutón y planetas enanos
           </p>
-
-          <Image
-            src="/planetas-enanos/planetas-enanos-header.jpg"
-            width={1920}
-            height={640}
-            alt="Planetas Enanos page Planetas Enanos image"
-            className="border-2 border-solid border-black skew-y-1 z-0"
-          />
-
-          <p className="absolute hidden md:block text-4xl bg-white mt-7 p-2 text-center skew-y-1 hover:bg-gray-300 border-2 border-black right-6 bottom-6">
-            Planetas enanos
-          </p>
+      <div
+          className="flex flex-col items-center justify-center text-center ml-2 mb-12 bg-cover rounded-lg"
+          style={styling}
+        >
+          <div className="lg:h-80 lg:w-80 h-40 w-40">
+            <Planeta3d textura='/texturas/Pluton-textura.jpg' />
+            <p>*Textura semi-ficticia de Plutón*</p>
+          </div>
         </div>
         <p className="my-8">
           Nuestro sistema solar tiene cinco planetas enanos. En orden de
@@ -85,11 +66,11 @@ export default function PlutonYPlanetasEnanos() {
           </p>
         </div>
 
-        <CarouselPlanetas planetas={planetasEnanos} />
+        <CarouselPlanetas planetas={planetasEnanos} sonPlanetasEnanos={true}/>
 
         <div className="md:mx-32 mt-8">
           <h1 className="font-semibold text-xl text-3x1 mb-4 text-center md:text-left md:ml-8">
-            Pluto: La Estrella de los Planetas Enanos
+            Plutón: La Estrella de los Planetas Enanos
           </h1>
           <p className="mb-4">
             Plutón es, con mucho, el planeta enano más famoso. Descubierto por

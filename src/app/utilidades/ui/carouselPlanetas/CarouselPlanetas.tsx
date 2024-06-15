@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
+export function CarouselPlanetas({ planetas, sonPlanetasEnanos }: { planetas: Array<any>, sonPlanetasEnanos:boolean }) {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -53,7 +53,7 @@ export function CarouselPlanetas({ planetas }: { planetas: Array<any> }) {
             <p className="text-gray-700 mt-2 text-sm">{planeta.descripcion}</p>
             <Link
               href={planeta.link}
-              className="block bg-black text-white py-2 px-4 mt-8 hover:bg-slate-800 rounded-full"
+              className={`block bg-black text-white py-2 px-4 mt-8 hover:bg-slate-800 rounded-full ${sonPlanetasEnanos ? 'hidden' : ''}`}
             >
               Explora {planeta.nombre}
             </Link>

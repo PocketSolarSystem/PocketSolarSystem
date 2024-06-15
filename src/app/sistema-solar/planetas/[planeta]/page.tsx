@@ -83,7 +83,7 @@ function Planeta() {
         <h1 className="font-semibold text-xl text-4x1 mb-8 mt-12 text-center md:text-left md:ml-8">
           Explora más planetas del Sistema Solar
         </h1>
-        <CarouselPlanetas planetas={planetas} />
+        <CarouselPlanetas planetas={planetas} sonPlanetasEnanos={false}/>
         <div className="my-8 text-justify">
           <h1 className="font-semibold text-xl text-4x1 mb-8 text-center md:text-left md:ml-8">
             Visión General Planeta {planetaNombre}

@@ -2,7 +2,8 @@
 
 export default function CerrarImagen({setUrlImagenMostrada, esVideo}:{setUrlImagenMostrada:Function, esVideo:boolean}){
 
-    return(<span
+    return(
+    <span
         className="absolute bg-black right-2 top-2 cursor-pointer rounded-md p-1 hover:bg-slate-600"
         onClick={() => {
           setUrlImagenMostrada("");
