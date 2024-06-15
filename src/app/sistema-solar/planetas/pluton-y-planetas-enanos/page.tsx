@@ -13,16 +13,16 @@ export default function PlutonYPlanetasEnanos() {
   return (
     <main className="flex min-h-screen flex-col items-center md:px-12 px-8 pb-12">
       <div className="container mx-auto pt-2 md:pt-8 mt-14 text-justify">
-      <p className="block text-3xl mb-2 p-2 text-center">
+        <p className="block text-3xl mb-2 p-2 text-center">
             Plutón y planetas enanos
-          </p>
+        </p>
       <div
           className="flex flex-col items-center justify-center text-center ml-2 mb-12 bg-cover rounded-lg"
           style={styling}
         >
           <div className="lg:h-80 lg:w-80 h-40 w-40">
             <Planeta3d textura='/texturas/Pluton-textura.jpg' />
-            <p className="md:text-sm text-xs text-gray-400 mb-6">Textura semi-ficticia de Plutón</p>
+            <p className="md:text-sm text-xs text-gray-700 mb-6">Textura semi-ficticia de Plutón</p>
           </div>
         </div>
         <p className="my-8">
@@ -85,7 +85,7 @@ export default function PlutonYPlanetasEnanos() {
               alt="Landing page Saturn image"
               className="md:max-w-3xl max-w-xs mb-2"
             />
-            <p className="md:text-sm text-xs text-gray-400 mb-6">
+            <p className="md:text-sm text-xs text-gray-700 mb-6">
               Una imagen que muestra letreros apoyando a los planetas enanos.
             </p>
           </div>

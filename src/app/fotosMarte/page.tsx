@@ -93,10 +93,6 @@ export default function FotosDeMarte() {
 
   if (cargando) {
     return (
-      //<main className="flex min-h-screen flex-col items-center mt-72">
-      //<p className="text-3xl font-bold mb-4 text-gray-800">Cargando...</p>
-      //<div className="loader"></div>
-      //</main>
       <SkeletonMarsGallery />
     );
   } else if (archivos) {
@@ -126,9 +122,8 @@ export default function FotosDeMarte() {
               Buscar
             </button>
           </form>
-          <p className="mt-7">
-            *Los días marcianos son el número de rotaciones que Marte ha
-            realizado sobre su eje desde el aterrizaje del rover en el planeta*
+          <p className="md:text-sm text-xs text-gray-700 mt-7">
+            Por defecto la aplicación filtra por la última fecha terrestre en la que el rover ha enviado imágenes.
           </p>
           <form
             className="mt-5 text-xl"
@@ -153,6 +148,10 @@ export default function FotosDeMarte() {
               Buscar
             </button>
           </form>
+          <p className="md:text-sm text-xs text-gray-700 mt-7">
+            Los días marcianos son el número de rotaciones que Marte ha
+            realizado sobre su eje desde el aterrizaje del rover en el planeta
+          </p>
         </div>
         <div className="text-xl text-center mt-10">
           Selecciona un rover:<br className="md:hidden"/>
