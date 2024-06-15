@@ -5,9 +5,6 @@ import "react-multi-carousel/lib/styles.css";
 import { planetasEnanos } from "../../../utilidades/lib/dataDwarfPlanets";
 import { Planeta3d } from "@/app/utilidades/ui/planeta3d";
 
-import SkeletonPlutonYPlanetasEnanos from "@/app/utilidades/ui/componentesSistemaSolar/componentesPlutonYPlanetasEnanos/esqueletoPlutonYPlanetasEnanos/SkeletonPlutonYPlanetasEnanos";
-import { useState, useEffect } from "react";
-
 export default function PlutonYPlanetasEnanos() {  
   const styling = {
     backgroundImage: `url('/texturas/estrellas-textura.jpg')`,
