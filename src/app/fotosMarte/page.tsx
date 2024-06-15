@@ -150,7 +150,7 @@ export default function FotosDeMarte() {
           </form>
           <p className="md:text-sm text-xs text-gray-700 mt-7">
             Los días marcianos son el número de rotaciones que Marte ha
-            realizado sobre su eje desde el aterrizaje del rover en el planeta
+            realizado sobre su eje desde el aterrizaje del rover en el planeta.
           </p>
         </div>
         <div className="text-xl text-center mt-10">
