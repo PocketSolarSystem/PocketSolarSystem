@@ -83,15 +83,15 @@ const CardGrid: React.FC = () => {
     },
     {
       //href: "/sistema-solar/lunas/acerca-de-las-lunas",
-      href: `/work-in-progress`,
-      imageSrc: "/cardGrid/lunas.jpg",
-      text: "Acerca de las Lunas",
+      href: `/sistema-solar/planetas/Tierra`,
+      imageSrc: "/cardGrid/tierra.jpg",
+      text: "La Tierra",
     },
     {
       //href: "/sistema-solar/asteroides-cometas-meteoros/acerca-de-asteroides-cometas-meteoros",
-      href: `/work-in-progress`,
-      imageSrc: "/cardGrid/asteroides-cometas.jpg",
-      text: "Acerca de Asteroides y Cometas",
+      href: `/sistema-solar/planetas/pluton-y-planetas-enanos`,
+      imageSrc: "/cardGrid/pluton-y-planetas-enanos.jpg",
+      text: "Plutón y Planetas Enanos",
     },
   ];
 
