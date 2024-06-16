@@ -71,15 +71,15 @@ const Card: React.FC<CardProps> = ({ href, imageSrc, text }) => {
 const CardGrid: React.FC = () => {
   const cards: CardProps[] = [
     {
-      //href: "/sistema-solar/Sol",
-      href: `/work-in-progress`,
-      imageSrc: "/cardGrid/sistema-solar.jpg",
-      text: "Nuestro Sistema Solar",
-    },
-    {
       href: "/sistema-solar/planetas/acerca-de-los-planetas",
       imageSrc: "/cardGrid/planetas.jpg",
       text: "Acerca de los Planetas",
+    },
+    {
+      //href: "/sistema-solar/Sol",
+      href: `/sistema-solar/planetas/Marte`,
+      imageSrc: "/cardGrid/marte.jpg",
+      text: "Marte",
     },
     {
       //href: "/sistema-solar/lunas/acerca-de-las-lunas",

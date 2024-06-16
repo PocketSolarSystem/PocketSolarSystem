@@ -119,11 +119,16 @@ const NavbarSolarSystem = () => {
       href: "/sistema-solar",
       linkName: "Nuestro Sistema Solar",
       sublinks: [
+        {
+          id: 2,
+          href: `/work-in-progress`,
+          linkName: "Muy pronto...",
+        } /* 
         ...solarSystemNames.map((solarSystemName: any, index: number) => ({
           id: index + 5,
           href: `/work-in-progress`,
           linkName: solarSystemName.nombre,
-        })),
+        })), */,
       ],
     },
     {
@@ -156,13 +161,13 @@ const NavbarSolarSystem = () => {
         {
           id: 19,
           href: `/work-in-progress`,
-          linkName: "Acerca de las Lunas",
-        },
+          linkName: "Muy pronto...",
+        } /* 
         ...moonNames.map((moonName: any, index: number) => ({
           id: index + 20,
           href: `/sistema-solar/lunas/${moonName.nombre}`,
           linkName: moonName.nombre,
-        })),
+        })), */,
       ],
     },
     {
@@ -173,15 +178,15 @@ const NavbarSolarSystem = () => {
         {
           id: 27,
           href: `/work-in-progress`,
-          linkName: "Acerca de Asteroides, Cometas y Meteoros",
-        },
+          linkName: "Muy pronto...",
+        } /* 
         ...asteroidsCometsNames.map(
           (asteroidsCometsName: any, index: number) => ({
             id: index + 28,
             href: `/sistema-solar/asteroides-cometas-meteoros/${asteroidsCometsName.nombre}`,
             linkName: asteroidsCometsName.nombre,
           })
-        ),
+        ), */,
       ],
     },
   ];
