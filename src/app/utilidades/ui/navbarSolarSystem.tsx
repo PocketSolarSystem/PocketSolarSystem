@@ -116,61 +116,56 @@ const NavbarSolarSystem = () => {
   const links = [
     {
       id: 1,
-      href: "/sistema-solar",
-      linkName: "Nuestro Sistema Solar",
-      sublinks: [
-        {
-          id: 2,
-          href: `/work-in-progress`,
-          linkName: "Muy pronto...",
-        } /* 
+      href: "/sistema-solar/planetas/acerca-de-los-planetas",
+      linkName: "Acerca de los Planetas",
+      /* sublinks: [
         ...solarSystemNames.map((solarSystemName: any, index: number) => ({
           id: index + 5,
           href: `/work-in-progress`,
           linkName: solarSystemName.nombre,
-        })), */,
-      ],
+        })),
+      ], */
     },
     {
       id: 2,
       href: "/sistema-solar/planetas",
       linkName: "Planetas",
       sublinks: [
-        {
+        /* {
           id: 9,
           href: "/sistema-solar/planetas/acerca-de-los-planetas",
           linkName: "Acerca de los Planetas",
-        },
+        }, */
         ...planetNames.map((planetName: any, index: number) => ({
           id: index + 10,
           href: `/sistema-solar/planetas/${planetName.nombre}`,
           linkName: planetName.nombre,
         })),
-        {
+        /* {
           id: 18,
           href: "/sistema-solar/planetas/pluton-y-planetas-enanos",
           linkName: "Plutón y Planetas Enanos",
-        },
+        }, */
       ],
     },
     {
       id: 3,
-      href: "/sistema-solar/lunas",
-      linkName: "Lunas",
-      sublinks: [
+      href: "/sistema-solar/planetas/pluton-y-planetas-enanos",
+      linkName: "Plutón y Planetas Enanos",
+      /* sublinks: [
         {
           id: 19,
           href: `/work-in-progress`,
-          linkName: "Muy pronto...",
-        } /* 
+          linkName: "Acerca de las Lunas",
+        },
         ...moonNames.map((moonName: any, index: number) => ({
           id: index + 20,
           href: `/sistema-solar/lunas/${moonName.nombre}`,
           linkName: moonName.nombre,
-        })), */,
-      ],
+        })),
+      ], */
     },
-    {
+    /* {
       id: 4,
       href: "/sistema-solar/asteroides-cometas-meteoros",
       linkName: "Asteroides y Cometas",
@@ -178,17 +173,17 @@ const NavbarSolarSystem = () => {
         {
           id: 27,
           href: `/work-in-progress`,
-          linkName: "Muy pronto...",
-        } /* 
+          linkName: "Acerca de Asteroides, Cometas y Meteoros",
+        },
         ...asteroidsCometsNames.map(
           (asteroidsCometsName: any, index: number) => ({
             id: index + 28,
             href: `/sistema-solar/asteroides-cometas-meteoros/${asteroidsCometsName.nombre}`,
             linkName: asteroidsCometsName.nombre,
           })
-        ), */,
+        ),
       ],
-    },
+    }, */
   ];
 
   return (

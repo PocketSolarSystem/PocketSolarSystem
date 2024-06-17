@@ -138,9 +138,15 @@ const Galeria = () => {
 
         {/* Galería de Imágenes */}
         <div className="w-full md:w-3/4 p-4">
-          <h2 className="font-bold text-xl mb-4 text-center md:text-left">
-            Galería de {selectedPlanet?.nombre}
-          </h2>
+          {selectedPlanet?.nombre ? (
+            <h2 className="font-bold text-xl mb-4 text-center md:text-left">
+              Galería de {selectedPlanet?.nombre}
+            </h2>
+          ) : (
+            <h2 className="font-bold text-xl mb-4 text-center md:text-left">
+              Galería
+            </h2>
+          )}
           {loading ? (
             <div className="flex items-center justify-center h-full">
               <Cargando />
