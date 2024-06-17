@@ -1,6 +1,6 @@
 
 
-export default function CerrarImagen({setUrlImagenMostrada, esVideo}:{setUrlImagenMostrada:Function, esVideo:boolean}){
+export default function CerrarImagen({setUrlImagenMostrada, esVideo, setTraducido}:{setUrlImagenMostrada:Function, esVideo:boolean, setTraducido:Function}){
 
     return(
     <span
@@ -11,6 +11,7 @@ export default function CerrarImagen({setUrlImagenMostrada, esVideo}:{setUrlImag
             const video = document.querySelector("#video") as HTMLVideoElement;
             video?.pause();
           }
+          setTraducido(false);
         }}
       >
         <svg

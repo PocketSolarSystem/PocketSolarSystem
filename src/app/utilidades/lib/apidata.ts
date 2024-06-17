@@ -1,4 +1,30 @@
-const apiKey = "hHoKANWKAqwQD0xbea554Htvvf0uLX7HRbaXfDok"
+const apiKey = 'hHoKANWKAqwQD0xbea554Htvvf0uLX7HRbaXfDok';
+import axios from "axios";
+
+export async function traducirTexto(texto:string, idioma:string){
+  try{
+    
+    if (idioma === 'es') {
+      const response = await axios.post('/api/traductorEspanhol', {
+        texto: texto
+      });
+      return(response.data.traduccion);
+    }else if(idioma === 'en'){
+      const response = await axios.post('/api/traductorIngles', {
+        texto: texto
+      });
+      return(response.data.traduccion);
+    }else{
+      console.error('Idioma no permitido');
+    }
+    
+  }catch (error){
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch revenue data.');
+  }
+  
+}
+
 
 export async function fetchFotoDelDia() {
 
@@ -11,16 +37,19 @@ export async function fetchFotoDelDia() {
     });
     const dataJSON = await data.json();
     return dataJSON;
+
   } catch (error) {
+
     console.error('Database Error:', error);
     throw new Error('Failed to fetch revenue data.');
+
   }
 }
 
 export async function fetchBuscadorNasa(){
 
   try {
-
+    
     const data = await fetch(`https://images-api.nasa.gov/search?media_type=video&media_type=image`, {} );
     const dataJSON = data.json();
     return dataJSON;

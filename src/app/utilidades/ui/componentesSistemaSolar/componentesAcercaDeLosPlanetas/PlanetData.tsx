@@ -31,8 +31,8 @@ const PlanetData = ({ planetaData }: PlanetDataProps) => (
                 ? planeta.imagenes[1]
                 : ""
             }
-            width={200}
-            height={200}
+            width={1000}
+            height={1000}
             alt={`${planeta.nombre} Image`}
             className="w-full mb-4"
           />
@@ -50,10 +50,10 @@ const PlanetData = ({ planetaData }: PlanetDataProps) => (
             <p>
               <Link
                 href={planeta.nombre}
-                className="block text-lg font-semibold py-2 mt-2 transition duration-300 flex items-center justify-start"
+                className="block text-lg font-semibold py-2 mt-2 transition duration-300 items-center justify-start"
               >
                 <span>{`Explora ${planeta.nombre}`}</span>
-                <span className="relative inline-block bg-primary-color h-6 w-6 rounded-full flex items-center justify-center ml-2">
+                <span className="relative inline-block bg-primary-color h-6 w-6 rounded-full items-center justify-center ml-2">
                   <svg
                     viewBox="0 0 32 32"
                     fill="none"

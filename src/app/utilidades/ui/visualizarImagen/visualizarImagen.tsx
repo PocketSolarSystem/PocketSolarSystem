@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { fetchBuscadorNasaId } from "@/app/utilidades/lib/apidata";
 import CerrarImagen from "./cerrarImagen";
+import { traducirTexto } from '@/app/utilidades/lib/apidata';
 
 export function VisualizarImagen({
   urlImagenMostrada,
@@ -24,6 +25,9 @@ export function VisualizarImagen({
   const [archivo, setArchivos] = useState<any | null>(null);
   const [listaVideos, setlistaVideos] = useState<any | null>(null);
   const [cargando, setCargando] = useState(false);
+  const [traducido, setTraducido] = useState(false);
+  const [title, setTitle] = useState("");
+  const [explanation, setExplanation] = useState("");
 
   useEffect(() => {
     if (urlImagenMostrada !== "") {
@@ -50,15 +54,20 @@ export function VisualizarImagen({
             const data = await response.json();
             setlistaVideos(data);
           }
+          if (traducido === true && item[0]?.data[0]?.title && item[0]?.data[0]?.description) {
+            setTitle(await traducirTexto(item[0].data[0].title, 'es'));
+            setExplanation(await traducirTexto(item[0].data[0].description, 'es'));  
+          }
           setArchivos(item[0]);
         }else{
           setArchivos(null);
+          setTraducido(false);
         }
         setCargando(false);
       }
       getItems();
     }
-  }, [nasaId]);
+  }, [nasaId, traducido, explanation]);
   
   function compruebaArchivo(archivo:any) {
     if (archivo.data[0].media_type === 'image'){
@@ -73,14 +82,19 @@ export function VisualizarImagen({
         />
       );
     }else if(archivo.data[0].media_type === 'video' && listaVideos){
-      const regex = /~orig\.mp4$/;
+      console.log(archivo);
+      const regex = /\.mp4$/;
       const videosFiltrados = listaVideos.filter((urlVideo:string) => regex.test(urlVideo)).map((urlVideo:string) => (
         <video key={archivo.data[0].nasa_id} id="video" width="600" height="520" controls className='md:block mr-10 border-solid border-black border-2 rounded-lg'>
           <source src={urlVideo} type="video/mp4"/>
           Your browser does not support the video tag.
         </video>
       ));
-      return videosFiltrados[0];
+      if (videosFiltrados[0]) {
+        return videosFiltrados[0];
+      }else{
+        return 'Error al cargar el contenido multimedia'
+      }
     }
   }
 
@@ -99,14 +113,17 @@ export function VisualizarImagen({
             {archivo &&
               <div key={archivo.data[0].nasa_id} id="divImagenApi" className="p-6 bg-white rounded-lg relative m-4 md:max-h-screen max-w-96 md:max-w-screen-lg lg:max-w-screen-xl overflow-y-auto">
                   <h1 className="text-4xl text-center mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
-                      Información detallada acerca de {archivo.data[0].title}
+                      Información detallada acerca de {traducido ? title : archivo.data[0].title}
                   </h1>
-                  <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={archivo.data[0].media_type === 'video' ? true : false}/>
+                  <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={archivo.data[0].media_type === 'video' ? true : false} setTraducido={setTraducido}/>
+                  <div className='flex flex-col items-center'>
+                    <button type="button" className="mt-4 mb-4 bg-black rounded-lg hover:bg-slate-700 text-white p-1" onClick={()=>{setTraducido(traducido ? false : true)}}> Ver texto {traducido ? 'original' : 'en español'}</button>
+                  </div>
                   <div className="md:grid md:grid-cols-2 items-start">
                     {compruebaArchivo(archivo)}
                     <div className="col-start-2">
-                        <h1 className="mt-2 mb-5"><strong>Titulo: </strong> {archivo.data[0].title}</h1>
-                        <p className="mb-5"><strong>Descripción: </strong> {archivo.data[0].description}</p>
+                        <h1 className="mt-2 mb-5"><strong>Titulo: </strong> {traducido ? title : archivo.data[0].title}</h1>
+                        <p className="mb-5"><strong>Descripción: </strong> {traducido ? explanation : archivo.data[0].description}</p>
                         <p className="mb-5"><strong>Fecha del archivo: </strong>{archivo.data[0].date_created.split('T')[0]}</p>
                         <p className="mb-5"><strong>Centro: </strong>{archivo.data[0].center}</p>
                     </div>
@@ -124,7 +141,7 @@ export function VisualizarImagen({
               <h1 className="text-4xl text-center mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
                   Información detallada del rover {objetoRover.name}
               </h1>
-              <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={false}/>
+              <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={false} setTraducido={setTraducido}/>
               <div className="md:grid md:grid-cols-2 items-start">
                   <Image  
                       key={objetoRover.id}
@@ -141,7 +158,7 @@ export function VisualizarImagen({
                       <p className="mb-5"><strong>Estado actual del rover: </strong>{objetoRover.status}</p>
                       <p className="mb-5"><strong>Último día marciano en el que ha enviado imágenes: </strong>{objetoRover.max_sol}</p>
                       <p className="mb-5"><strong>Último fecha terrestre en el que ha enviado imágenes: </strong>{objetoRover.max_date}</p>
-                      <p className="mb-5"><strong>Fotos totales enviadas: </strong>{objetoRover.total_photos}</p>
+                      <p className="mb-5"><strong>Imágenes totales enviadas: </strong>{objetoRover.total_photos}</p>
                   </div>
               </div>
           </div>        
@@ -154,7 +171,7 @@ export function VisualizarImagen({
               <h1 className="text-4xl text-center mt-4 mb-4 md:mb-8 basis-40 md:basis-0 lg:basis-0">
                   Información detallada de la imagen enviada por {objetoInformacion.rover.name}
               </h1>
-              <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={false}/>
+              <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={false} setTraducido={setTraducido}/>
               <div className="md:grid md:grid-cols-2 items-start">
                   <Image  
                       key={objetoInformacion.id}
@@ -186,7 +203,7 @@ export function VisualizarImagen({
               className="rounded-lg max-h-screen"
             />
           )}
-          <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={false}/>
+          <CerrarImagen setUrlImagenMostrada={setUrlImagenMostrada} esVideo={false} setTraducido={setTraducido}/>
         </div>
       )
     }

@@ -71,9 +71,8 @@ const Footer = () => {
 
   return (
     <footer className="bg-black text-white py-12">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="p-4">
-          <div className="flex flex-col items-center justify-center md:justify-start">
             <Link
               className="link-underline link-underline-black flex items-center"
               href="/"
@@ -88,37 +87,16 @@ const Footer = () => {
                 className="sm:hidden mb-6"
               />
             </Link>
-          </div>
           <h1 className="text-xl mb-4">
             <span>Pocket Solar System</span>
           </h1>
           <p>
-            Pocket Solar System enseña lo desconocido en el aire y el espacio,
-            innova para el beneficio de la humanidad e inspira al mundo a través
-            del descubrimiento.
+            Pocket Solar System la aplicación web dónde podrás explorar el sistema solar, 
+            ver las últimas fotos enviadas desde Marte, navegar entre los archivos de la NASA y 
+            visualizar una imagen de nuestro que cambiará día tras día.
           </p>
         </div>
-        <div className="p-4">
-          <h4 className="text-lg mb-4">Mapa del sitio</h4>
-          <ul>
-            {linksMapa.map((link) => (
-              <li
-                key={link.id}
-                className="cursor-pointer capitalize font-medium text-gray-500 
-              hover:scale-105 hover:text-white duration-200 link-underline"
-              >
-                <Link
-                  onClick={() => setNav(!nav)}
-                  href={link.href}
-                  className={`cursor-pointer ${pathname === link.href ? "scale-105 text-white" : ""}`}
-                >
-                  <span className="text-center">{link.linkName}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="p-4">
+        <div className="p-4 flex flex-col items-center justify-center md:justify-start">
           <h4 className="text-lg mb-4">Redes Sociales</h4>
           <div className="flex space-x-4">
             {linksRedes.map((link) => (
@@ -168,58 +146,14 @@ const Footer = () => {
       <div className="mt-8 text-center">
         <SubscribeForm />
         <p className="text-sm mt-8">
-          &copy; 2024 Pocket Solar System. &nbsp;
+          2024 Pocket Solar System. &nbsp;
           <Link href="/politica-de-privacidad">
             <span className="text-blue-500 underline">
-              Todos los derechos reservados.
+              Política de privacidad y WCAG.
             </span>
           </Link>
         </p>
         <div className="flex justify-center items-center mt-4">
-          {/* <div className="flex flex-col items-center mr-4">
-            <FontAwesomeIcon
-              icon={faLock}
-              size="2x"
-              className="text-blue-500 mb-2"
-            />
-            <span className="text-xs hidden sm:inline-block">SSL/TLS</span>
-          </div>
-          <div className="flex flex-col items-center mr-4">
-            <FontAwesomeIcon
-              icon={faShieldAlt}
-              size="2x"
-              className="text-green-500 mb-2"
-            />
-            <span className="text-xs hidden sm:inline-block">PCI DSS</span>
-          </div>
-          <div className="flex flex-col items-center mr-4">
-            <FontAwesomeIcon
-              icon={faCheckCircle}
-              size="2x"
-              className="text-purple-500 mb-2"
-            />
-            <span className="text-xs hidden sm:inline-block">
-              McAfee Secure
-            </span>
-          </div>
-          <div className="flex flex-col items-center mr-4">
-            <FontAwesomeIcon
-              icon={faStar}
-              size="2x"
-              className="text-yellow-500 mb-2"
-            />
-            <span className="text-xs hidden sm:inline-block">Trustpilot</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <FontAwesomeIcon
-              icon={faCertificate}
-              size="2x"
-              className="text-red-500 mb-2"
-            />
-            <span className="text-xs hidden sm:inline-block">
-              Norton Secured
-            </span>
-          </div> */}
         </div>
       </div>
     </footer>

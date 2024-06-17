@@ -9,12 +9,6 @@ const SkeletonNasaFileSearch = () => {
       {/* Formulario de búsqueda */}
       <div className="m-9 text-xl w-full flex flex-col items-center">
         <div className="bg-gray-300 h-6 w-1/4 mb-4 animate-pulse"></div>
-        <div className=" inline-block border-2 border-black border-solid flex">
-          <div className="bg-gray-300 h-10 w-full p-1 animate-pulse"></div>
-          <div className="hidden md:inline-block bg-black">
-            <div className="bg-gray-300 h-10 w-20 p-1 animate-pulse"></div>
-          </div>
-        </div>
         <div className="block md:hidden bg-black text-white p-1 mt-4 animate-pulse">
           <div className="bg-gray-300 h-10 w-20 animate-pulse"></div>
         </div>

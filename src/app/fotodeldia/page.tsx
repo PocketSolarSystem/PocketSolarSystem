@@ -1,6 +1,5 @@
 import { fetchFotoDelDia } from "../utilidades/lib/apidata";
 import ComponenteFotoDelDia from "../utilidades/ui/componenteFotoDelDia/componenteFotoDelDia";
-import Image from "next/image";
 
 export default async function FotoDelDia() {
   const fotodeldia = await fetchFotoDelDia();

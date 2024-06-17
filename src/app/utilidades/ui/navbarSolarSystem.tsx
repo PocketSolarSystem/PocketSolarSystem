@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import { FaChevronDown, FaChevronUp, FaPlus } from "react-icons/fa";
 import { usePathname } from "next/navigation";
@@ -203,7 +202,8 @@ const NavbarSolarSystem = () => {
                   <div
                     id={`planetaCambiarDropdown-${link.id}`}
                     onClick={() => toggleDropdown(link.id)}
-                    className={`hover:scale-105 ${pathname?.split("/")[1] === link.href.split("/")[1] ? "scale-105 text-white" : ""}`}
+                    className={`hover:scale-105 ${pathname?.split("/")[3] !== 'acerca-de-los-planetas' && 
+                      pathname?.split("/")[3] !== 'pluton-y-planetas-enanos' && pathname?.split("/")[3] ? "scale-105 text-white" : ""}`}
                   >
                     {link.linkName}
                     <svg

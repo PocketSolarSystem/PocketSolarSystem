@@ -4,6 +4,7 @@ import { ImagenPreview } from "../utilidades/ui/buscadorNasa/ImagenPreview";
 import { fetchBuscadorNasa } from "../utilidades/lib/apidata";
 import { fetchBuscadorNasaPorPalabra } from "../utilidades/lib/apidata";
 import { VisualizarImagen } from "../utilidades/ui/visualizarImagen/visualizarImagen";
+import { traducirTexto } from "../utilidades/lib/apidata";
 
 import SkeletonNasaFileSearch from "../utilidades/ui/esqueletoArchivosNasa/SkeletonNasaFileSearch";
 
@@ -43,7 +44,9 @@ export default function Buscador() {
     evento.preventDefault();
     setCargando(true);
     setTextoBuscado(buscar);
-    const objetoJSON = await fetchBuscadorNasaPorPalabra(buscar, filtroArchivo);
+    let textoTraducido;
+    buscar !== '' ? textoTraducido = await traducirTexto(buscar, 'en') : textoTraducido = '';
+    const objetoJSON = await fetchBuscadorNasaPorPalabra(textoTraducido, filtroArchivo);
     const items = objetoJSON.collection.items;
     setFotos(buscar !== "" ? items : items.slice(0, 20));
     setCargando(false);
@@ -97,7 +100,7 @@ export default function Buscador() {
             <input
               type="text"
               id="inputBuscador"
-              placeholder="ej: Moon"
+              placeholder="ej: Marte o Mars"
               onChange={(evento) => {
                 setBuscar(evento.target.value);
               }}
