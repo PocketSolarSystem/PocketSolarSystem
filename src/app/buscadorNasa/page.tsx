@@ -133,7 +133,7 @@ export default function Buscador() {
               <input type="radio" value="video" className="hover:cursor-pointer" id="optionVideos" onChange={(evento)=>{setFiltroArchivo(evento.target.value)}} checked={filtroArchivo === 'video'}/> 
             </span><br className="md:hidden"/>          
             <span className="md:mr-5">
-              <label htmlFor="optionTodos" className="mr-1 hover:cursor-pointer">Fotos y vídeos</label> 
+              <label htmlFor="optionTodos" className="mr-1 hover:cursor-pointer">Imágenes y vídeos</label> 
               <input type="radio" value="todos" className="hover:cursor-pointer" id="optionTodos" onChange={(evento)=>{setFiltroArchivo(evento.target.value)}} checked={filtroArchivo === 'todos'}/> 
             </span><br className="md:hidden"/> 
           </div>

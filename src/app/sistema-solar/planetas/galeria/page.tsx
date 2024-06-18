@@ -84,7 +84,7 @@ const Galeria = () => {
               : planets.map((planet) => (
                   <li
                     key={planet._id}
-                    className={`cursor-pointer hover:bg-gray-100 rounded p-2 ${selectedPlanet?.nombre == planet.nombre ? "bg-gray-100" : ""}`}
+                    className={`cursor-pointer hover:bg-gray-300 rounded p-2 ${selectedPlanet?.nombre == planet.nombre ? "bg-gray-300" : ""}`}
                     onClick={() => handlePlanetClick(planet)}
                   >
                     {planet.nombre}

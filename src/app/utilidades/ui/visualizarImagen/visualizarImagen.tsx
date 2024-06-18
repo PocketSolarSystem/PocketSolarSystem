@@ -82,7 +82,6 @@ export function VisualizarImagen({
         />
       );
     }else if(archivo.data[0].media_type === 'video' && listaVideos){
-      console.log(archivo);
       const regex = /\.mp4$/;
       const videosFiltrados = listaVideos.filter((urlVideo:string) => regex.test(urlVideo)).map((urlVideo:string) => (
         <video key={archivo.data[0].nasa_id} id="video" width="600" height="520" controls className='md:block mr-10 border-solid border-black border-2 rounded-lg'>
@@ -197,8 +196,8 @@ export function VisualizarImagen({
           {urlImagenMostrada !== "" && (
             <Image
               src={urlImagenMostrada}
-              width={500}
-              height={500}
+              width={800}
+              height={800}
               alt={titulo}
               className="rounded-lg max-h-screen"
             />
