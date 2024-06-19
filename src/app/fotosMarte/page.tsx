@@ -36,7 +36,7 @@ export default function FotosDeMarte() {
   async function buscarPorFechaTerrestre() {
     setCargando(true);
     const objetoJSON = await fetchFotosMarteFecha(fechaSeleccionada, nombreRover);
-    const items = objetoJSON.photos;
+    const items = await objetoJSON.photos;
     setFechaBuscada(fechaSeleccionada);
     setSolBuscado("");
     setArchivos(items);
@@ -46,7 +46,7 @@ export default function FotosDeMarte() {
   async function buscarPorSol() {
     setCargando(true);
     const objetoJSON = await fetchFotosMarteSol(sol, nombreRover);
-    const items = objetoJSON.photos;
+    const items = await objetoJSON.photos;
     setSolBuscado(sol);
     setFechaBuscada("");
     setArchivos(items);
@@ -60,7 +60,7 @@ export default function FotosDeMarte() {
     setFechaBuscada(objetoJSONRover.rover.max_date);
     setFechaSeleccionada(objetoJSONRover.rover.max_date);
     const objetoJSONFotos = await fetchFotosMarteFecha(objetoJSONRover.rover.max_date, evento.target.value);
-    const items = objetoJSONFotos.photos;
+    const items = await objetoJSONFotos.photos;
     setArchivos(items);
     setCargando(false);
   }
