@@ -26,7 +26,7 @@ export default function FotosDeMarte() {
       setFechaBuscada(objetoJSONRover.rover.max_date);
       setFechaSeleccionada(objetoJSONRover.rover.max_date);
       const objetoJSONFotos = await fetchFotosMarteFecha(objetoJSONRover.rover.max_date, nombreRover);
-      const items = objetoJSONFotos.photos;
+      const items = await objetoJSONFotos.photos;
       setArchivos(items);
       setCargando(false);
     };
